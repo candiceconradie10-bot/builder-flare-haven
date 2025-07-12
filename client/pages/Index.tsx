@@ -228,6 +228,148 @@ export default function Index() {
         </div>
       </section>
 
+      {/* About Section */}
+      <section className="relative py-24 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-red/5 via-transparent to-red-600/5" />
+        <div className="absolute inset-0 dot-pattern opacity-20" />
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* About Content */}
+            <div className="space-y-8">
+              <div className="space-y-6">
+                <Badge className="bg-gradient-to-r from-brand-red to-red-600 text-white font-bold px-4 py-2 rounded-full border-0 shadow-lg">
+                  <Users className="h-4 w-4 mr-2" />
+                  About APEX
+                </Badge>
+
+                <h2 className="text-4xl md:text-6xl font-black leading-tight">
+                  <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
+                    Africa's
+                  </span>
+                  <br />
+                  <span className="bg-gradient-to-r from-brand-red via-red-500 to-red-600 bg-clip-text text-transparent">
+                    Leading Provider
+                  </span>
+                </h2>
+
+                <p className="text-xl text-gray-300 leading-relaxed">
+                  APEX is South Africa's premier promotional products provider,
+                  specializing in
+                  <span className="text-brand-red font-semibold">
+                    {" "}
+                    corporate gifts
+                  </span>
+                  , professional clothing, and custom branding solutions. We
+                  help businesses across Africa create lasting impressions with
+                  high-quality promotional items.
+                </p>
+
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <div className="text-2xl font-bold text-brand-red">
+                      Premium Quality
+                    </div>
+                    <div className="text-gray-400">
+                      Only the finest materials and craftsmanship
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="text-2xl font-bold text-brand-red">
+                      Custom Branding
+                    </div>
+                    <div className="text-gray-400">
+                      Professional embroidery and printing services
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="text-2xl font-bold text-brand-red">
+                      Fast Delivery
+                    </div>
+                    <div className="text-gray-400">
+                      Quick turnaround times across South Africa
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="text-2xl font-bold text-brand-red">
+                      Expert Support
+                    </div>
+                    <div className="text-gray-400">
+                      Dedicated account managers for every client
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button className="group bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold px-8 py-4 rounded-2xl shadow-2xl hover:shadow-red-500/25 transition-all duration-300 hover:scale-105">
+                  <Briefcase className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
+                  View Our Story
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </Button>
+                <Button
+                  variant="outline"
+                  className="group border-2 border-white/30 text-white hover:bg-white/10 hover:border-brand-red/50 font-bold px-8 py-4 rounded-2xl backdrop-blur-md transition-all duration-300 hover:scale-105"
+                >
+                  <Phone className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
+                  Contact Us
+                </Button>
+              </div>
+            </div>
+
+            {/* About Visual */}
+            <div className="relative">
+              <div className="relative">
+                {/* Glow Effects */}
+                <div className="absolute -inset-8 bg-gradient-to-br from-brand-red/30 via-red-500/20 to-red-700/30 rounded-full blur-3xl animate-float" />
+                <div className="absolute -inset-4 bg-gradient-to-br from-brand-red/20 to-red-600/20 rounded-3xl blur-2xl animate-floatReverse" />
+
+                {/* Content Container */}
+                <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-2xl">
+                  <div className="space-y-6">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-gradient-to-br from-brand-red/20 to-red-600/20 rounded-2xl p-6 backdrop-blur-md border border-white/20">
+                        <Gift className="h-8 w-8 text-brand-red mb-3" />
+                        <div className="text-lg font-bold text-white">
+                          Corporate Gifts
+                        </div>
+                        <div className="text-sm text-gray-300">
+                          Premium branded items
+                        </div>
+                      </div>
+                      <div className="bg-gradient-to-br from-brand-red/20 to-red-600/20 rounded-2xl p-6 backdrop-blur-md border border-white/20">
+                        <Shirt className="h-8 w-8 text-brand-red mb-3" />
+                        <div className="text-lg font-bold text-white">
+                          Clothing
+                        </div>
+                        <div className="text-sm text-gray-300">
+                          Professional apparel
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="text-center p-6 bg-gradient-to-r from-brand-red/10 to-red-600/10 rounded-2xl border border-brand-red/20">
+                      <div className="text-3xl font-bold text-white mb-2">
+                        10,000+
+                      </div>
+                      <div className="text-gray-300">Products Available</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating Elements */}
+                <div className="absolute -top-4 -right-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-black p-3 rounded-2xl shadow-xl animate-float">
+                  <Sparkles className="h-6 w-6" />
+                </div>
+                <div className="absolute -bottom-4 -left-4 bg-gradient-to-r from-green-400 to-emerald-500 text-black p-3 rounded-2xl shadow-xl animate-floatReverse">
+                  <Award className="h-6 w-6" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Enhanced Features Bar */}
       <section className="relative py-16 bg-gradient-to-r from-black via-gray-900 to-black border-y border-white/10">
         <div className="absolute inset-0 bg-gradient-to-r from-brand-red/5 via-transparent to-red-600/5" />
