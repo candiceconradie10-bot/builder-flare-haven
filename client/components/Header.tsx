@@ -191,17 +191,21 @@ export function Header() {
                 <Heart className="h-5 w-5" />
                 <span className="text-xs">Wishlist</span>
               </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="flex flex-col items-center space-y-1 relative"
-              >
-                <ShoppingCart className="h-5 w-5" />
-                <span className="text-xs">Cart</span>
-                <span className="absolute -top-1 -right-1 bg-brand-red text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                  0
-                </span>
-              </Button>
+              <Link to="/cart">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="flex flex-col items-center space-y-1 relative"
+                >
+                  <ShoppingCart className="h-5 w-5" />
+                  <span className="text-xs">Cart</span>
+                  {state.itemCount > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-brand-red text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+                      {state.itemCount}
+                    </span>
+                  )}
+                </Button>
+              </Link>
             </div>
 
             {/* Mobile Navigation */}
