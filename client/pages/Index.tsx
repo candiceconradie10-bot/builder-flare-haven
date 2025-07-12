@@ -144,14 +144,14 @@ export default function Index() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-brand-red font-semibold px-8 py-4"
+                  className="border-white text-white hover:bg-black hover:text-white font-semibold px-8 py-4"
                 >
                   Get Quote
                 </Button>
               </div>
             </div>
             <div className="relative">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+              <div className="bg-black/20 backdrop-blur-sm rounded-2xl p-8">
                 <img
                   src="/api/placeholder/600/400"
                   alt="Featured Products"
@@ -164,7 +164,7 @@ export default function Index() {
       </section>
 
       {/* Features Bar */}
-      <section className="bg-white py-8 border-b">
+      <section className="bg-black py-8 border-b border-gray-800">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {features.map((feature, index) => (
@@ -208,7 +208,7 @@ export default function Index() {
                         alt={category.title}
                         className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                       />
-                      <div className="absolute top-4 left-4 bg-white/90 p-2 rounded-full">
+                      <div className="absolute top-4 left-4 bg-black/90 p-2 rounded-full">
                         <category.icon className="h-6 w-6 text-brand-red" />
                       </div>
                     </div>
@@ -338,7 +338,7 @@ export default function Index() {
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4"
+              className="border-white text-white hover:bg-black hover:text-white px-8 py-4"
             >
               Browse Catalog
             </Button>
