@@ -48,17 +48,51 @@ export default function ProductCategory() {
         </div>
       </div>
 
-      {/* Category Header */}
-      <div className="bg-black">
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              {categoryTitle}
+      {/* Enhanced Category Header */}
+      <div className="relative bg-gradient-to-br from-black via-gray-900 to-black py-16">
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-red/10 via-transparent to-red-600/10" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(220,20,60,0.1),transparent_70%)]" />
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center space-y-6">
+            <div className="flex items-center justify-center space-x-3">
+              <Badge className="bg-gradient-to-r from-brand-red to-red-600 text-white font-bold px-4 py-2 rounded-full border-0 shadow-lg">
+                <Sparkles className="h-4 w-4 mr-2" />
+                Premium Collection
+              </Badge>
+            </div>
+
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight">
+              <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
+                {categoryTitle}
+              </span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Discover our premium selection of {categoryTitle?.toLowerCase()}{" "}
-              with custom branding options
+
+            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Discover our premium selection of{" "}
+              <span className="text-brand-red font-semibold">
+                {categoryTitle?.toLowerCase()}
+              </span>{" "}
+              with professional custom branding options and industry-leading
+              quality.
             </p>
+
+            <div className="flex items-center justify-center space-x-8 pt-6">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-brand-red">
+                  {categoryProducts.length}+
+                </div>
+                <div className="text-sm text-gray-400">Products</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-brand-red">24h</div>
+                <div className="text-sm text-gray-400">Fast Delivery</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-brand-red">★ 4.9</div>
+                <div className="text-sm text-gray-400">Rating</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
