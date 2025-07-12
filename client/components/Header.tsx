@@ -31,7 +31,7 @@ export function Header() {
   return (
     <header className="w-full">
       {/* Top Bar */}
-      <div className="bg-brand-blue text-white py-2 px-4">
+      <div className="bg-brand-red text-white py-2 px-4">
         <div className="container mx-auto flex justify-between items-center text-sm">
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-1">
