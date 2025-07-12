@@ -17,79 +17,17 @@ import {
 } from "lucide-react";
 
 export default function Index() {
-  const featuredCategories = [
-    {
-      title: "Corporate Gifts",
-      description: "Premium branded items for your business",
-      image: "/api/placeholder/400/300",
-      icon: Gift,
-      href: "/corporate-gifts",
-    },
-    {
-      title: "Corporate Clothing",
-      description: "Professional apparel for your team",
-      image: "/api/placeholder/400/300",
-      icon: Shirt,
-      href: "/corporate-clothing",
-    },
-    {
-      title: "Workwear",
-      description: "Durable clothing for every industry",
-      image: "/api/placeholder/400/300",
-      icon: Briefcase,
-      href: "/workwear",
-    },
-    {
-      title: "Hampers & Gift Sets",
-      description: "Curated collections for any occasion",
-      image: "/api/placeholder/400/300",
-      icon: Gift,
-      href: "/hampers",
-    },
-  ];
+  const { addToCart } = useCart();
+  const featuredProducts = getFeaturedProducts(4);
 
-  const featuredProducts = [
-    {
-      id: 1,
-      name: "Premium Corporate Polo Shirt",
-      price: "R249.00",
-      originalPrice: "R299.00",
-      image: "/api/placeholder/300/300",
-      rating: 4.8,
-      reviews: 124,
-      discount: "17% OFF",
-    },
-    {
-      id: 2,
-      name: "Executive Gift Set",
-      price: "R599.00",
-      originalPrice: null,
-      image: "/api/placeholder/300/300",
-      rating: 4.9,
-      reviews: 89,
-      discount: null,
-    },
-    {
-      id: 3,
-      name: "Safety Workwear Bundle",
-      price: "R1,299.00",
-      originalPrice: "R1,599.00",
-      image: "/api/placeholder/300/300",
-      rating: 4.7,
-      reviews: 156,
-      discount: "19% OFF",
-    },
-    {
-      id: 4,
-      name: "Custom Branded Cap",
-      price: "R89.00",
-      originalPrice: null,
-      image: "/api/placeholder/300/300",
-      rating: 4.6,
-      reviews: 203,
-      discount: null,
-    },
-  ];
+  const featuredCategories = categories.map((category) => ({
+    ...category,
+    icon: category.title.includes("Gift")
+      ? Gift
+      : category.title.includes("Clothing")
+        ? Shirt
+        : Briefcase,
+  }));
 
   const features = [
     {
