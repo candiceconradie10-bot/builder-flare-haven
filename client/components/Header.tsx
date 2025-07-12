@@ -98,32 +98,46 @@ export function Header() {
 
   return (
     <>
-      {/* Top Bar - Enhanced with glassmorphism */}
-      <div className="bg-gradient-to-r from-brand-red via-red-600 to-brand-red text-white py-2 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
+      {/* Premium Top Bar */}
+      <div className="relative bg-gradient-to-r from-brand-red via-red-500 to-brand-red text-white py-3 px-4 overflow-hidden">
+        <div className="absolute inset-0 bg-black/30 backdrop-blur-md"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
+
         <div className="container mx-auto flex justify-between items-center text-sm relative z-10">
-          <div className="flex items-center space-x-6">
-            <div className="flex items-center space-x-2 hover:scale-105 transition-transform duration-200">
-              <Phone className="h-4 w-4" />
-              <span className="font-medium">+27 11 886 5640</span>
+          <div className="flex items-center space-x-8">
+            <div className="flex items-center space-x-2 group cursor-pointer">
+              <div className="p-1 rounded-full bg-white/20 group-hover:bg-white/30 transition-all duration-300">
+                <Phone className="h-3 w-3" />
+              </div>
+              <span className="font-medium group-hover:text-yellow-300 transition-colors duration-300">
+                +27 11 886 5640
+              </span>
             </div>
-            <div className="hidden sm:flex items-center space-x-2 hover:scale-105 transition-transform duration-200">
-              <Mail className="h-4 w-4" />
-              <span>info@apex.co.za</span>
+            <div className="hidden sm:flex items-center space-x-2 group cursor-pointer">
+              <div className="p-1 rounded-full bg-white/20 group-hover:bg-white/30 transition-all duration-300">
+                <Mail className="h-3 w-3" />
+              </div>
+              <span className="group-hover:text-yellow-300 transition-colors duration-300">
+                info@apex.co.za
+              </span>
             </div>
           </div>
-          <div className="hidden lg:flex items-center space-x-6">
-            <div className="flex items-center space-x-2">
-              <Sparkles className="h-4 w-4 text-yellow-300" />
-              <span className="font-medium">
+
+          <div className="hidden lg:flex items-center space-x-8">
+            <div className="flex items-center space-x-2 animate-float">
+              <Sparkles className="h-4 w-4 text-yellow-300 animate-pulse" />
+              <span className="font-medium bg-gradient-to-r from-yellow-300 to-yellow-400 bg-clip-text text-transparent">
                 Free delivery on orders over R500
               </span>
             </div>
             <Link
               to="/track-order"
-              className="hover:text-yellow-300 transition-colors duration-200 font-medium hover:underline"
+              className="group relative font-medium transition-all duration-300"
             >
-              Track Your Order
+              <span className="relative z-10 group-hover:text-yellow-300 transition-colors duration-300">
+                Track Your Order
+              </span>
+              <div className="absolute inset-0 bg-yellow-300/20 rounded-md scale-0 group-hover:scale-100 transition-transform duration-300"></div>
             </Link>
           </div>
         </div>
