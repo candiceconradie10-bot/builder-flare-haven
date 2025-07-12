@@ -51,7 +51,7 @@ export default function ProductCategory() {
       <div className="bg-white border-b">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center space-x-2 text-sm text-gray-600">
-            <Link to="/" className="hover:text-brand-blue">
+            <Link to="/" className="hover:text-brand-red">
               Home
             </Link>
             <span>/</span>
@@ -248,7 +248,7 @@ export default function ProductCategory() {
                         </div>
                         <Button
                           size="sm"
-                          className="bg-brand-blue hover:bg-brand-blue/90"
+                          className="bg-brand-red hover:bg-brand-red/90"
                         >
                           Add to Cart
                         </Button>
@@ -265,7 +265,7 @@ export default function ProductCategory() {
                 <Button variant="outline" disabled>
                   Previous
                 </Button>
-                <Button className="bg-brand-blue">1</Button>
+                <Button className="bg-brand-red">1</Button>
                 <Button variant="outline">2</Button>
                 <Button variant="outline">3</Button>
                 <Button variant="outline">Next</Button>
