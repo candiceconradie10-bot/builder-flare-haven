@@ -65,7 +65,7 @@ export function Footer() {
             </p>
             <div className="space-y-2">
               <div className="flex items-center space-x-2 text-sm">
-                <MapPin className="h-4 w-4 text-brand-blue" />
+                <MapPin className="h-4 w-4 text-brand-red" />
                 <span>123 Business St, Johannesburg, SA</span>
               </div>
               <div className="flex items-center space-x-2 text-sm">
