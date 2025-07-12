@@ -55,7 +55,7 @@ export function Footer() {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <div className="bg-brand-blue text-white px-4 py-2 rounded font-bold text-xl">
-                AMROD
+                APEX
               </div>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
@@ -74,7 +74,7 @@ export function Footer() {
               </div>
               <div className="flex items-center space-x-2 text-sm">
                 <Mail className="h-4 w-4 text-brand-blue" />
-                <span>info@amrod.co.za</span>
+                <span>info@apex.co.za</span>
               </div>
               <div className="flex items-center space-x-2 text-sm">
                 <Clock className="h-4 w-4 text-brand-blue" />
@@ -189,7 +189,7 @@ export function Footer() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
             <div className="text-gray-400 text-sm">
-              © 2024 Amrod. All rights reserved. |{" "}
+              © 2024 Apex. All rights reserved. |{" "}
               <Link to="/privacy-policy" className="hover:text-white">
                 Privacy Policy
               </Link>{" "}
