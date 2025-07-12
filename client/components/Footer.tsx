@@ -54,7 +54,7 @@ export function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="bg-brand-blue text-white px-4 py-2 rounded font-bold text-xl">
+              <div className="bg-brand-red text-white px-4 py-2 rounded font-bold text-xl">
                 APEX
               </div>
             </div>
