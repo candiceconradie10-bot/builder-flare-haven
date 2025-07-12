@@ -13,6 +13,9 @@ import {
   Mail,
   ChevronDown,
   Sparkles,
+  LogOut,
+  Settings,
+  Package,
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
