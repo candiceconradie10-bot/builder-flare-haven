@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ProductCard } from "@/components/ProductCard";
+import { getProductsByCategory } from "@/data/products";
 import {
   Filter,
   Grid,
@@ -10,6 +12,7 @@ import {
   Star,
   ChevronDown,
   SlidersHorizontal,
+  Sparkles,
 } from "lucide-react";
 import {
   Select,
