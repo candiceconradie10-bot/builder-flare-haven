@@ -300,49 +300,18 @@ export default function Index() {
             </Button>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredProducts.map((product) => (
-              <Card
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {featuredProducts.map((product, index) => (
+              <div
                 key={product.id}
-                className="group hover:shadow-lg transition-shadow"
+                className="opacity-0 animate-fadeInUp"
+                style={{
+                  animationDelay: `${index * 150}ms`,
+                  animationFillMode: "forwards",
+                }}
               >
-                <CardContent className="p-0">
-                  <div className="relative">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-64 object-cover rounded-t-lg"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold text-foreground mb-2 line-clamp-2">
-                      {product.name}
-                    </h3>
-                    <div className="flex items-center mb-2">
-                      <div className="flex items-center">
-                        <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                        <span className="ml-1 text-sm text-muted-foreground">
-                          {product.rating} ({product.reviews})
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <span className="text-xl font-bold text-foreground">
-                          R{product.price.toFixed(2)}
-                        </span>
-                      </div>
-                      <Button
-                        size="sm"
-                        className="bg-brand-red hover:bg-brand-red/90"
-                        onClick={() => addToCart(product)}
-                      >
-                        Add to Cart
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                <ProductCard product={product} featured={index < 2} />
+              </div>
             ))}
           </div>
 
