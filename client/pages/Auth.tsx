@@ -107,13 +107,32 @@ export default function Auth() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-r from-brand-red/10 via-transparent to-red-600/10" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(220,20,60,0.15),transparent_50%)] animate-pulse" />
+      {/* Cinematic Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-r from-brand-red/15 via-transparent to-red-600/15" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(220,20,60,0.2),transparent_70%)] animate-float" />
       <div
-        className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(220,20,60,0.1),transparent_50%)] animate-pulse"
+        className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(220,20,60,0.15),transparent_60%)] animate-floatReverse"
         style={{ animationDelay: "1000ms" }}
       />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,0,0,0.1),transparent_50%)] animate-breathe" />
+
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 dot-pattern opacity-20" />
+
+      {/* Floating particles */}
+      <div className="absolute inset-0">
+        {[...Array(15)].map((_, i) => (
+          <div
+            key={i}
+            className="particle animate-particle"
+            style={{
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 15}s`,
+              animationDuration: `${10 + Math.random() * 8}s`,
+            }}
+          />
+        ))}
+      </div>
 
       <div className="container mx-auto px-4 py-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
