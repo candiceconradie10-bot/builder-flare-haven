@@ -223,12 +223,30 @@ export default function Cart() {
                 )}
 
                 <div className="space-y-3">
-                  <Link to="/checkout" className="block w-full">
-                    <Button className="w-full bg-brand-red hover:bg-brand-red/90">
-                      <CreditCard className="h-4 w-4 mr-2" />
-                      Proceed to Checkout
-                    </Button>
-                  </Link>
+                  {authState.isAuthenticated ? (
+                    <Link to="/checkout" className="block w-full">
+                      <Button className="w-full bg-brand-red hover:bg-brand-red/90">
+                        <CreditCard className="h-4 w-4 mr-2" />
+                        Proceed to Checkout
+                      </Button>
+                    </Link>
+                  ) : (
+                    <div className="space-y-3">
+                      <Link
+                        to="/auth"
+                        state={{ from: { pathname: "/checkout" } }}
+                        className="block w-full"
+                      >
+                        <Button className="w-full bg-brand-red hover:bg-brand-red/90">
+                          <CreditCard className="h-4 w-4 mr-2" />
+                          Sign In to Checkout
+                        </Button>
+                      </Link>
+                      <p className="text-xs text-center text-muted-foreground">
+                        Create an account or sign in to place your order
+                      </p>
+                    </div>
+                  )}
                   <Link to="/" className="block w-full">
                     <Button variant="outline" className="w-full">
                       <ArrowLeft className="h-4 w-4 mr-2" />
