@@ -40,7 +40,7 @@ export function Header() {
             </div>
             <div className="flex items-center space-x-1">
               <Mail className="h-4 w-4" />
-              <span>info@amrod.co.za</span>
+              <span>info@apex.co.za</span>
             </div>
           </div>
           <div className="hidden md:flex items-center space-x-4">
@@ -59,7 +59,7 @@ export function Header() {
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2">
               <div className="bg-brand-blue text-white px-4 py-2 rounded font-bold text-xl">
-                AMROD
+                APEX
               </div>
             </Link>
 
