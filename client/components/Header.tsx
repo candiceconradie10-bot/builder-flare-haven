@@ -52,26 +52,41 @@ export function Header() {
 
   const mainNavItems = [
     {
-      name: "Corporate Gifts",
+      name: "Clothing",
       href: "/corporate-gifts",
       badge: "Popular",
       items: ["Executive Sets", "Tech Accessories", "Branded Items"],
     },
     {
-      name: "Corporate Clothing",
+      name: "Workwear",
       href: "/corporate-clothing",
       badge: "New",
       items: ["Polo Shirts", "Hoodies", "Jackets"],
     },
     {
-      name: "Workwear",
+      name: "Headwear",
       href: "/workwear",
       items: ["Safety Gear", "Uniforms", "PPE"],
     },
     {
-      name: "Headwear",
+      name: "Safety Gear",
       href: "/headwear-and-accessories",
       items: ["Caps", "Beanies", "Visors"],
+    },
+    {
+      name: "Gifting",
+      href: "/gifting",
+      items: ["Corporate Gifts", "Executive Sets", "Gift Hampers"],
+    },
+    {
+      name: "Display",
+      href: "/display",
+      items: ["Banners", "Pop-ups", "Exhibition"],
+    },
+    {
+      name: "Footwear",
+      href: "/footwear",
+      items: ["Safety Boots", "Corporate Shoes", "Casual Wear"],
     },
     {
       name: "Custom Products",
