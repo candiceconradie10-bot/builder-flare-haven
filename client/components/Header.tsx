@@ -69,7 +69,7 @@ export function Header() {
                 <Input
                   type="search"
                   placeholder="Search for products..."
-                  className="w-full pl-4 pr-12 py-2 border-2 border-gray-300 rounded-md focus:border-brand-blue"
+                  className="w-full pl-4 pr-12 py-2 border-2 border-gray-300 rounded-md focus:border-brand-red"
                 />
                 <Button
                   size="sm"
