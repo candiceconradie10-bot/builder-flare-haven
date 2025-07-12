@@ -325,7 +325,7 @@ export default function Index() {
             Ready to Get Started?
           </h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Join thousands of satisfied customers who trust Amrod for their
+            Join thousands of satisfied customers who trust Apex for their
             promotional needs
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
