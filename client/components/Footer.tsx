@@ -54,9 +54,11 @@ export function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="bg-brand-red text-white px-4 py-2 rounded font-bold text-xl">
-                APEX
-              </div>
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b3fcc6d%2F158a1d0756c94a16adbc26ae0b3fcc6d?format=webp&width=800"
+                alt="APEX Logo"
+                className="h-12 w-auto object-contain"
+              />
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
               Africa's leading promotional products provider with over 25 years
