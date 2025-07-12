@@ -19,6 +19,7 @@ import {
   Zap,
   TrendingUp,
   Rocket,
+  Phone,
 } from "lucide-react";
 
 export default function Index() {
