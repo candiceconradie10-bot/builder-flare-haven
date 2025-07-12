@@ -124,11 +124,10 @@ export function Header() {
           </div>
 
           <div className="hidden lg:flex items-center space-x-8">
-            <div className="flex items-center space-x-2 animate-float">
-              <Sparkles className="h-4 w-4 text-yellow-300 animate-pulse" />
-              <span className="font-medium bg-gradient-to-r from-yellow-300 to-yellow-400 bg-clip-text text-transparent">
-                Free delivery on orders over R500
-              </span>
+            <div className="bg-gradient-to-r from-yellow-300 to-yellow-400 bg-clip-text text-transparent animate-float pl-2">
+              <p>
+                <br />
+              </p>
             </div>
             <Link
               to="/track-order"
