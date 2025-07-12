@@ -154,15 +154,26 @@ export function Header() {
         <div className="absolute inset-0 bg-gradient-to-r from-brand-red/5 via-transparent to-red-600/5"></div>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16 lg:h-20">
-            {/* Logo - Enhanced with animation */}
-            <Link to="/" className="flex items-center space-x-3 group">
+            {/* Premium Logo with Advanced Effects */}
+            <Link to="/" className="flex items-center space-x-3 group relative">
               <div className="relative">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F4c5596c02a2a464091eb5609bcf49187"
-                  alt="APEX Logo"
-                  className="h-12 lg:h-16 w-auto object-contain group-hover:scale-105 transition-all duration-300 drop-shadow-lg group-hover:drop-shadow-2xl"
-                />
-                <div className="absolute -inset-2 bg-gradient-to-br from-brand-red/30 to-red-700/30 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                {/* Animated glow background */}
+                <div className="absolute -inset-4 bg-gradient-to-br from-brand-red/40 via-red-500/30 to-red-700/40 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500 animate-morphing"></div>
+
+                {/* Secondary glow */}
+                <div className="absolute -inset-2 bg-gradient-to-br from-brand-red/20 to-red-600/20 rounded-xl blur-md opacity-50 group-hover:opacity-100 transition-all duration-300"></div>
+
+                {/* Logo container */}
+                <div className="relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-xl p-2 border border-white/20 group-hover:border-brand-red/40 transition-all duration-300">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F4c5596c02a2a464091eb5609bcf49187"
+                    alt="APEX Logo"
+                    className="h-10 lg:h-14 w-auto object-contain group-hover:scale-110 transition-all duration-500 filter group-hover:brightness-110"
+                  />
+                </div>
+
+                {/* Shine effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
               </div>
             </Link>
 
