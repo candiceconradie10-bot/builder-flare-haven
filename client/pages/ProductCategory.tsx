@@ -31,22 +31,7 @@ export default function ProductCategory() {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 
-  const placeholderProducts = Array.from({ length: 12 }, (_, i) => ({
-    id: i + 1,
-    name: `Premium Product ${i + 1}`,
-    price: `R${(Math.random() * 500 + 100).toFixed(0)}.00`,
-    originalPrice:
-      Math.random() > 0.5
-        ? `R${(Math.random() * 200 + 600).toFixed(0)}.00`
-        : null,
-    image: "/api/placeholder/300/300",
-    rating: 4.0 + Math.random() * 1,
-    reviews: Math.floor(Math.random() * 200 + 20),
-    discount:
-      Math.random() > 0.6
-        ? `${Math.floor(Math.random() * 30 + 10)}% OFF`
-        : null,
-  }));
+  const categoryProducts = category ? getProductsByCategory(category) : [];
 
   return (
     <div className="min-h-screen bg-gray-50">
