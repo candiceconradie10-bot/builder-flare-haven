@@ -219,66 +219,58 @@ export default function ProductCategory() {
               </div>
             </div>
 
-            {/* Product Grid */}
+            {/* Enhanced Product Grid */}
             <div
               className={
                 viewMode === "grid"
-                  ? "grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
-                  : "space-y-4"
+                  ? "grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
+                  : "space-y-6"
               }
             >
-              {placeholderProducts.map((product) => (
-                <Card
-                  key={product.id}
-                  className="group hover:shadow-lg transition-shadow"
-                >
-                  <CardContent className="p-0">
-                    <div className="relative">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-64 object-cover rounded-t-lg"
+              {categoryProducts.length > 0 ? (
+                categoryProducts.map((product, index) => (
+                  <div
+                    key={product.id}
+                    className="opacity-0 animate-fadeInUp"
+                    style={{
+                      animationDelay: `${index * 100}ms`,
+                      animationFillMode: "forwards",
+                    }}
+                  >
+                    <ProductCard product={product} size="md" />
+                  </div>
+                ))
+              ) : (
+                <div className="col-span-full text-center py-16">
+                  <div className="text-gray-400 mb-4">
+                    <svg
+                      className="h-16 w-16 mx-auto mb-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1}
+                        d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2 2v-5m16 0h-2M4 13h2m0 0V9a2 2 0 012-2h2m0 0V6a2 2 0 012-2h2.586a1 1 0 01.707.293l2.414 2.414A1 1 0 0016 7.414V9a2 2 0 012 2v2a2 2 0 01-2 2h-2m0 0v2a2 2 0 002 2v0a2 2 0 002-2v-2"
                       />
-                      {product.discount && (
-                        <Badge className="absolute top-3 left-3 bg-brand-red">
-                          {product.discount}
-                        </Badge>
-                      )}
-                    </div>
-                    <div className="p-4">
-                      <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">
-                        {product.name}
-                      </h3>
-                      <div className="flex items-center mb-2">
-                        <div className="flex items-center">
-                          <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                          <span className="ml-1 text-sm text-gray-600">
-                            {product.rating.toFixed(1)} ({product.reviews})
-                          </span>
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-2">
-                          <span className="text-xl font-bold text-gray-900">
-                            {product.price}
-                          </span>
-                          {product.originalPrice && (
-                            <span className="text-sm text-gray-500 line-through">
-                              {product.originalPrice}
-                            </span>
-                          )}
-                        </div>
-                        <Button
-                          size="sm"
-                          className="bg-brand-red hover:bg-brand-red/90"
-                        >
-                          Add to Cart
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    No products found
+                  </h3>
+                  <p className="text-gray-400 mb-6">
+                    We couldn't find any products in this category. Try browsing
+                    other categories or check back later.
+                  </p>
+                  <Link to="/">
+                    <Button className="bg-brand-red hover:bg-brand-red/90">
+                      Browse All Categories
+                    </Button>
+                  </Link>
+                </div>
+              )}
             </div>
 
             {/* Pagination */}
