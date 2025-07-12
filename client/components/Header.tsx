@@ -127,10 +127,12 @@ export function Header() {
             {/* Logo - Enhanced with animation */}
             <Link to="/" className="flex items-center space-x-3 group">
               <div className="relative">
-                <div className="bg-gradient-to-br from-brand-red to-red-700 text-white px-6 py-3 rounded-xl font-bold text-xl lg:text-2xl shadow-lg group-hover:shadow-red-500/25 transition-all duration-300 group-hover:scale-105">
-                  APEX
-                </div>
-                <div className="absolute -inset-1 bg-gradient-to-br from-brand-red/50 to-red-700/50 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b3fcc6d%2F158a1d0756c94a16adbc26ae0b3fcc6d?format=webp&width=800"
+                  alt="APEX Logo"
+                  className="h-12 lg:h-16 w-auto object-contain group-hover:scale-105 transition-all duration-300 drop-shadow-lg group-hover:drop-shadow-2xl"
+                />
+                <div className="absolute -inset-2 bg-gradient-to-br from-brand-red/30 to-red-700/30 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
             </Link>
 
