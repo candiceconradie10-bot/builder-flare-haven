@@ -140,25 +140,25 @@ export function Footer() {
                 <div className="flex space-x-3">
                   <Link
                     to="#"
-                    className="bg-gray-800 hover:bg-brand-blue p-2 rounded transition-colors"
+                    className="bg-gray-800 hover:bg-brand-red p-2 rounded transition-colors"
                   >
                     <Facebook className="h-4 w-4" />
                   </Link>
                   <Link
                     to="#"
-                    className="bg-gray-800 hover:bg-brand-blue p-2 rounded transition-colors"
+                    className="bg-gray-800 hover:bg-brand-red p-2 rounded transition-colors"
                   >
                     <Twitter className="h-4 w-4" />
                   </Link>
                   <Link
                     to="#"
-                    className="bg-gray-800 hover:bg-brand-blue p-2 rounded transition-colors"
+                    className="bg-gray-800 hover:bg-brand-red p-2 rounded transition-colors"
                   >
                     <Instagram className="h-4 w-4" />
                   </Link>
                   <Link
                     to="#"
-                    className="bg-gray-800 hover:bg-brand-blue p-2 rounded transition-colors"
+                    className="bg-gray-800 hover:bg-brand-red p-2 rounded transition-colors"
                   >
                     <Linkedin className="h-4 w-4" />
                   </Link>
