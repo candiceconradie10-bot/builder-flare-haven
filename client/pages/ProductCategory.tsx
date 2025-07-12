@@ -176,7 +176,7 @@ export default function ProductCategory() {
             <div className="bg-black rounded-lg p-4 mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border border-gray-800">
               <div className="flex items-center space-x-4">
                 <span className="text-gray-600">
-                  Showing {placeholderProducts.length} products
+                  Showing {categoryProducts.length} products
                 </span>
               </div>
 
