@@ -38,12 +38,12 @@ export default function ProductCategory() {
       {/* Breadcrumb */}
       <div className="bg-black border-b border-gray-800">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center space-x-2 text-sm text-gray-600">
-            <Link to="/" className="hover:text-brand-red">
+          <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+            <Link to="/" className="hover:text-brand-red transition-colors">
               Home
             </Link>
             <span>/</span>
-            <span className="text-gray-900 font-medium">{categoryTitle}</span>
+            <span className="text-foreground font-medium">{categoryTitle}</span>
           </div>
         </div>
       </div>
