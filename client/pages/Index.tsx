@@ -161,10 +161,10 @@ export default function Index() {
               <div className="grid grid-cols-3 gap-8 pt-8">
                 <div className="text-center">
                   <div className="text-3xl md:text-4xl font-bold text-brand-red">
-                    25+
+                    100%
                   </div>
                   <div className="text-sm text-gray-400 font-medium">
-                    Years Experience
+                    Quality Assured
                   </div>
                 </div>
                 <div className="text-center">
