@@ -198,9 +198,12 @@ export default function Auth() {
             </Link>
           </div>
 
-          {/* Right Side - Auth Form */}
+          {/* Right Side - Premium Auth Form */}
           <div className="w-full max-w-md mx-auto">
-            <Card className="bg-black/40 backdrop-blur-xl border border-white/20 shadow-2xl">
+            <Card className="bg-black/50 backdrop-blur-2xl border border-white/30 shadow-2xl shadow-brand-red/10 relative overflow-hidden">
+              {/* Card glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-red/10 via-transparent to-red-600/10 opacity-0 hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute -inset-1 bg-gradient-to-br from-brand-red/20 to-red-600/20 rounded-2xl blur opacity-30" />
               <CardHeader className="text-center space-y-4">
                 <CardTitle className="text-2xl font-bold text-white">
                   {isLogin ? "Welcome Back" : "Create Account"}
