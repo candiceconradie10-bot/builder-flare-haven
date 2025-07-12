@@ -25,7 +25,9 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [showUserMenu, setShowUserMenu] = useState(false);
   const { state } = useCart();
+  const { state: authState, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
