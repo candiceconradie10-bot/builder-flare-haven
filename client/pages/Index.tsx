@@ -202,7 +202,7 @@ export default function Index() {
                 {/* Image Container */}
                 <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-2xl">
                   <img
-                    src="/api/placeholder/600/400"
+                    src="https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F5e082290a0a94182af0923df3ec0f2f8"
                     alt="Premium Products Showcase"
                     className="w-full h-auto rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
                   />
