@@ -94,11 +94,11 @@ export default function Index() {
         <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8 text-center lg:text-left">
-              {/* Animated Badges */}
+              {/* Premium Badges */}
               <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
                 <Badge className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold px-4 py-2 rounded-full border-0 shadow-lg animate-bounce">
                   <TrendingUp className="h-4 w-4 mr-2" />
-                  25+ Years Excellence
+                  Premium Quality
                 </Badge>
                 <Badge
                   className="bg-gradient-to-r from-green-400 to-emerald-500 text-black font-bold px-4 py-2 rounded-full border-0 shadow-lg animate-bounce"
