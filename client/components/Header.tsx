@@ -53,7 +53,7 @@ export function Header() {
       </div>
 
       {/* Main Header */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="bg-black border-b border-gray-800">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
@@ -148,7 +148,7 @@ export function Header() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-b border-gray-200 shadow-lg">
+        <div className="md:hidden bg-black border-b border-gray-800 shadow-lg">
           <div className="p-4">
             {/* Mobile Search */}
             <div className="mb-4">
