@@ -59,16 +59,35 @@ export default function Index() {
 
   return (
     <div className="min-h-screen">
-      {/* Enhanced Hero Section */}
+      {/* Cinematic Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Animated Background */}
+        {/* Advanced Animated Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black">
+          {/* Primary gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-brand-red/20 via-transparent to-red-600/20" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(220,20,60,0.3),transparent_50%)] animate-pulse" />
-          <div
-            className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(220,20,60,0.2),transparent_50%)] animate-pulse"
-            style={{ animationDelay: "1000ms" }}
-          />
+
+          {/* Floating orbs */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(220,20,60,0.4),transparent_70%)] animate-float" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(220,20,60,0.3),transparent_60%)] animate-floatReverse" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_70%,rgba(139,0,0,0.2),transparent_50%)] animate-breathe" />
+
+          {/* Grid pattern overlay */}
+          <div className="absolute inset-0 grid-pattern opacity-30" />
+
+          {/* Animated particles */}
+          <div className="absolute inset-0">
+            {[...Array(20)].map((_, i) => (
+              <div
+                key={i}
+                className="particle animate-particle"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 20}s`,
+                  animationDuration: `${15 + Math.random() * 10}s`,
+                }}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Content */}
