@@ -58,9 +58,9 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
         // Custom brand colors
-        "brand-blue": "hsl(var(--brand-blue))",
         "brand-red": "hsl(var(--brand-red))",
-        "brand-orange": "hsl(var(--brand-orange))",
+        "brand-black": "hsl(var(--brand-black))",
+        "brand-gray": "hsl(var(--brand-gray))",
         success: "hsl(var(--success))",
         warning: "hsl(var(--warning))",
         info: "hsl(var(--info))",
