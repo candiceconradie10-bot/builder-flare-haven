@@ -128,7 +128,7 @@ export function Header() {
             <Link to="/" className="flex items-center space-x-3 group">
               <div className="relative">
                 <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b3fcc6d%2F158a1d0756c94a16adbc26ae0b3fcc6d?format=webp&width=800"
+                  src="https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F4c5596c02a2a464091eb5609bcf49187"
                   alt="APEX Logo"
                   className="h-12 lg:h-16 w-auto object-contain group-hover:scale-105 transition-all duration-300 drop-shadow-lg group-hover:drop-shadow-2xl"
                 />
