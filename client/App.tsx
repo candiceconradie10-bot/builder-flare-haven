@@ -11,6 +11,9 @@ import { Footer } from "@/components/Footer";
 import { CartProvider } from "@/contexts/CartContext";
 import Index from "./pages/Index";
 import ProductCategory from "./pages/ProductCategory";
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
+import OrderConfirmation from "./pages/OrderConfirmation";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
