@@ -110,7 +110,7 @@ export function Header() {
                 <Phone className="h-3 w-3" />
               </div>
               <span className="font-medium group-hover:text-yellow-300 transition-colors duration-300">
-                +27 11 886 5640
+                +27 76 035 5295
               </span>
             </div>
             <div className="hidden sm:flex items-center space-x-2 group cursor-pointer">
