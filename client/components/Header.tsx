@@ -145,14 +145,74 @@ export function Header() {
             <div className="flex items-center space-x-2 lg:space-x-4">
               {/* Desktop Actions */}
               <div className="hidden lg:flex items-center space-x-4">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-white hover:bg-white/10 hover:text-brand-red transition-all duration-300 rounded-xl px-4 py-2 font-medium"
-                >
-                  <User className="h-5 w-5 mr-2" />
-                  Account
-                </Button>
+                {authState.isAuthenticated ? (
+                  <div className="relative">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setShowUserMenu(!showUserMenu)}
+                      className="text-white hover:bg-white/10 hover:text-brand-red transition-all duration-300 rounded-xl px-4 py-2 font-medium"
+                    >
+                      <User className="h-5 w-5 mr-2" />
+                      {authState.user?.firstName || "Account"}
+                      <ChevronDown className="h-4 w-4 ml-2" />
+                    </Button>
+
+                    {/* User Dropdown Menu */}
+                    {showUserMenu && (
+                      <div className="absolute top-full right-0 mt-2 w-64 bg-black/90 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl overflow-hidden z-50">
+                        <div className="p-4 border-b border-white/10">
+                          <div className="text-white font-medium">
+                            {authState.user?.firstName}{" "}
+                            {authState.user?.lastName}
+                          </div>
+                          <div className="text-gray-400 text-sm">
+                            {authState.user?.email}
+                          </div>
+                        </div>
+                        <div className="p-2">
+                          <Link
+                            to="/profile"
+                            className="flex items-center w-full px-4 py-3 text-white/80 hover:text-brand-red hover:bg-white/5 rounded-xl transition-all duration-200"
+                            onClick={() => setShowUserMenu(false)}
+                          >
+                            <Settings className="h-4 w-4 mr-3" />
+                            Profile Settings
+                          </Link>
+                          <Link
+                            to="/orders"
+                            className="flex items-center w-full px-4 py-3 text-white/80 hover:text-brand-red hover:bg-white/5 rounded-xl transition-all duration-200"
+                            onClick={() => setShowUserMenu(false)}
+                          >
+                            <Package className="h-4 w-4 mr-3" />
+                            My Orders
+                          </Link>
+                          <button
+                            onClick={() => {
+                              logout();
+                              setShowUserMenu(false);
+                            }}
+                            className="flex items-center w-full px-4 py-3 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-xl transition-all duration-200"
+                          >
+                            <LogOut className="h-4 w-4 mr-3" />
+                            Sign Out
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link to="/auth">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-white hover:bg-white/10 hover:text-brand-red transition-all duration-300 rounded-xl px-4 py-2 font-medium"
+                    >
+                      <User className="h-5 w-5 mr-2" />
+                      Sign In
+                    </Button>
+                  </Link>
+                )}
                 <Button
                   variant="ghost"
                   size="sm"
