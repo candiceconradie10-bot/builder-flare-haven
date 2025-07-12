@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import Index from "./pages/Index";
+import ProductCategory from "./pages/ProductCategory";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
