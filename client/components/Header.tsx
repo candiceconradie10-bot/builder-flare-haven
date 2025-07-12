@@ -16,6 +16,7 @@ import { Input } from "./ui/input";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { state } = useCart();
 
   const mainNavItems = [
     "Corporate Gifts",
