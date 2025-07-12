@@ -34,7 +34,7 @@ export default function ProductCategory() {
   const categoryProducts = category ? getProductsByCategory(category) : [];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       {/* Breadcrumb */}
       <div className="bg-black border-b border-gray-800">
         <div className="container mx-auto px-4 py-4">
