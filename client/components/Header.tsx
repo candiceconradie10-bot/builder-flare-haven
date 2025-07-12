@@ -143,14 +143,15 @@ export function Header() {
         </div>
       </div>
 
-      {/* Main Header - Glassmorphism with dynamic blur */}
+      {/* World-Class Main Header */}
       <header
-        className={`sticky top-0 z-50 transition-all duration-300 ${
+        className={`sticky top-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-2xl"
-            : "bg-black/60 backdrop-blur-md border-b border-gray-800"
+            ? "bg-black/90 backdrop-blur-2xl border-b border-white/20 shadow-2xl shadow-brand-red/10"
+            : "bg-black/70 backdrop-blur-xl border-b border-white/10"
         }`}
       >
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-red/5 via-transparent to-red-600/5"></div>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo - Enhanced with animation */}
