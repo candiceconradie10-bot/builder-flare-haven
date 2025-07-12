@@ -209,20 +209,29 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Features Bar */}
-      <section className="bg-black py-8 border-b border-gray-800">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      {/* Enhanced Features Bar */}
+      <section className="relative py-16 bg-gradient-to-r from-black via-gray-900 to-black border-y border-white/10">
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-red/5 via-transparent to-red-600/5" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
-              <div key={index} className="flex items-center space-x-3">
-                <div className="bg-brand-red/10 p-3 rounded-full">
-                  <feature.icon className="h-6 w-6 text-brand-red" />
+              <div
+                key={index}
+                className="group text-center space-y-4 p-6 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 hover:border-brand-red/30 transition-all duration-300 hover:scale-105"
+              >
+                <div className="relative mx-auto w-16 h-16">
+                  <div className="absolute inset-0 bg-gradient-to-r from-brand-red/20 to-red-600/20 rounded-full blur group-hover:blur-md transition-all duration-300" />
+                  <div className="relative bg-gradient-to-br from-brand-red to-red-600 p-4 rounded-full shadow-lg group-hover:shadow-red-500/25">
+                    <feature.icon className="h-8 w-8 text-white" />
+                  </div>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">
+                  <h3 className="text-lg font-bold text-white group-hover:text-brand-red transition-colors duration-300">
                     {feature.title}
                   </h3>
-                  <p className="text-sm text-gray-600">{feature.description}</p>
+                  <p className="text-gray-400 font-medium">
+                    {feature.description}
+                  </p>
                 </div>
               </div>
             ))}
