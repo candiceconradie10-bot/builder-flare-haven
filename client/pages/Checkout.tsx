@@ -185,7 +185,18 @@ export default function Checkout() {
       </div>
 
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-foreground mb-8">Checkout</h1>
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-foreground mb-2">Checkout</h1>
+          {authState.user && (
+            <p className="text-muted-foreground">
+              Welcome back,{" "}
+              <span className="text-brand-red font-medium">
+                {authState.user.firstName}
+              </span>
+              ! Complete your order below.
+            </p>
+          )}
+        </div>
 
         <form onSubmit={handleSubmit}>
           <div className="grid lg:grid-cols-3 gap-8">
