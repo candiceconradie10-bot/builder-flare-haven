@@ -69,15 +69,15 @@ export function Footer() {
                 <span>123 Business St, Johannesburg, SA</span>
               </div>
               <div className="flex items-center space-x-2 text-sm">
-                <Phone className="h-4 w-4 text-brand-blue" />
+                <Phone className="h-4 w-4 text-brand-red" />
                 <span>+27 11 886 5640</span>
               </div>
               <div className="flex items-center space-x-2 text-sm">
-                <Mail className="h-4 w-4 text-brand-blue" />
+                <Mail className="h-4 w-4 text-brand-red" />
                 <span>info@apex.co.za</span>
               </div>
               <div className="flex items-center space-x-2 text-sm">
-                <Clock className="h-4 w-4 text-brand-blue" />
+                <Clock className="h-4 w-4 text-brand-red" />
                 <span>Mon-Fri: 8AM-5PM</span>
               </div>
             </div>
