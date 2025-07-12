@@ -15,6 +15,7 @@ import {
 
 export default function Cart() {
   const { state, updateQuantity, removeFromCart, clearCart } = useCart();
+  const { state: authState } = useAuth();
 
   const handleQuantityChange = (id: number, newQuantity: number) => {
     if (newQuantity <= 0) {
