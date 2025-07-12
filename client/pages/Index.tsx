@@ -115,7 +115,7 @@ export default function Index() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-brand-blue to-blue-700 text-white">
+      <section className="relative bg-gradient-to-r from-brand-red to-red-700 text-white">
         <div className="container mx-auto px-4 py-16 md:py-24">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
@@ -144,7 +144,7 @@ export default function Index() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-brand-blue font-semibold px-8 py-4"
+                  className="border-white text-white hover:bg-white hover:text-brand-red font-semibold px-8 py-4"
                 >
                   Get Quote
                 </Button>
@@ -169,8 +169,8 @@ export default function Index() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {features.map((feature, index) => (
               <div key={index} className="flex items-center space-x-3">
-                <div className="bg-brand-blue/10 p-3 rounded-full">
-                  <feature.icon className="h-6 w-6 text-brand-blue" />
+                <div className="bg-brand-red/10 p-3 rounded-full">
+                  <feature.icon className="h-6 w-6 text-brand-red" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">
@@ -209,7 +209,7 @@ export default function Index() {
                         className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                       <div className="absolute top-4 left-4 bg-white/90 p-2 rounded-full">
-                        <category.icon className="h-6 w-6 text-brand-blue" />
+                        <category.icon className="h-6 w-6 text-brand-red" />
                       </div>
                     </div>
                     <div className="p-6">
@@ -222,7 +222,7 @@ export default function Index() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="group-hover:bg-brand-blue group-hover:text-white transition-colors"
+                        className="group-hover:bg-brand-red group-hover:text-white transition-colors"
                       >
                         Explore
                         <ArrowRight className="ml-2 h-4 w-4" />
@@ -298,7 +298,7 @@ export default function Index() {
                       </div>
                       <Button
                         size="sm"
-                        className="bg-brand-blue hover:bg-brand-blue/90"
+                        className="bg-brand-red hover:bg-brand-red/90"
                       >
                         Add to Cart
                       </Button>
