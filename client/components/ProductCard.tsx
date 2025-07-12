@@ -51,8 +51,11 @@ export function ProductCard({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Card Container with Glassmorphism */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-brand-red/10 hover:border-brand-red/30">
+      {/* Premium Card Container */}
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/10 via-white/5 to-white/10 backdrop-blur-xl border border-white/20 transition-all duration-700 hover:scale-[1.03] hover:shadow-2xl hover:shadow-brand-red/20 hover:border-brand-red/40 interactive-element">
+        {/* Animated background effects */}
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-red/5 via-transparent to-red-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         {/* Animated Background Gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-brand-red/5 via-transparent to-red-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
