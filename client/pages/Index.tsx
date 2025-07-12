@@ -59,51 +59,152 @@ export default function Index() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-brand-red to-black text-white">
-        <div className="container mx-auto px-4 py-16 md:py-24">
+      {/* Enhanced Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Animated Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black">
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-red/20 via-transparent to-red-600/20" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(220,20,60,0.3),transparent_50%)] animate-pulse" />
+          <div
+            className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(220,20,60,0.2),transparent_50%)] animate-pulse"
+            style={{ animationDelay: "1000ms" }}
+          />
+        </div>
+
+        {/* Content */}
+        <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <Badge className="bg-brand-orange text-white">
-                25+ Years in Business
-              </Badge>
-              <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-                Africa's Leading
-                <span className="block text-brand-orange">
-                  Promotional Products
-                </span>
-                Provider
-              </h1>
-              <p className="text-xl md:text-2xl text-blue-100 leading-relaxed">
-                Premium corporate gifts, clothing, and promotional items. Over
-                10,000 products with custom branding services.
+            <div className="space-y-8 text-center lg:text-left">
+              {/* Animated Badges */}
+              <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
+                <Badge className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold px-4 py-2 rounded-full border-0 shadow-lg animate-bounce">
+                  <TrendingUp className="h-4 w-4 mr-2" />
+                  25+ Years Excellence
+                </Badge>
+                <Badge
+                  className="bg-gradient-to-r from-green-400 to-emerald-500 text-black font-bold px-4 py-2 rounded-full border-0 shadow-lg animate-bounce"
+                  style={{ animationDelay: "300ms" }}
+                >
+                  <Sparkles className="h-4 w-4 mr-2" />
+                  10,000+ Products
+                </Badge>
+              </div>
+
+              {/* Hero Title with Gradient */}
+              <div className="space-y-4">
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight">
+                  <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
+                    Africa's
+                  </span>
+                  <br />
+                  <span className="bg-gradient-to-r from-brand-red via-red-500 to-red-600 bg-clip-text text-transparent animate-pulse">
+                    #1 APEX
+                  </span>
+                  <br />
+                  <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
+                    Supplier
+                  </span>
+                </h1>
+              </div>
+
+              {/* Description */}
+              <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-2xl">
+                Premium corporate gifts, cutting-edge clothing, and
+                revolutionary promotional items.
+                <span className="text-brand-red font-semibold">
+                  {" "}
+                  Transform your brand
+                </span>{" "}
+                with our custom solutions.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Button
                   size="lg"
-                  className="bg-brand-orange hover:bg-orange-600 text-white font-semibold px-8 py-4"
+                  className="group bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold px-8 py-4 rounded-2xl shadow-2xl hover:shadow-red-500/25 transition-all duration-300 hover:scale-105 border border-red-500/20"
                 >
-                  Shop Now
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <Rocket className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
+                  Explore Collection
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white text-white hover:bg-black hover:text-white font-semibold px-8 py-4"
+                  className="group border-2 border-white/30 text-white hover:bg-white/10 hover:border-brand-red/50 font-bold px-8 py-4 rounded-2xl backdrop-blur-md transition-all duration-300 hover:scale-105"
                 >
-                  Get Quote
+                  <Zap className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
+                  Get Custom Quote
                 </Button>
               </div>
-            </div>
-            <div className="relative">
-              <div className="bg-black/20 backdrop-blur-sm rounded-2xl p-8">
-                <img
-                  src="/api/placeholder/600/400"
-                  alt="Featured Products"
-                  className="w-full h-auto rounded-lg shadow-2xl"
-                />
+
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-8 pt-8">
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-brand-red">
+                    25+
+                  </div>
+                  <div className="text-sm text-gray-400 font-medium">
+                    Years Experience
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-brand-red">
+                    10K+
+                  </div>
+                  <div className="text-sm text-gray-400 font-medium">
+                    Products
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-brand-red">
+                    1M+
+                  </div>
+                  <div className="text-sm text-gray-400 font-medium">
+                    Happy Customers
+                  </div>
+                </div>
               </div>
             </div>
+
+            {/* Hero Image */}
+            <div className="relative lg:scale-110">
+              <div className="relative">
+                {/* Glow Effects */}
+                <div className="absolute -inset-8 bg-gradient-to-r from-brand-red/30 via-red-600/30 to-brand-red/30 rounded-full blur-3xl animate-pulse" />
+                <div
+                  className="absolute -inset-4 bg-gradient-to-r from-brand-red/20 to-red-600/20 rounded-3xl blur-2xl animate-pulse"
+                  style={{ animationDelay: "1000ms" }}
+                />
+
+                {/* Image Container */}
+                <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-2xl">
+                  <img
+                    src="/api/placeholder/600/400"
+                    alt="Premium Products Showcase"
+                    className="w-full h-auto rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
+                  />
+
+                  {/* Floating Elements */}
+                  <div className="absolute -top-4 -right-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-black p-3 rounded-2xl shadow-xl animate-bounce">
+                    <Sparkles className="h-6 w-6" />
+                  </div>
+                  <div
+                    className="absolute -bottom-4 -left-4 bg-gradient-to-r from-green-400 to-emerald-500 text-black p-3 rounded-2xl shadow-xl animate-bounce"
+                    style={{ animationDelay: "500ms" }}
+                  >
+                    <TrendingUp className="h-6 w-6" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse" />
           </div>
         </div>
       </section>
