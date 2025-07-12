@@ -73,7 +73,7 @@ export function Header() {
                 />
                 <Button
                   size="sm"
-                  className="absolute right-1 top-1 bg-brand-blue hover:bg-brand-blue/90"
+                  className="absolute right-1 top-1 bg-brand-red hover:bg-brand-red/90"
                 >
                   <Search className="h-4 w-4" />
                 </Button>
@@ -136,7 +136,7 @@ export function Header() {
                 <Link
                   key={item}
                   to={`/${item.toLowerCase().replace(/\s+/g, "-").replace("&", "and")}`}
-                  className="text-gray-700 hover:text-brand-blue font-medium whitespace-nowrap transition-colors"
+                  className="text-gray-700 hover:text-brand-red font-medium whitespace-nowrap transition-colors"
                 >
                   {item}
                 </Link>
@@ -160,7 +160,7 @@ export function Header() {
                 />
                 <Button
                   size="sm"
-                  className="absolute right-1 top-1 bg-brand-blue hover:bg-brand-blue/90"
+                  className="absolute right-1 top-1 bg-brand-red hover:bg-brand-red/90"
                 >
                   <Search className="h-4 w-4" />
                 </Button>
@@ -204,7 +204,7 @@ export function Header() {
                 <Link
                   key={item}
                   to={`/${item.toLowerCase().replace(/\s+/g, "-").replace("&", "and")}`}
-                  className="block py-2 px-2 text-gray-700 hover:text-brand-blue font-medium"
+                  className="block py-2 px-2 text-gray-700 hover:text-brand-red font-medium"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item}
