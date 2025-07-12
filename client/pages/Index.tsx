@@ -207,38 +207,29 @@ export default function Index() {
                       alt={product.name}
                       className="w-full h-64 object-cover rounded-t-lg"
                     />
-                    {product.discount && (
-                      <Badge className="absolute top-3 left-3 bg-brand-red">
-                        {product.discount}
-                      </Badge>
-                    )}
                   </div>
                   <div className="p-4">
-                    <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">
+                    <h3 className="font-semibold text-foreground mb-2 line-clamp-2">
                       {product.name}
                     </h3>
                     <div className="flex items-center mb-2">
                       <div className="flex items-center">
                         <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                        <span className="ml-1 text-sm text-gray-600">
+                        <span className="ml-1 text-sm text-muted-foreground">
                           {product.rating} ({product.reviews})
                         </span>
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
-                        <span className="text-xl font-bold text-gray-900">
-                          {product.price}
+                        <span className="text-xl font-bold text-foreground">
+                          R{product.price.toFixed(2)}
                         </span>
-                        {product.originalPrice && (
-                          <span className="text-sm text-gray-500 line-through">
-                            {product.originalPrice}
-                          </span>
-                        )}
                       </div>
                       <Button
                         size="sm"
                         className="bg-brand-red hover:bg-brand-red/90"
+                        onClick={() => addToCart(product)}
                       >
                         Add to Cart
                       </Button>
