@@ -360,13 +360,34 @@ export function Header() {
 
             {/* Mobile Actions */}
             <div className="grid grid-cols-3 gap-4">
-              <Button
-                variant="ghost"
-                className="flex flex-col items-center space-y-2 text-white hover:bg-white/10 hover:text-brand-red rounded-2xl p-4 transition-all duration-300"
-              >
-                <User className="h-6 w-6" />
-                <span className="text-sm font-medium">Account</span>
-              </Button>
+              {authState.isAuthenticated ? (
+                <div className="space-y-2">
+                  <div className="text-center text-white text-sm font-medium p-2 bg-white/5 rounded-xl border border-white/10">
+                    {authState.user?.firstName}
+                  </div>
+                  <Button
+                    onClick={() => {
+                      logout();
+                      setIsMobileMenuOpen(false);
+                    }}
+                    variant="ghost"
+                    className="w-full flex flex-col items-center space-y-2 text-red-400 hover:bg-red-500/10 hover:text-red-300 rounded-2xl p-4 transition-all duration-300"
+                  >
+                    <LogOut className="h-6 w-6" />
+                    <span className="text-sm font-medium">Sign Out</span>
+                  </Button>
+                </div>
+              ) : (
+                <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button
+                    variant="ghost"
+                    className="w-full flex flex-col items-center space-y-2 text-white hover:bg-white/10 hover:text-brand-red rounded-2xl p-4 transition-all duration-300"
+                  >
+                    <User className="h-6 w-6" />
+                    <span className="text-sm font-medium">Sign In</span>
+                  </Button>
+                </Link>
+              )}
               <Button
                 variant="ghost"
                 className="flex flex-col items-center space-y-2 text-white hover:bg-white/10 hover:text-brand-red rounded-2xl p-4 transition-all duration-300"
