@@ -115,7 +115,7 @@ export default function Index() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-brand-red to-red-700 text-white">
+      <section className="relative bg-gradient-to-r from-brand-red to-black text-white">
         <div className="container mx-auto px-4 py-16 md:py-24">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
