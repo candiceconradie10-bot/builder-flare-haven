@@ -44,6 +44,7 @@ interface PaymentInfo {
 
 export default function Checkout() {
   const { state, clearCart } = useCart();
+  const { state: authState } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -54,6 +55,33 @@ export default function Checkout() {
     phone: "",
     company: "",
   });
+
+  // Pre-fill customer information from auth context
+  useEffect(() => {
+    if (authState.user) {
+      setCustomerInfo({
+        firstName: authState.user.firstName,
+        lastName: authState.user.lastName,
+        email: authState.user.email,
+        phone: authState.user.phone || "",
+        company: authState.user.company || "",
+      });
+
+      // Pre-fill shipping address if available
+      const defaultAddress =
+        authState.user.addresses?.find((addr) => addr.isDefault) ||
+        authState.user.addresses?.[0];
+      if (defaultAddress) {
+        setShippingAddress({
+          address: defaultAddress.address,
+          city: defaultAddress.city,
+          province: defaultAddress.province,
+          postalCode: defaultAddress.postalCode,
+          country: defaultAddress.country,
+        });
+      }
+    }
+  }, [authState.user]);
 
   const [shippingAddress, setShippingAddress] = useState<ShippingAddress>({
     address: "",
