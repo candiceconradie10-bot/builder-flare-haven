@@ -48,7 +48,7 @@ export default function ProductCategory() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Breadcrumb */}
-      <div className="bg-white border-b">
+      <div className="bg-black border-b border-gray-800">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center space-x-2 text-sm text-gray-600">
             <Link to="/" className="hover:text-brand-red">
@@ -61,7 +61,7 @@ export default function ProductCategory() {
       </div>
 
       {/* Category Header */}
-      <div className="bg-white">
+      <div className="bg-black">
         <div className="container mx-auto px-4 py-8">
           <div className="text-center">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -151,7 +151,7 @@ export default function ProductCategory() {
           {/* Main Content */}
           <div className="flex-1">
             {/* Toolbar */}
-            <div className="bg-white rounded-lg p-4 mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div className="bg-black rounded-lg p-4 mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border border-gray-800">
               <div className="flex items-center space-x-4">
                 <span className="text-gray-600">
                   Showing {placeholderProducts.length} products
