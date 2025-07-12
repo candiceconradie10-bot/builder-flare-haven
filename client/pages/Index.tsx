@@ -117,13 +117,15 @@ export default function Index() {
                     Africa's
                   </span>
                   <br />
-                  <span className="bg-gradient-to-r from-brand-red via-red-500 to-red-600 bg-clip-text text-transparent animate-pulse">
-                    #1 APEX
-                  </span>
+                  <div className="flex flex-row">
+                    <span className="bg-gradient-to-r from-brand-red via-red-500 to-red-600 bg-clip-text text-transparent animate-pulse">
+                      #1
+                    </span>
+                    <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
+                      &nbsp;Supplier
+                    </span>
+                  </div>
                   <br />
-                  <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
-                    Supplier
-                  </span>
                 </h1>
               </div>
 
