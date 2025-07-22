@@ -109,6 +109,11 @@
     @apply border-border;
   }
 
+  html {
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+
   body {
     @apply bg-background text-foreground;
     scroll-behavior: smooth;
@@ -118,6 +123,21 @@
     -webkit-touch-callout: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    min-height: 100vh;
+    min-height: 100dvh;
+    font-display: swap;
+  }
+
+  /* Performance optimizations */
+  * {
+    box-sizing: border-box;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
   }
 
   /* Mobile-specific optimizations */
@@ -127,12 +147,18 @@
     }
 
     /* Improved touch targets */
-    button,
-    a,
-    input,
-    [role="button"] {
+    button, a, input, [role="button"] {
       min-height: 44px;
       min-width: 44px;
+    }
+
+    /* Performance optimizations for mobile */
+    .animate-particle {
+      will-change: transform;
+    }
+
+    .animate-float {
+      will-change: transform;
     }
   }
 
@@ -710,8 +736,7 @@
   }
 
   @keyframes mobileGlow {
-    0%,
-    100% {
+    0%, 100% {
       box-shadow: 0 0 20px rgba(220, 20, 60, 0.3);
     }
     50% {
@@ -726,21 +751,15 @@
   }
 
   .mobile-touch-effect::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;
     width: 0;
     height: 0;
-    background: radial-gradient(
-      circle,
-      rgba(220, 20, 60, 0.3) 0%,
-      transparent 70%
-    );
+    background: radial-gradient(circle, rgba(220, 20, 60, 0.3) 0%, transparent 70%);
     transform: translate(-50%, -50%);
-    transition:
-      width 0.3s ease,
-      height 0.3s ease;
+    transition: width 0.3s ease, height 0.3s ease;
     border-radius: 50%;
     pointer-events: none;
   }
