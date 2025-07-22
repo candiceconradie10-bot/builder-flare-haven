@@ -144,60 +144,60 @@ export default function Index() {
                 </h1>
               </div>
 
-              {/* Description */}
-              <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-2xl">
+              {/* Mobile-Optimized Description */}
+              <p className="text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed max-w-2xl">
                 Premium corporate gifts, cutting-edge clothing, and
                 revolutionary promotional items.
-                <span className="text-brand-red font-semibold">
+                <span className="text-brand-red font-bold">
                   {" "}
                   Transform your brand
                 </span>{" "}
                 with our custom solutions.
               </p>
 
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              {/* Enhanced Mobile CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center lg:justify-start">
                 <Button
                   size="lg"
-                  className="group bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold px-8 py-4 rounded-2xl shadow-2xl hover:shadow-red-500/25 transition-all duration-300 hover:scale-105 border border-red-500/20"
+                  className="group bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold px-8 py-5 md:py-4 rounded-2xl shadow-2xl mobile-shadow-red hover:shadow-red-500/25 transition-all duration-300 hover:scale-105 active:scale-95 border border-red-500/20 touch-manipulation text-lg md:text-base"
                 >
-                  <Rocket className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
+                  <Rocket className="mr-3 h-6 w-6 md:mr-2 md:h-5 md:w-5 group-hover:rotate-12 transition-transform duration-300" />
                   Explore Collection
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  <ArrowRight className="ml-3 h-6 w-6 md:ml-2 md:h-5 md:w-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
-                  className="group border-2 border-white/30 text-white hover:bg-white/10 hover:border-brand-red/50 font-bold px-8 py-4 rounded-2xl backdrop-blur-md transition-all duration-300 hover:scale-105"
+                  className="group border-2 border-white/40 text-white hover:bg-white/15 hover:border-brand-red/60 font-bold px-8 py-5 md:py-4 rounded-2xl backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation mobile-glass text-lg md:text-base"
                 >
-                  <Zap className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
+                  <Zap className="mr-3 h-6 w-6 md:mr-2 md:h-5 md:w-5 group-hover:rotate-12 transition-transform duration-300" />
                   Get Custom Quote
                 </Button>
               </div>
 
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-8 pt-8">
-                <div className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-brand-red">
+              {/* Enhanced Mobile Stats */}
+              <div className="grid grid-cols-3 gap-4 md:gap-8 pt-6 md:pt-8">
+                <div className="text-center bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md rounded-2xl p-4 md:p-6 border border-white/20 mobile-glass hover:scale-105 transition-transform duration-300">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-red animate-mobileGlow">
                     100%
                   </div>
-                  <div className="text-sm text-gray-400 font-medium">
+                  <div className="text-xs sm:text-sm text-gray-300 font-medium mt-1">
                     Quality Assured
                   </div>
                 </div>
-                <div className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-brand-red">
+                <div className="text-center bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md rounded-2xl p-4 md:p-6 border border-white/20 mobile-glass hover:scale-105 transition-transform duration-300">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-red animate-mobileGlow" style={{ animationDelay: '0.5s' }}>
                     10K+
                   </div>
-                  <div className="text-sm text-gray-400 font-medium">
+                  <div className="text-xs sm:text-sm text-gray-300 font-medium mt-1">
                     Products
                   </div>
                 </div>
-                <div className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-brand-red">
+                <div className="text-center bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md rounded-2xl p-4 md:p-6 border border-white/20 mobile-glass hover:scale-105 transition-transform duration-300">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-red animate-mobileGlow" style={{ animationDelay: '1s' }}>
                     1M+
                   </div>
-                  <div className="text-sm text-gray-400 font-medium">
+                  <div className="text-xs sm:text-sm text-gray-300 font-medium mt-1">
                     Happy Customers
                   </div>
                 </div>
