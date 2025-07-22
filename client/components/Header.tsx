@@ -202,9 +202,11 @@ export function Header() {
         <div className="absolute inset-0 bg-gradient-to-r from-brand-red/8 via-transparent to-red-600/8"></div>
 
         {/* Subtle mobile-friendly glow effect */}
-        <div className={`absolute inset-0 transition-opacity duration-500 ${
-          isScrolled ? "opacity-100" : "opacity-50"
-        } bg-gradient-to-b from-brand-red/5 to-transparent`}></div>
+        <div
+          className={`absolute inset-0 transition-opacity duration-500 ${
+            isScrolled ? "opacity-100" : "opacity-50"
+          } bg-gradient-to-b from-brand-red/5 to-transparent`}
+        ></div>
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex items-center justify-between h-20 md:h-22 lg:h-24">
@@ -475,10 +477,13 @@ export function Header() {
           <div className="absolute inset-0 bg-gradient-to-b from-brand-red/5 via-transparent to-red-600/5 pointer-events-none"></div>
 
           {/* Subtle grid pattern */}
-          <div className="absolute inset-0 opacity-10 pointer-events-none" style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
-            backgroundSize: '20px 20px'
-          }}></div>
+          <div
+            className="absolute inset-0 opacity-10 pointer-events-none"
+            style={{
+              backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
+              backgroundSize: "20px 20px",
+            }}
+          ></div>
           <div className="p-6 space-y-8 relative z-10">
             {/* Stunning Mobile Search */}
             <div className="relative group">
@@ -573,11 +578,13 @@ export function Header() {
                 <div
                   key={item.name}
                   className={`group bg-gradient-to-br from-white/8 to-white/4 backdrop-blur-lg rounded-3xl border border-white/25 overflow-hidden shadow-2xl hover:shadow-brand-red/20 transition-all duration-500 ${
-                    isMobileMenuOpen ? 'animate-fadeInUp opacity-100' : 'opacity-0'
+                    isMobileMenuOpen
+                      ? "animate-fadeInUp opacity-100"
+                      : "opacity-0"
                   }`}
                   style={{
                     animationDelay: `${index * 100}ms`,
-                    animationFillMode: 'forwards'
+                    animationFillMode: "forwards",
                   }}
                 >
                   <Link
@@ -586,7 +593,9 @@ export function Header() {
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     <div className="flex items-center space-x-4">
-                      <span className="group-hover:text-brand-red transition-colors duration-300">{item.name}</span>
+                      <span className="group-hover:text-brand-red transition-colors duration-300">
+                        {item.name}
+                      </span>
                       {item.badge && (
                         <Badge
                           className={`text-sm px-4 py-2 ${
@@ -611,11 +620,13 @@ export function Header() {
                             key={subItem}
                             to={`${item.href}?category=${subItem.toLowerCase().replace(" ", "-")}`}
                             className={`block p-4 text-white/90 hover:text-white hover:bg-gradient-to-r hover:from-brand-red/15 hover:to-red-600/15 rounded-2xl transition-all duration-300 font-medium text-base touch-manipulation active:scale-95 border border-transparent hover:border-brand-red/30 shadow-lg hover:shadow-xl ${
-                              isMobileMenuOpen ? 'animate-fadeInUp opacity-100' : 'opacity-0'
+                              isMobileMenuOpen
+                                ? "animate-fadeInUp opacity-100"
+                                : "opacity-0"
                             }`}
                             style={{
-                              animationDelay: `${(index * 100) + (subIndex * 50) + 200}ms`,
-                              animationFillMode: 'forwards'
+                              animationDelay: `${index * 100 + subIndex * 50 + 200}ms`,
+                              animationFillMode: "forwards",
                             }}
                             onClick={() => setIsMobileMenuOpen(false)}
                           >
@@ -633,13 +644,15 @@ export function Header() {
             </nav>
 
             {/* Stunning Mobile Contact Info */}
-            <div className={`bg-gradient-to-br from-brand-red/25 via-red-600/20 to-brand-red/25 backdrop-blur-lg rounded-3xl p-6 border border-brand-red/40 mt-6 shadow-2xl shadow-brand-red/20 ${
-              isMobileMenuOpen ? 'animate-fadeInUp opacity-100' : 'opacity-0'
-            }`}
-            style={{
-              animationDelay: `${mainNavItems.length * 100 + 300}ms`,
-              animationFillMode: 'forwards'
-            }}>
+            <div
+              className={`bg-gradient-to-br from-brand-red/25 via-red-600/20 to-brand-red/25 backdrop-blur-lg rounded-3xl p-6 border border-brand-red/40 mt-6 shadow-2xl shadow-brand-red/20 ${
+                isMobileMenuOpen ? "animate-fadeInUp opacity-100" : "opacity-0"
+              }`}
+              style={{
+                animationDelay: `${mainNavItems.length * 100 + 300}ms`,
+                animationFillMode: "forwards",
+              }}
+            >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-brand-red/10 to-transparent rounded-3xl animate-shimmer"></div>
 
               <h3 className="text-white font-bold text-xl mb-6 text-center relative z-10">
@@ -656,7 +669,9 @@ export function Header() {
                   <div className="p-3 bg-white/10 rounded-xl group-hover:bg-yellow-300/20 transition-all duration-300 group-hover:rotate-12">
                     <Phone className="h-6 w-6" />
                   </div>
-                  <span className="font-bold text-lg group-hover:scale-105 transition-transform duration-300">+27 76 035 5295</span>
+                  <span className="font-bold text-lg group-hover:scale-105 transition-transform duration-300">
+                    +27 76 035 5295
+                  </span>
                 </a>
 
                 <a
@@ -666,7 +681,9 @@ export function Header() {
                   <div className="p-3 bg-white/10 rounded-xl group-hover:bg-yellow-300/20 transition-all duration-300 group-hover:rotate-12">
                     <Mail className="h-6 w-6" />
                   </div>
-                  <span className="font-bold text-lg group-hover:scale-105 transition-transform duration-300">apex@w-o-s.co.za</span>
+                  <span className="font-bold text-lg group-hover:scale-105 transition-transform duration-300">
+                    apex@w-o-s.co.za
+                  </span>
                 </a>
               </div>
             </div>

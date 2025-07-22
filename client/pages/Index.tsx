@@ -98,8 +98,8 @@ export default function Index() {
                   top: `${Math.random() * 100}%`,
                   animationDelay: `${Math.random() * 15}s`,
                   animationDuration: `${10 + Math.random() * 8}s`,
-                  width: '3px',
-                  height: '3px',
+                  width: "3px",
+                  height: "3px",
                 }}
               />
             ))}
@@ -186,7 +186,10 @@ export default function Index() {
                   </div>
                 </div>
                 <div className="text-center bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md rounded-2xl p-4 md:p-6 border border-white/20 mobile-glass hover:scale-105 transition-transform duration-300">
-                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-red animate-mobileGlow" style={{ animationDelay: '0.5s' }}>
+                  <div
+                    className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-red animate-mobileGlow"
+                    style={{ animationDelay: "0.5s" }}
+                  >
                     10K+
                   </div>
                   <div className="text-xs sm:text-sm text-gray-300 font-medium mt-1">
@@ -194,7 +197,10 @@ export default function Index() {
                   </div>
                 </div>
                 <div className="text-center bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md rounded-2xl p-4 md:p-6 border border-white/20 mobile-glass hover:scale-105 transition-transform duration-300">
-                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-red animate-mobileGlow" style={{ animationDelay: '1s' }}>
+                  <div
+                    className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-red animate-mobileGlow"
+                    style={{ animationDelay: "1s" }}
+                  >
                     1M+
                   </div>
                   <div className="text-xs sm:text-sm text-gray-300 font-medium mt-1">
