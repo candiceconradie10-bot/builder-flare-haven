@@ -128,108 +128,97 @@ export function Header() {
 
   return (
     <>
-      {/* Premium Top Bar */}
-      <div className="relative bg-gradient-to-r from-brand-red via-red-500 to-brand-red text-white py-3 px-4 overflow-hidden">
+      {/* Mobile-Optimized Top Bar */}
+      <div className="relative bg-gradient-to-r from-brand-red via-red-500 to-brand-red text-white py-4 px-4 overflow-hidden">
         <div className="absolute inset-0 bg-black/30 backdrop-blur-md"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
 
-        <div className="container mx-auto flex justify-between items-center text-sm relative z-10">
-          <div className="flex items-center space-x-8">
-            <div className="flex items-center space-x-2 group cursor-pointer">
-              <div className="p-1 rounded-full bg-white/20 group-hover:bg-white/30 transition-all duration-300">
-                <Phone className="h-3 w-3" />
+        <div className="container mx-auto flex justify-between items-center text-sm md:text-base relative z-10">
+          <div className="flex items-center space-x-4 md:space-x-8">
+            <a href="tel:+27760355295" className="flex items-center space-x-2 group cursor-pointer hover:scale-105 transition-transform duration-300">
+              <div className="p-2 rounded-full bg-white/20 group-hover:bg-white/30 transition-all duration-300">
+                <Phone className="h-4 w-4 md:h-3 md:w-3" />
               </div>
-              <span className="font-medium group-hover:text-yellow-300 transition-colors duration-300">
+              <span className="font-bold text-sm md:text-base group-hover:text-yellow-300 transition-colors duration-300">
                 +27 76 035 5295
               </span>
-            </div>
-            <div className="hidden sm:flex items-center space-x-2 group cursor-pointer">
-              <div className="p-1 rounded-full bg-white/20 group-hover:bg-white/30 transition-all duration-300">
-                <Mail className="h-3 w-3" />
+            </a>
+            <a href="mailto:apex@w-o-s.co.za" className="hidden sm:flex items-center space-x-2 group cursor-pointer hover:scale-105 transition-transform duration-300">
+              <div className="p-2 rounded-full bg-white/20 group-hover:bg-white/30 transition-all duration-300">
+                <Mail className="h-4 w-4 md:h-3 md:w-3" />
               </div>
               <span className="group-hover:text-yellow-300 transition-colors duration-300">
                 apex@w-o-s.co.za
               </span>
-            </div>
+            </a>
           </div>
 
-          <div className="hidden lg:flex items-center space-x-8">
-            <div className="bg-gradient-to-r from-yellow-300 to-yellow-400 bg-clip-text text-transparent animate-float pl-2">
-              <p>
-                <br />
-              </p>
-            </div>
+          <div className="flex items-center space-x-4">
             <Link
               to="/track-order"
-              className="group relative font-medium transition-all duration-300"
+              className="group relative font-bold text-sm md:text-base transition-all duration-300 hover:scale-105"
             >
               <span className="relative z-10 group-hover:text-yellow-300 transition-colors duration-300">
-                Track Your Order
+                Track Order
               </span>
-              <div className="absolute inset-0 bg-yellow-300/20 rounded-md scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+              <div className="absolute inset-0 bg-yellow-300/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
             </Link>
           </div>
         </div>
       </div>
 
-      {/* World-Class Main Header */}
+      {/* Mobile-First Main Header */}
       <header
         className={`sticky top-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-black/90 backdrop-blur-2xl border-b border-white/20 shadow-2xl shadow-brand-red/10"
-            : "bg-black/70 backdrop-blur-xl border-b border-white/10"
+            ? "bg-black/95 backdrop-blur-2xl border-b border-white/20 shadow-2xl shadow-brand-red/10"
+            : "bg-black/80 backdrop-blur-xl border-b border-white/10"
         }`}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-brand-red/5 via-transparent to-red-600/5"></div>
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16 lg:h-20">
-            {/* Premium Logo with Advanced Effects */}
-            <Link to="/" className="flex items-center space-x-3 group relative">
+          <div className="flex items-center justify-between h-20 lg:h-24">
+            {/* Mobile-Optimized Logo */}
+            <Link to="/" className="flex items-center space-x-3 group relative touch-manipulation">
               <div className="relative">
-                {/* Animated glow background */}
-                <div className="absolute -inset-4 bg-gradient-to-br from-brand-red/40 via-red-500/30 to-red-700/40 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500 animate-morphing"></div>
+                {/* Simplified mobile-friendly glow */}
+                <div className="absolute -inset-2 bg-gradient-to-br from-brand-red/30 to-red-600/30 rounded-xl blur-md opacity-50 group-hover:opacity-100 transition-all duration-300"></div>
 
-                {/* Secondary glow */}
-                <div className="absolute -inset-2 bg-gradient-to-br from-brand-red/20 to-red-600/20 rounded-xl blur-md opacity-50 group-hover:opacity-100 transition-all duration-300"></div>
-
-                {/* Logo container */}
-                <div className="relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-xl p-2 border border-white/20 group-hover:border-brand-red/40 transition-all duration-300">
+                {/* Logo container - larger touch target */}
+                <div className="relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-xl p-3 lg:p-2 border border-white/20 group-hover:border-brand-red/40 transition-all duration-300">
                   <img
                     src="https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F4c5596c02a2a464091eb5609bcf49187"
                     alt="APEX Logo"
-                    className="h-10 lg:h-14 w-auto object-contain group-hover:scale-110 transition-all duration-500 filter group-hover:brightness-110"
+                    className="h-12 lg:h-16 w-auto object-contain group-hover:scale-105 transition-all duration-300 filter group-hover:brightness-110"
                   />
                 </div>
-
-                {/* Shine effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
               </div>
             </Link>
 
-            {/* Enhanced Search Bar - Desktop */}
-            <div className="hidden lg:flex flex-1 max-w-2xl mx-8">
+            {/* Mobile-First Search Bar */}
+            <div className="flex-1 max-w-md lg:max-w-2xl mx-4 lg:mx-8">
               <div className="relative w-full group">
                 <div className="absolute -inset-1 bg-gradient-to-r from-brand-red/20 to-red-600/20 rounded-2xl blur opacity-0 group-focus-within:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative">
                   <Input
                     type="search"
-                    placeholder="Search premium products..."
-                    className="w-full pl-6 pr-14 py-3 bg-white/10 backdrop-blur-md border-white/20 rounded-xl text-white placeholder-white/60 focus:bg-white/20 focus:border-brand-red/50 transition-all duration-300 text-lg"
+                    placeholder="Search products..."
+                    className="w-full pl-4 lg:pl-6 pr-12 lg:pr-14 py-3 lg:py-4 bg-white/10 backdrop-blur-md border-white/20 rounded-xl text-white placeholder-white/60 focus:bg-white/20 focus:border-brand-red/50 transition-all duration-300 text-base lg:text-lg touch-manipulation"
                   />
                   <Button
                     size="sm"
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red rounded-lg px-4 py-2 shadow-lg hover:shadow-red-500/25 transition-all duration-300"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red rounded-lg px-3 lg:px-4 py-2 lg:py-2 shadow-lg hover:shadow-red-500/25 transition-all duration-300 touch-manipulation"
                   >
-                    <Search className="h-4 w-4" />
+                    <Search className="h-4 w-4 lg:h-5 lg:w-5" />
                   </Button>
                 </div>
               </div>
             </div>
 
-            {/* Header Actions - Enhanced */}
+            {/* Mobile-Optimized Actions */}
             <div className="flex items-center space-x-2 lg:space-x-4">
-              {/* Desktop Actions */}
-              <div className="hidden lg:flex items-center space-x-4">
+              {/* Quick Actions - Always Visible */}
+              <div className="flex items-center space-x-2 lg:space-x-4">
                 {authState.isAuthenticated ? (
                   <div className="relative">
                     <Button
@@ -301,21 +290,21 @@ export function Header() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-white hover:bg-white/10 hover:text-brand-red transition-all duration-300 rounded-xl px-4 py-2 font-medium relative"
+                  className="text-white hover:bg-white/10 hover:text-brand-red transition-all duration-300 rounded-xl p-3 lg:px-4 lg:py-2 font-medium relative touch-manipulation"
                 >
-                  <Heart className="h-5 w-5 mr-2" />
-                  Wishlist
+                  <Heart className="h-5 w-5 lg:mr-2" />
+                  <span className="hidden lg:inline">Wishlist</span>
                 </Button>
                 <Link to="/cart">
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="text-white hover:bg-white/10 hover:text-brand-red transition-all duration-300 rounded-xl px-4 py-2 font-medium relative group"
+                    className="text-white hover:bg-white/10 hover:text-brand-red transition-all duration-300 rounded-xl p-3 lg:px-4 lg:py-2 font-medium relative group touch-manipulation"
                   >
-                    <ShoppingCart className="h-5 w-5 mr-2" />
-                    Cart
+                    <ShoppingCart className="h-6 w-6 lg:h-5 lg:w-5 lg:mr-2" />
+                    <span className="hidden lg:inline">Cart</span>
                     {state.itemCount > 0 && (
-                      <Badge className="absolute -top-2 -right-2 bg-gradient-to-r from-brand-red to-red-600 text-white text-xs rounded-full h-6 w-6 flex items-center justify-center border-2 border-black group-hover:scale-110 transition-transform duration-200">
+                      <Badge className="absolute -top-1 -right-1 lg:-top-2 lg:-right-2 bg-gradient-to-r from-brand-red to-red-600 text-white text-xs rounded-full h-5 w-5 lg:h-6 lg:w-6 flex items-center justify-center border-2 border-black group-hover:scale-110 transition-transform duration-200 font-bold">
                         {state.itemCount}
                       </Badge>
                     )}
@@ -323,23 +312,23 @@ export function Header() {
                 </Link>
               </div>
 
-              {/* Mobile Menu Button - Enhanced */}
+              {/* Mobile Menu Button - Super User Friendly */}
               <Button
                 variant="ghost"
-                size="sm"
-                className="lg:hidden text-white hover:bg-white/10 rounded-xl p-3 transition-all duration-300"
+                size="lg"
+                className="lg:hidden text-white hover:bg-white/10 rounded-xl p-4 transition-all duration-300 touch-manipulation active:scale-95"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
-                <div className="relative w-6 h-6">
+                <div className="relative w-7 h-7">
                   <Menu
-                    className={`h-6 w-6 absolute transition-all duration-300 ${
+                    className={`h-7 w-7 absolute transition-all duration-300 ${
                       isMobileMenuOpen
                         ? "rotate-90 opacity-0"
                         : "rotate-0 opacity-100"
                     }`}
                   />
                   <X
-                    className={`h-6 w-6 absolute transition-all duration-300 ${
+                    className={`h-7 w-7 absolute transition-all duration-300 ${
                       isMobileMenuOpen
                         ? "rotate-0 opacity-100"
                         : "-rotate-90 opacity-0"
