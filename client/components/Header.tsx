@@ -248,10 +248,14 @@ export function Header() {
 
                 {/* Premium logo container with enhanced touch target */}
                 <div className="relative bg-gradient-to-br from-white/8 to-white/12 backdrop-blur-md rounded-2xl p-4 lg:p-3 border border-white/25 group-hover:border-brand-red/50 group-active:border-brand-red/70 transition-all duration-300 shadow-2xl">
-                  <img
+                  <OptimizedImage
                     src="https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F4c5596c02a2a464091eb5609bcf49187"
-                    alt="APEX Logo"
+                    alt="APEX - Africa's Leading Promotional Products Provider Logo"
                     className="h-14 md:h-16 lg:h-18 w-auto object-contain group-hover:scale-105 group-active:scale-95 transition-all duration-300 filter group-hover:brightness-110 drop-shadow-lg"
+                    width={200}
+                    height={80}
+                    priority={true}
+                    quality={90}
                   />
                 </div>
 
