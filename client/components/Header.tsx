@@ -149,7 +149,7 @@ export function Header() {
                 <Mail className="h-3 w-3" />
               </div>
               <span className="group-hover:text-yellow-300 transition-colors duration-300">
-                info@apex.co.za
+                apex@w-o-s.co.za
               </span>
             </div>
           </div>
