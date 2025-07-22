@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ProductCard } from "@/components/ProductCard";
+import { OptimizedImage } from "@/components/OptimizedImage";
+import { SEO, generateFAQSchema } from "@/components/SEO";
 import { useCart } from "@/contexts/CartContext";
 import { getFeaturedProducts, categories } from "@/data/products";
 import {
@@ -38,6 +40,26 @@ export default function Index() {
   const { addToCart } = useCart();
   const featuredProducts = getFeaturedProducts(4);
 
+  // SEO structured data for FAQ
+  const faqData = [
+    {
+      question: "What types of promotional products does APEX offer?",
+      answer: "APEX offers over 10,000+ promotional products including corporate gifts, workwear, headwear, safety gear, custom clothing, and branded accessories with professional embroidery and printing services."
+    },
+    {
+      question: "Do you provide custom branding services?",
+      answer: "Yes, we provide professional custom branding services including embroidery, screen printing, laser engraving, and digital printing on all our promotional products."
+    },
+    {
+      question: "What is your delivery time across South Africa?",
+      answer: "We offer fast delivery across South Africa with turnaround times typically ranging from 48 hours to 7 working days depending on the product and customization requirements."
+    },
+    {
+      question: "Do you offer bulk discounts for large orders?",
+      answer: "Yes, we offer competitive bulk pricing for large orders. Contact our sales team at +27 76 035 5295 or apex@w-o-s.co.za for custom quotes on bulk orders."
+    }
+  ];
+
   const featuredCategories = categories.map((category) => ({
     ...category,
     icon: category.title.includes("Gift")
@@ -72,6 +94,12 @@ export default function Index() {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="APEX - Africa's #1 Promotional Products Provider | Corporate Gifts, Workwear & Custom Branding"
+        description="Premium corporate gifts, workwear, headwear & promotional items. 10,000+ products with professional custom branding, embroidery & printing services. Fast delivery across South Africa."
+        keywords="corporate gifts, promotional products, workwear, custom branding, embroidery, printing, promotional items, corporate clothing, headwear, safety gear, South Africa, APEX, branded merchandise"
+        structuredData={generateFAQSchema(faqData)}
+      />
       {/* Stunning Mobile-First Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden touch-manipulation">
         {/* Enhanced Mobile-Optimized Background */}
@@ -98,8 +126,8 @@ export default function Index() {
                   top: `${Math.random() * 100}%`,
                   animationDelay: `${Math.random() * 15}s`,
                   animationDuration: `${10 + Math.random() * 8}s`,
-                  width: "3px",
-                  height: "3px",
+                  width: '3px',
+                  height: '3px',
                 }}
               />
             ))}
@@ -186,10 +214,7 @@ export default function Index() {
                   </div>
                 </div>
                 <div className="text-center bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md rounded-2xl p-4 md:p-6 border border-white/20 mobile-glass hover:scale-105 transition-transform duration-300">
-                  <div
-                    className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-red animate-mobileGlow"
-                    style={{ animationDelay: "0.5s" }}
-                  >
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-red animate-mobileGlow" style={{ animationDelay: '0.5s' }}>
                     10K+
                   </div>
                   <div className="text-xs sm:text-sm text-gray-300 font-medium mt-1">
@@ -197,10 +222,7 @@ export default function Index() {
                   </div>
                 </div>
                 <div className="text-center bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md rounded-2xl p-4 md:p-6 border border-white/20 mobile-glass hover:scale-105 transition-transform duration-300">
-                  <div
-                    className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-red animate-mobileGlow"
-                    style={{ animationDelay: "1s" }}
-                  >
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-red animate-mobileGlow" style={{ animationDelay: '1s' }}>
                     1M+
                   </div>
                   <div className="text-xs sm:text-sm text-gray-300 font-medium mt-1">
@@ -222,10 +244,15 @@ export default function Index() {
 
                 {/* Image Container */}
                 <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-2xl">
-                  <img
+                  <OptimizedImage
                     src="https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F5e082290a0a94182af0923df3ec0f2f8"
-                    alt="Premium Products Showcase"
+                    alt="Premium promotional products showcase featuring corporate gifts, workwear, and custom branded items from APEX"
                     className="w-full h-auto rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
+                    width={600}
+                    height={400}
+                    priority={true}
+                    quality={85}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                   />
 
                   {/* Floating Elements */}
