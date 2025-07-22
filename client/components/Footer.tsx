@@ -42,7 +42,6 @@ export function Footer() {
     "Press Releases",
     "Sustainability",
     "Quality Promise",
-    "Testimonials",
     "Blog",
   ];
 
@@ -53,8 +52,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <img
+                        <div className="flex items-center space-x-2">
+                            <img
                 src="https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F4c5596c02a2a464091eb5609bcf49187"
                 alt="APEX Logo"
                 className="h-12 w-auto object-contain"
@@ -72,7 +71,7 @@ export function Footer() {
               </div>
               <div className="flex items-center space-x-2 text-sm">
                 <Phone className="h-4 w-4 text-brand-red" />
-                <span>+27 76 035 5295</span>
+                                <span>+27 76 035 5295</span>
               </div>
               <div className="flex items-center space-x-2 text-sm">
                 <Mail className="h-4 w-4 text-brand-red" />
