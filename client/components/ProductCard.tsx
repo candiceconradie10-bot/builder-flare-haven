@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
+import { OptimizedImage } from "./OptimizedImage";
 import { useCart, Product } from "@/contexts/CartContext";
 import { Star, Heart, ShoppingCart, Eye, Zap, TrendingUp } from "lucide-react";
 
@@ -21,17 +22,17 @@ export function ProductCard({
   const [isLiked, setIsLiked] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  const handleAddToCart = (e: React.MouseEvent) => {
+  const handleAddToCart = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     addToCart(product);
-  };
+  }, [addToCart, product]);
 
-  const handleLike = (e: React.MouseEvent) => {
+  const handleLike = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     setIsLiked(!isLiked);
-  };
+  }, [isLiked]);
 
   const cardSizes = {
     sm: "max-w-xs",
