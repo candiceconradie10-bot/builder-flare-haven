@@ -43,7 +43,7 @@ export default function ProductCategory() {
               Home
             </Link>
             <span>/</span>
-            <span className="text-foreground font-medium">{categoryTitle}</span>
+            <span className="text-foreground font-medium">WORKWEAR</span>
           </div>
         </div>
       </div>
@@ -64,15 +64,15 @@ export default function ProductCategory() {
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight">
               <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
-                {categoryTitle}
+                WORKWEAR
               </span>
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Discover our premium selection of{" "}
+              Discover our premium selection of
               <span className="text-brand-red font-semibold">
-                {categoryTitle?.toLowerCase()}
-              </span>{" "}
+                &nbsp;WORKWEAR&nbsp;
+              </span>
               with professional custom branding options and industry-leading
               quality.
             </p>
@@ -84,9 +84,11 @@ export default function ProductCategory() {
                 </div>
                 <div className="text-sm text-gray-400">Products</div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-brand-red">24h</div>
-                <div className="text-sm text-gray-400">Fast Delivery</div>
+              <div className="text-2xl font-bold text-brand-red ml-8">
+                24h
+              </div>
+              <div className="text-sm text-gray-400">
+                Fast Delivery
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-brand-red">★ 4.9</div>
