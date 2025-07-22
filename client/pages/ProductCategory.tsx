@@ -22,15 +22,27 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+// Category URL to display name mapping
+const getCategoryDisplayName = (categoryParam: string | undefined): string => {
+  const categoryMap: Record<string, string> = {
+    "corporate-gifts": "CLOTHING",
+    "corporate-clothing": "WORKWEAR",
+    "workwear": "HEADWEAR",
+    "headwear-and-accessories": "SAFETY GEAR",
+    "gifting": "GIFTING",
+    "display": "DISPLAY",
+    "footwear": "FOOTWEAR",
+    "custom-products": "CUSTOM PRODUCTS"
+  };
+
+  return categoryParam ? categoryMap[categoryParam] || categoryParam.toUpperCase() : "PRODUCTS";
+};
+
 export default function ProductCategory() {
   const { category } = useParams();
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
-  const categoryTitle = category
-    ?.split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-
+  const categoryDisplayName = getCategoryDisplayName(category);
   const categoryProducts = category ? getProductsByCategory(category) : [];
 
   return (
@@ -43,7 +55,7 @@ export default function ProductCategory() {
               Home
             </Link>
             <span>/</span>
-            <span className="text-foreground font-medium">WORKWEAR</span>
+            <span className="text-foreground font-medium">{categoryDisplayName}</span>
           </div>
         </div>
       </div>
@@ -64,14 +76,14 @@ export default function ProductCategory() {
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight">
               <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
-                WORKWEAR
+                {categoryDisplayName}
               </span>
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Discover our premium selection of
               <span className="text-brand-red font-semibold">
-                &nbsp;WORKWEAR&nbsp;
+                &nbsp;{categoryDisplayName}&nbsp;
               </span>
               with professional custom branding options and industry-leading
               quality.
