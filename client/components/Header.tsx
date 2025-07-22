@@ -117,7 +117,7 @@ export function Header() {
     {
       name: "Footwear",
       href: "/footwear",
-      items: ["Safety Boots", "Corporate Shoes", "Casual Wear"],
+      items: ["Safety Boots", "Corporate Shoes"],
     },
     {
       name: "Custom Products",
