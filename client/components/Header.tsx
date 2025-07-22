@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";
+import { OptimizedImage } from "./OptimizedImage";
 import {
   Search,
   ShoppingCart,
@@ -28,6 +29,21 @@ export function Header() {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const { state } = useCart();
   const { state: authState, logout } = useAuth();
+
+  // Optimized scroll handler with throttling
+  const handleScroll = useCallback(() => {
+    const scrollTop = window.pageYOffset;
+    setIsScrolled(scrollTop > 50);
+  }, []);
+
+  // Optimized click outside handler
+  const handleClickOutside = useCallback((event: MouseEvent) => {
+    const target = event.target as Element;
+    if (!target.closest('[data-dropdown]') && !target.closest('[data-user-menu]')) {
+      setActiveDropdown(null);
+      setShowUserMenu(false);
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
