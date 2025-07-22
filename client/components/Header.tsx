@@ -135,7 +135,10 @@ export function Header() {
 
         <div className="container mx-auto flex justify-between items-center text-sm md:text-base relative z-10">
           <div className="flex items-center space-x-4 md:space-x-8">
-            <a href="tel:+27760355295" className="flex items-center space-x-2 group cursor-pointer hover:scale-105 transition-transform duration-300">
+            <a
+              href="tel:+27760355295"
+              className="flex items-center space-x-2 group cursor-pointer hover:scale-105 transition-transform duration-300"
+            >
               <div className="p-2 rounded-full bg-white/20 group-hover:bg-white/30 transition-all duration-300">
                 <Phone className="h-4 w-4 md:h-3 md:w-3" />
               </div>
@@ -143,7 +146,10 @@ export function Header() {
                 +27 76 035 5295
               </span>
             </a>
-            <a href="mailto:apex@w-o-s.co.za" className="hidden sm:flex items-center space-x-2 group cursor-pointer hover:scale-105 transition-transform duration-300">
+            <a
+              href="mailto:apex@w-o-s.co.za"
+              className="hidden sm:flex items-center space-x-2 group cursor-pointer hover:scale-105 transition-transform duration-300"
+            >
               <div className="p-2 rounded-full bg-white/20 group-hover:bg-white/30 transition-all duration-300">
                 <Mail className="h-4 w-4 md:h-3 md:w-3" />
               </div>
@@ -179,7 +185,10 @@ export function Header() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20 lg:h-24">
             {/* Mobile-Optimized Logo */}
-            <Link to="/" className="flex items-center space-x-3 group relative touch-manipulation">
+            <Link
+              to="/"
+              className="flex items-center space-x-3 group relative touch-manipulation"
+            >
               <div className="relative">
                 {/* Simplified mobile-friendly glow */}
                 <div className="absolute -inset-2 bg-gradient-to-br from-brand-red/30 to-red-600/30 rounded-xl blur-md opacity-50 group-hover:opacity-100 transition-all duration-300"></div>
@@ -459,13 +468,19 @@ export function Header() {
                   </div>
                 </>
               ) : (
-                <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)} className="col-span-2">
+                <Link
+                  to="/auth"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="col-span-2"
+                >
                   <Button
                     variant="ghost"
                     className="w-full flex items-center justify-center space-x-3 text-white hover:bg-white/10 hover:text-brand-red rounded-2xl py-6 transition-all duration-300 touch-manipulation active:scale-95 bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md border border-white/20"
                   >
                     <User className="h-6 w-6" />
-                    <span className="text-lg font-bold">Sign In / Register</span>
+                    <span className="text-lg font-bold">
+                      Sign In / Register
+                    </span>
                   </Button>
                 </Link>
               )}
@@ -497,7 +512,10 @@ export function Header() {
             {/* Mobile Navigation - Super User Friendly */}
             <nav className="space-y-4">
               {mainNavItems.map((item) => (
-                <div key={item.name} className="bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md rounded-2xl border border-white/20 overflow-hidden">
+                <div
+                  key={item.name}
+                  className="bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md rounded-2xl border border-white/20 overflow-hidden"
+                >
                   <Link
                     to={item.href}
                     className="flex items-center justify-between w-full p-6 text-white hover:text-brand-red hover:bg-white/10 transition-all duration-300 font-bold text-lg touch-manipulation active:scale-95"
@@ -543,13 +561,21 @@ export function Header() {
 
             {/* Mobile Contact Info */}
             <div className="bg-gradient-to-br from-brand-red/20 to-red-600/20 backdrop-blur-md rounded-2xl p-6 border border-brand-red/30 mt-6">
-              <h3 className="text-white font-bold text-lg mb-4 text-center">Need Help?</h3>
+              <h3 className="text-white font-bold text-lg mb-4 text-center">
+                Need Help?
+              </h3>
               <div className="space-y-3">
-                <a href="tel:+27760355295" className="flex items-center space-x-3 text-white hover:text-yellow-300 transition-colors duration-300 p-4 rounded-xl hover:bg-white/10 touch-manipulation active:scale-95">
+                <a
+                  href="tel:+27760355295"
+                  className="flex items-center space-x-3 text-white hover:text-yellow-300 transition-colors duration-300 p-4 rounded-xl hover:bg-white/10 touch-manipulation active:scale-95"
+                >
                   <Phone className="h-6 w-6" />
                   <span className="font-bold text-lg">+27 76 035 5295</span>
                 </a>
-                <a href="mailto:apex@w-o-s.co.za" className="flex items-center space-x-3 text-white hover:text-yellow-300 transition-colors duration-300 p-4 rounded-xl hover:bg-white/10 touch-manipulation active:scale-95">
+                <a
+                  href="mailto:apex@w-o-s.co.za"
+                  className="flex items-center space-x-3 text-white hover:text-yellow-300 transition-colors duration-300 p-4 rounded-xl hover:bg-white/10 touch-manipulation active:scale-95"
+                >
                   <Mail className="h-6 w-6" />
                   <span className="font-bold text-lg">apex@w-o-s.co.za</span>
                 </a>

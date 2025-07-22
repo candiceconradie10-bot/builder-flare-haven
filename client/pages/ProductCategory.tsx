@@ -27,15 +27,17 @@ const getCategoryDisplayName = (categoryParam: string | undefined): string => {
   const categoryMap: Record<string, string> = {
     "corporate-gifts": "CLOTHING",
     "corporate-clothing": "WORKWEAR",
-    "workwear": "HEADWEAR",
+    workwear: "HEADWEAR",
     "headwear-and-accessories": "SAFETY GEAR",
-    "gifting": "GIFTING",
-    "display": "DISPLAY",
-    "footwear": "FOOTWEAR",
-    "custom-products": "CUSTOM PRODUCTS"
+    gifting: "GIFTING",
+    display: "DISPLAY",
+    footwear: "FOOTWEAR",
+    "custom-products": "CUSTOM PRODUCTS",
   };
 
-  return categoryParam ? categoryMap[categoryParam] || categoryParam.toUpperCase() : "PRODUCTS";
+  return categoryParam
+    ? categoryMap[categoryParam] || categoryParam.toUpperCase()
+    : "PRODUCTS";
 };
 
 export default function ProductCategory() {
@@ -55,7 +57,9 @@ export default function ProductCategory() {
               Home
             </Link>
             <span>/</span>
-            <span className="text-foreground font-medium">{categoryDisplayName}</span>
+            <span className="text-foreground font-medium">
+              {categoryDisplayName}
+            </span>
           </div>
         </div>
       </div>
@@ -100,9 +104,7 @@ export default function ProductCategory() {
                 <div className="text-2xl font-bold text-brand-red">
                   Fast Delivery
                 </div>
-                <div className="text-sm text-gray-400">
-                  Nationwide
-                </div>
+                <div className="text-sm text-gray-400">Nationwide</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-brand-red">★ 4.9</div>
