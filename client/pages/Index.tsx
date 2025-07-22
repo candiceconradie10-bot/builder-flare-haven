@@ -50,8 +50,8 @@ export default function Index() {
   const features = [
     {
       icon: Truck,
-      title: "Free Delivery",
-      description: "On orders over R500",
+      title: "Fast Shipping",
+      description: "Quick delivery nationwide",
     },
     {
       icon: Shield,
@@ -243,7 +243,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Enhanced About Section */}
+            {/* Enhanced About Section */}
       <section className="relative py-32 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
         {/* Advanced Background Elements */}
         <div className="absolute inset-0 bg-gradient-to-r from-brand-red/10 via-transparent to-red-600/10" />
@@ -272,13 +272,8 @@ export default function Index() {
             </h2>
 
             <p className="text-2xl text-gray-300 leading-relaxed max-w-4xl mx-auto">
-              APEX is South Africa's premier promotional products provider,
-              transforming brands with
-              <span className="text-brand-red font-bold">
-                {" "}
-                cutting-edge solutions
-              </span>{" "}
-              and unmatched quality.
+              APEX is South Africa's premier promotional products provider, transforming brands with
+              <span className="text-brand-red font-bold"> cutting-edge solutions</span> and unmatched quality.
             </p>
           </div>
 
@@ -288,13 +283,9 @@ export default function Index() {
               <div className="space-y-8">
                 <p className="text-xl text-gray-300 leading-relaxed">
                   We specialize in
-                  <span className="text-brand-red font-semibold">
-                    {" "}
-                    corporate gifts
-                  </span>
-                  , professional clothing, and custom branding solutions that
-                  help businesses across Africa create lasting impressions with
-                  high-quality promotional items.
+                  <span className="text-brand-red font-semibold"> corporate gifts</span>,
+                  professional clothing, and custom branding solutions that help businesses
+                  across Africa create lasting impressions with high-quality promotional items.
                 </p>
 
                 {/* Key Features Grid */}
@@ -309,8 +300,7 @@ export default function Index() {
                       </div>
                     </div>
                     <div className="text-gray-400">
-                      Only the finest materials and craftsmanship meet our
-                      standards
+                      Only the finest materials and craftsmanship meet our standards
                     </div>
                   </div>
 
@@ -387,21 +377,15 @@ export default function Index() {
                     {/* Top Stats Row */}
                     <div className="grid grid-cols-3 gap-4">
                       <div className="text-center bg-gradient-to-br from-brand-red/20 to-red-600/20 rounded-xl p-4 backdrop-blur-md border border-white/20">
-                        <div className="text-2xl font-bold text-white mb-1">
-                          10K+
-                        </div>
+                        <div className="text-2xl font-bold text-white mb-1">10K+</div>
                         <div className="text-xs text-gray-300">Products</div>
                       </div>
                       <div className="text-center bg-gradient-to-br from-brand-red/20 to-red-600/20 rounded-xl p-4 backdrop-blur-md border border-white/20">
-                        <div className="text-2xl font-bold text-white mb-1">
-                          500+
-                        </div>
+                        <div className="text-2xl font-bold text-white mb-1">500+</div>
                         <div className="text-xs text-gray-300">Clients</div>
                       </div>
                       <div className="text-center bg-gradient-to-br from-brand-red/20 to-red-600/20 rounded-xl p-4 backdrop-blur-md border border-white/20">
-                        <div className="text-2xl font-bold text-white mb-1">
-                          15+
-                        </div>
+                        <div className="text-2xl font-bold text-white mb-1">15+</div>
                         <div className="text-xs text-gray-300">Years</div>
                       </div>
                     </div>
@@ -434,9 +418,7 @@ export default function Index() {
                       <div className="text-2xl font-bold text-white mb-2">
                         Industry Leader
                       </div>
-                      <div className="text-gray-300">
-                        Trusted by businesses across Africa
-                      </div>
+                      <div className="text-gray-300">Trusted by businesses across Africa</div>
                     </div>
                   </div>
                 </div>
@@ -458,29 +440,19 @@ export default function Index() {
           {/* Trust Indicators */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="group">
-              <div className="text-4xl font-bold text-brand-red group-hover:scale-110 transition-transform duration-300">
-                1M+
-              </div>
+              <div className="text-4xl font-bold text-brand-red group-hover:scale-110 transition-transform duration-300">1M+</div>
               <div className="text-gray-400 font-medium">Happy Customers</div>
             </div>
             <div className="group">
-              <div className="text-4xl font-bold text-brand-red group-hover:scale-110 transition-transform duration-300">
-                500+
-              </div>
+              <div className="text-4xl font-bold text-brand-red group-hover:scale-110 transition-transform duration-300">500+</div>
               <div className="text-gray-400 font-medium">Corporate Clients</div>
             </div>
             <div className="group">
-              <div className="text-4xl font-bold text-brand-red group-hover:scale-110 transition-transform duration-300">
-                100%
-              </div>
-              <div className="text-gray-400 font-medium">
-                Quality Guaranteed
-              </div>
+              <div className="text-4xl font-bold text-brand-red group-hover:scale-110 transition-transform duration-300">100%</div>
+              <div className="text-gray-400 font-medium">Quality Guaranteed</div>
             </div>
             <div className="group">
-              <div className="text-4xl font-bold text-brand-red group-hover:scale-110 transition-transform duration-300">
-                24/7
-              </div>
+              <div className="text-4xl font-bold text-brand-red group-hover:scale-110 transition-transform duration-300">24/7</div>
               <div className="text-gray-400 font-medium">Support Available</div>
             </div>
           </div>
@@ -517,7 +489,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Our Products Section */}
+            {/* Our Products Section */}
       <section className="relative py-32 bg-gradient-to-b from-gray-900 via-black to-gray-900 overflow-hidden">
         {/* Advanced Background Effects */}
         <div className="absolute inset-0 bg-gradient-to-r from-brand-red/5 via-transparent to-red-600/5" />
@@ -547,11 +519,8 @@ export default function Index() {
 
             <p className="text-2xl text-gray-300 leading-relaxed max-w-4xl mx-auto mb-12">
               Discover our comprehensive collection of
-              <span className="text-brand-red font-bold">
-                {" "}
-                premium promotional products
-              </span>
-              , trusted by thousands of businesses across Africa.
+              <span className="text-brand-red font-bold"> premium promotional products</span>,
+              trusted by thousands of businesses across Africa.
             </p>
           </div>
 
@@ -590,12 +559,8 @@ export default function Index() {
                         {/* Bottom overlay with quick stats */}
                         <div className="absolute bottom-4 left-4 right-4">
                           <div className="bg-black/40 backdrop-blur-md rounded-xl p-3 border border-white/20">
-                            <div className="text-white font-bold text-sm">
-                              500+ Products
-                            </div>
-                            <div className="text-gray-300 text-xs">
-                              Starting from R50
-                            </div>
+                            <div className="text-white font-bold text-sm">500+ Products</div>
+                            <div className="text-gray-300 text-xs">Starting from R50</div>
                           </div>
                         </div>
                       </div>
@@ -608,7 +573,9 @@ export default function Index() {
                           {category.description}
                         </p>
 
-                        <Button className="w-full bg-gradient-to-r from-white/10 to-white/5 hover:from-brand-red hover:to-red-600 text-white border border-white/20 hover:border-transparent font-bold py-3 rounded-xl backdrop-blur-md transition-all duration-300 group-hover:scale-105">
+                        <Button
+                          className="w-full bg-gradient-to-r from-white/10 to-white/5 hover:from-brand-red hover:to-red-600 text-white border border-white/20 hover:border-transparent font-bold py-3 rounded-xl backdrop-blur-md transition-all duration-300 group-hover:scale-105"
+                        >
                           <Eye className="mr-2 h-4 w-4" />
                           Explore Collection
                           <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
@@ -625,9 +592,7 @@ export default function Index() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="group bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-brand-red/30 transition-all duration-300 hover:scale-105 text-center">
               <Gift className="h-12 w-12 text-brand-red mx-auto mb-4 group-hover:rotate-12 transition-transform duration-300" />
-              <div className="text-lg font-bold text-white mb-2">
-                Corporate Gifts
-              </div>
+              <div className="text-lg font-bold text-white mb-2">Corporate Gifts</div>
               <div className="text-sm text-gray-400">2,500+ Items</div>
             </div>
 
@@ -639,9 +604,7 @@ export default function Index() {
 
             <div className="group bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-brand-red/30 transition-all duration-300 hover:scale-105 text-center">
               <Shield className="h-12 w-12 text-brand-red mx-auto mb-4 group-hover:rotate-12 transition-transform duration-300" />
-              <div className="text-lg font-bold text-white mb-2">
-                Safety Gear
-              </div>
+              <div className="text-lg font-bold text-white mb-2">Safety Gear</div>
               <div className="text-sm text-gray-400">1,800+ Items</div>
             </div>
 
@@ -654,7 +617,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Featured Products */}
+            {/* Featured Products */}
       <section className="relative py-32 bg-gradient-to-b from-black via-gray-900 to-black">
         {/* Background Effects */}
         <div className="absolute inset-0 bg-gradient-to-r from-brand-red/5 via-transparent to-red-600/5" />
@@ -679,11 +642,8 @@ export default function Index() {
 
             <p className="text-2xl text-gray-300 leading-relaxed max-w-4xl mx-auto mb-12">
               Hand-picked items from our
-              <span className="text-brand-red font-bold">
-                {" "}
-                premium collection
-              </span>
-              , loved by thousands of customers across Africa.
+              <span className="text-brand-red font-bold"> premium collection</span>,
+              loved by thousands of customers across Africa.
             </p>
 
             <Button className="group bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold px-8 py-4 rounded-2xl shadow-2xl hover:shadow-red-500/25 transition-all duration-300 hover:scale-105">
@@ -740,10 +700,7 @@ export default function Index() {
 
             <p className="text-2xl text-gray-300 leading-relaxed max-w-4xl mx-auto">
               Explore our comprehensive digital catalogues featuring
-              <span className="text-brand-red font-bold">
-                {" "}
-                10,000+ premium products
-              </span>
+              <span className="text-brand-red font-bold"> 10,000+ premium products</span>
               across all categories.
             </p>
           </div>
@@ -763,8 +720,7 @@ export default function Index() {
                         Complete Product Catalogue 2024
                       </h3>
                       <p className="text-gray-300">
-                        Our comprehensive collection featuring all 10,000+
-                        products
+                        Our comprehensive collection featuring all 10,000+ products
                       </p>
                     </div>
                     <div className="bg-gradient-to-r from-brand-red to-red-600 p-4 rounded-2xl group-hover:rotate-12 transition-transform duration-300">
@@ -822,17 +778,10 @@ export default function Index() {
                   Premium branded items for every occasion
                 </p>
                 <div className="flex gap-2">
-                  <Button
-                    size="sm"
-                    className="flex-1 bg-gradient-to-r from-brand-red/20 to-red-600/20 hover:from-brand-red hover:to-red-600 text-white border border-brand-red/30 font-bold rounded-xl"
-                  >
+                  <Button size="sm" className="flex-1 bg-gradient-to-r from-brand-red/20 to-red-600/20 hover:from-brand-red hover:to-red-600 text-white border border-brand-red/30 font-bold rounded-xl">
                     <Download className="h-4 w-4" />
                   </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="flex-1 border-white/30 text-white hover:bg-white/10 rounded-xl"
-                  >
+                  <Button size="sm" variant="outline" className="flex-1 border-white/30 text-white hover:bg-white/10 rounded-xl">
                     <Eye className="h-4 w-4" />
                   </Button>
                 </div>
@@ -854,17 +803,10 @@ export default function Index() {
                   Professional apparel & workwear
                 </p>
                 <div className="flex gap-2">
-                  <Button
-                    size="sm"
-                    className="flex-1 bg-gradient-to-r from-brand-red/20 to-red-600/20 hover:from-brand-red hover:to-red-600 text-white border border-brand-red/30 font-bold rounded-xl"
-                  >
+                  <Button size="sm" className="flex-1 bg-gradient-to-r from-brand-red/20 to-red-600/20 hover:from-brand-red hover:to-red-600 text-white border border-brand-red/30 font-bold rounded-xl">
                     <Download className="h-4 w-4" />
                   </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="flex-1 border-white/30 text-white hover:bg-white/10 rounded-xl"
-                  >
+                  <Button size="sm" variant="outline" className="flex-1 border-white/30 text-white hover:bg-white/10 rounded-xl">
                     <Eye className="h-4 w-4" />
                   </Button>
                 </div>
@@ -886,17 +828,10 @@ export default function Index() {
                   Complete safety gear collection
                 </p>
                 <div className="flex gap-2">
-                  <Button
-                    size="sm"
-                    className="flex-1 bg-gradient-to-r from-brand-red/20 to-red-600/20 hover:from-brand-red hover:to-red-600 text-white border border-brand-red/30 font-bold rounded-xl"
-                  >
+                  <Button size="sm" className="flex-1 bg-gradient-to-r from-brand-red/20 to-red-600/20 hover:from-brand-red hover:to-red-600 text-white border border-brand-red/30 font-bold rounded-xl">
                     <Download className="h-4 w-4" />
                   </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="flex-1 border-white/30 text-white hover:bg-white/10 rounded-xl"
-                  >
+                  <Button size="sm" variant="outline" className="flex-1 border-white/30 text-white hover:bg-white/10 rounded-xl">
                     <Eye className="h-4 w-4" />
                   </Button>
                 </div>
@@ -945,7 +880,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Enhanced CTA Section */}
+            {/* Enhanced CTA Section */}
       <section className="relative py-32 bg-gradient-to-r from-black via-gray-900 to-black overflow-hidden">
         {/* Advanced Background Effects */}
         <div className="absolute inset-0 bg-gradient-to-r from-brand-red/10 via-transparent to-red-600/10" />
@@ -1007,30 +942,22 @@ export default function Index() {
           {/* Trust Indicators */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="group bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-brand-red/30 transition-all duration-300 hover:scale-105">
-              <div className="text-3xl font-bold text-brand-red group-hover:scale-110 transition-transform duration-300 mb-2">
-                24/7
-              </div>
+              <div className="text-3xl font-bold text-brand-red group-hover:scale-110 transition-transform duration-300 mb-2">24/7</div>
               <div className="text-gray-300 font-medium">Expert Support</div>
             </div>
 
             <div className="group bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-brand-red/30 transition-all duration-300 hover:scale-105">
-              <div className="text-3xl font-bold text-brand-red group-hover:scale-110 transition-transform duration-300 mb-2">
-                48H
-              </div>
+              <div className="text-3xl font-bold text-brand-red group-hover:scale-110 transition-transform duration-300 mb-2">48H</div>
               <div className="text-gray-300 font-medium">Quick Turnaround</div>
             </div>
 
             <div className="group bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-brand-red/30 transition-all duration-300 hover:scale-105">
-              <div className="text-3xl font-bold text-brand-red group-hover:scale-110 transition-transform duration-300 mb-2">
-                100%
-              </div>
+              <div className="text-3xl font-bold text-brand-red group-hover:scale-110 transition-transform duration-300 mb-2">100%</div>
               <div className="text-gray-300 font-medium">Quality Guarantee</div>
             </div>
 
             <div className="group bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-brand-red/30 transition-all duration-300 hover:scale-105">
-              <div className="text-3xl font-bold text-brand-red group-hover:scale-110 transition-transform duration-300 mb-2">
-                1M+
-              </div>
+              <div className="text-3xl font-bold text-brand-red group-hover:scale-110 transition-transform duration-300 mb-2">1M+</div>
               <div className="text-gray-300 font-medium">Happy Customers</div>
             </div>
           </div>
