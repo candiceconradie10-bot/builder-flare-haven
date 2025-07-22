@@ -35,21 +35,22 @@ export function ProductCard({
 
   const cardSizes = {
     sm: "max-w-xs",
-    md: "max-w-sm",
-    lg: "max-w-md",
+    md: "max-w-sm lg:max-w-md",
+    lg: "max-w-md lg:max-w-lg",
   };
 
   const imageSizes = {
-    sm: "h-48",
-    md: "h-64",
-    lg: "h-80",
+    sm: "h-48 md:h-56",
+    md: "h-56 md:h-64 lg:h-72",
+    lg: "h-64 md:h-72 lg:h-80",
   };
 
   return (
     <div
-      className={`group relative ${cardSizes[size]} w-full`}
+      className={`group relative ${cardSizes[size]} w-full touch-manipulation`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onTouchStart={() => setIsHovered(true)}
     >
       {/* Premium Card Container */}
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/10 via-white/5 to-white/10 backdrop-blur-xl border border-white/20 transition-all duration-700 hover:scale-[1.03] hover:shadow-2xl hover:shadow-brand-red/20 hover:border-brand-red/40 interactive-element">
