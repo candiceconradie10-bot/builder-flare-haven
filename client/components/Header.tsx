@@ -432,52 +432,61 @@ export function Header() {
               </div>
             </div>
 
-            {/* Mobile Actions */}
-            <div className="grid grid-cols-3 gap-4">
+            {/* Mobile Actions - Enhanced for Touch */}
+            <div className="grid grid-cols-2 gap-4">
               {authState.isAuthenticated ? (
-                <div className="space-y-2">
-                  <div className="text-center text-white text-sm font-medium p-2 bg-white/5 rounded-xl border border-white/10">
-                    {authState.user?.firstName}
+                <>
+                  <div className="col-span-2">
+                    <div className="text-center text-white p-4 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md rounded-2xl border border-white/20">
+                      <div className="font-bold text-lg mb-2">
+                        {authState.user?.firstName} {authState.user?.lastName}
+                      </div>
+                      <div className="text-gray-300 text-sm mb-4">
+                        {authState.user?.email}
+                      </div>
+                      <Button
+                        onClick={() => {
+                          logout();
+                          setIsMobileMenuOpen(false);
+                        }}
+                        variant="ghost"
+                        className="w-full text-red-400 hover:bg-red-500/10 hover:text-red-300 rounded-xl py-3 transition-all duration-300 touch-manipulation active:scale-95 font-medium"
+                      >
+                        <LogOut className="h-5 w-5 mr-2" />
+                        Sign Out
+                      </Button>
+                    </div>
                   </div>
-                  <Button
-                    onClick={() => {
-                      logout();
-                      setIsMobileMenuOpen(false);
-                    }}
-                    variant="ghost"
-                    className="w-full flex flex-col items-center space-y-2 text-red-400 hover:bg-red-500/10 hover:text-red-300 rounded-2xl p-4 transition-all duration-300"
-                  >
-                    <LogOut className="h-6 w-6" />
-                    <span className="text-sm font-medium">Sign Out</span>
-                  </Button>
-                </div>
+                </>
               ) : (
-                <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)} className="col-span-2">
                   <Button
                     variant="ghost"
-                    className="w-full flex flex-col items-center space-y-2 text-white hover:bg-white/10 hover:text-brand-red rounded-2xl p-4 transition-all duration-300"
+                    className="w-full flex items-center justify-center space-x-3 text-white hover:bg-white/10 hover:text-brand-red rounded-2xl py-6 transition-all duration-300 touch-manipulation active:scale-95 bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md border border-white/20"
                   >
                     <User className="h-6 w-6" />
-                    <span className="text-sm font-medium">Sign In</span>
+                    <span className="text-lg font-bold">Sign In / Register</span>
                   </Button>
                 </Link>
               )}
+
               <Button
                 variant="ghost"
-                className="flex flex-col items-center space-y-2 text-white hover:bg-white/10 hover:text-brand-red rounded-2xl p-4 transition-all duration-300"
+                className="flex items-center justify-center space-x-3 text-white hover:bg-white/10 hover:text-brand-red rounded-2xl py-6 transition-all duration-300 touch-manipulation active:scale-95 bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md border border-white/20"
               >
-                <Heart className="h-6 w-6" />
-                <span className="text-sm font-medium">Wishlist</span>
+                <Heart className="h-7 w-7" />
+                <span className="text-base font-bold">Wishlist</span>
               </Button>
+
               <Link to="/cart" onClick={() => setIsMobileMenuOpen(false)}>
                 <Button
                   variant="ghost"
-                  className="w-full flex flex-col items-center space-y-2 text-white hover:bg-white/10 hover:text-brand-red rounded-2xl p-4 transition-all duration-300 relative"
+                  className="w-full flex items-center justify-center space-x-3 text-white hover:bg-white/10 hover:text-brand-red rounded-2xl py-6 transition-all duration-300 relative touch-manipulation active:scale-95 bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md border border-white/20"
                 >
-                  <ShoppingCart className="h-6 w-6" />
-                  <span className="text-sm font-medium">Cart</span>
+                  <ShoppingCart className="h-7 w-7" />
+                  <span className="text-base font-bold">Cart</span>
                   {state.itemCount > 0 && (
-                    <Badge className="absolute -top-1 -right-1 bg-gradient-to-r from-brand-red to-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    <Badge className="absolute -top-2 -right-2 bg-gradient-to-r from-brand-red to-red-600 text-white text-sm rounded-full h-7 w-7 flex items-center justify-center border-2 border-black font-bold">
                       {state.itemCount}
                     </Badge>
                   )}
@@ -485,50 +494,67 @@ export function Header() {
               </Link>
             </div>
 
-            {/* Mobile Navigation */}
-            <nav className="space-y-2">
+            {/* Mobile Navigation - Super User Friendly */}
+            <nav className="space-y-4">
               {mainNavItems.map((item) => (
-                <div key={item.name} className="space-y-1">
+                <div key={item.name} className="bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md rounded-2xl border border-white/20 overflow-hidden">
                   <Link
                     to={item.href}
-                    className="flex items-center justify-between w-full p-4 text-white hover:text-brand-red hover:bg-white/5 rounded-xl transition-all duration-300 font-medium"
+                    className="flex items-center justify-between w-full p-6 text-white hover:text-brand-red hover:bg-white/10 transition-all duration-300 font-bold text-lg touch-manipulation active:scale-95"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-4">
                       <span>{item.name}</span>
                       {item.badge && (
                         <Badge
-                          className={`text-xs ${
+                          className={`text-sm px-3 py-1 ${
                             item.badge === "New"
                               ? "bg-green-500"
                               : item.badge === "Hot"
                                 ? "bg-orange-500"
                                 : "bg-brand-red"
-                          } text-white border-0`}
+                          } text-white border-0 rounded-full font-bold`}
                         >
                           {item.badge}
                         </Badge>
                       )}
                     </div>
-                    <ChevronDown className="h-4 w-4" />
+                    <ChevronDown className="h-6 w-6" />
                   </Link>
                   {item.items && (
-                    <div className="ml-4 space-y-1">
-                      {item.items.map((subItem) => (
-                        <Link
-                          key={subItem}
-                          to={`${item.href}?category=${subItem.toLowerCase().replace(" ", "-")}`}
-                          className="block p-3 text-white/70 hover:text-brand-red hover:bg-white/5 rounded-lg transition-all duration-200 text-sm"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          {subItem}
-                        </Link>
-                      ))}
+                    <div className="bg-black/20 px-4 pb-4">
+                      <div className="space-y-2">
+                        {item.items.map((subItem) => (
+                          <Link
+                            key={subItem}
+                            to={`${item.href}?category=${subItem.toLowerCase().replace(" ", "-")}`}
+                            className="block p-4 text-white/90 hover:text-brand-red hover:bg-white/10 rounded-xl transition-all duration-200 font-medium text-base touch-manipulation active:scale-95"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            {subItem}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>
               ))}
             </nav>
+
+            {/* Mobile Contact Info */}
+            <div className="bg-gradient-to-br from-brand-red/20 to-red-600/20 backdrop-blur-md rounded-2xl p-6 border border-brand-red/30 mt-6">
+              <h3 className="text-white font-bold text-lg mb-4 text-center">Need Help?</h3>
+              <div className="space-y-3">
+                <a href="tel:+27760355295" className="flex items-center space-x-3 text-white hover:text-yellow-300 transition-colors duration-300 p-4 rounded-xl hover:bg-white/10 touch-manipulation active:scale-95">
+                  <Phone className="h-6 w-6" />
+                  <span className="font-bold text-lg">+27 76 035 5295</span>
+                </a>
+                <a href="mailto:apex@w-o-s.co.za" className="flex items-center space-x-3 text-white hover:text-yellow-300 transition-colors duration-300 p-4 rounded-xl hover:bg-white/10 touch-manipulation active:scale-95">
+                  <Mail className="h-6 w-6" />
+                  <span className="font-bold text-lg">apex@w-o-s.co.za</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
