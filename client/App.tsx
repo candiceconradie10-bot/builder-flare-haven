@@ -12,6 +12,8 @@ import { CartProvider } from "@/contexts/CartContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
+import { initializeViewportOptimizations } from "@/utils/viewport";
+import { injectCriticalCSS } from "@/utils/criticalCSS";
 import Index from "./pages/Index";
 import ProductCategory from "./pages/ProductCategory";
 import Cart from "./pages/Cart";
