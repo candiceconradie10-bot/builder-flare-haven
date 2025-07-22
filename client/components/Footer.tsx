@@ -29,7 +29,6 @@ export function Footer() {
     "FAQ",
     "Shipping Information",
     "Returns & Exchanges",
-    "Size Guide",
     "Track Your Order",
     "Bulk Orders",
     "Custom Quotes",
