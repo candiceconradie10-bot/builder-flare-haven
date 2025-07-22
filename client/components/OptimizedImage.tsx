@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 interface OptimizedImageProps {
   src: string;
@@ -15,21 +15,25 @@ interface OptimizedImageProps {
 export function OptimizedImage({
   src,
   alt,
-  className = '',
+  className = "",
   width = 800,
   height = 600,
   priority = false,
-  sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
+  sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
   quality = 80,
-  placeholder = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI2MDAiIGZpbGw9IiMxYTFhMWEiLz48L3N2Zz4=',
+  placeholder = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI2MDAiIGZpbGw9IiMxYTFhMWEiLz48L3N2Zz4=",
 }: OptimizedImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(priority);
   const [imageSrc, setImageSrc] = useState(placeholder);
 
   // Generate optimized image URL
-  const getOptimizedUrl = (originalSrc: string, targetWidth: number, targetQuality: number) => {
-    if (originalSrc.includes('cdn.builder.io')) {
+  const getOptimizedUrl = (
+    originalSrc: string,
+    targetWidth: number,
+    targetQuality: number,
+  ) => {
+    if (originalSrc.includes("cdn.builder.io")) {
       return `${originalSrc}?format=webp&width=${targetWidth}&quality=${targetQuality}&fit=fill`;
     }
     return originalSrc;
@@ -49,9 +53,9 @@ export function OptimizedImage({
         });
       },
       {
-        rootMargin: '50px',
+        rootMargin: "50px",
         threshold: 0.1,
-      }
+      },
     );
 
     const imgElement = document.querySelector(`[data-src="${src}"]`);
@@ -66,7 +70,7 @@ export function OptimizedImage({
   useEffect(() => {
     if (isInView && !isLoaded) {
       const optimizedSrc = getOptimizedUrl(src, width, quality);
-      
+
       const img = new Image();
       img.onload = () => {
         setImageSrc(optimizedSrc);
@@ -82,16 +86,16 @@ export function OptimizedImage({
       src={imageSrc}
       alt={alt}
       className={`transition-opacity duration-300 ${
-        isLoaded ? 'opacity-100' : 'opacity-70'
+        isLoaded ? "opacity-100" : "opacity-70"
       } ${className}`}
       width={width}
       height={height}
       sizes={sizes}
-      loading={priority ? 'eager' : 'lazy'}
+      loading={priority ? "eager" : "lazy"}
       decoding="async"
       style={{
         aspectRatio: `${width}/${height}`,
-        objectFit: 'cover',
+        objectFit: "cover",
       }}
     />
   );

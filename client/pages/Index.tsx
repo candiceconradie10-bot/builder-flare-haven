@@ -44,20 +44,24 @@ export default function Index() {
   const faqData = [
     {
       question: "What types of promotional products does APEX offer?",
-      answer: "APEX offers over 10,000+ promotional products including corporate gifts, workwear, headwear, safety gear, custom clothing, and branded accessories with professional embroidery and printing services."
+      answer:
+        "APEX offers over 10,000+ promotional products including corporate gifts, workwear, headwear, safety gear, custom clothing, and branded accessories with professional embroidery and printing services.",
     },
     {
       question: "Do you provide custom branding services?",
-      answer: "Yes, we provide professional custom branding services including embroidery, screen printing, laser engraving, and digital printing on all our promotional products."
+      answer:
+        "Yes, we provide professional custom branding services including embroidery, screen printing, laser engraving, and digital printing on all our promotional products.",
     },
     {
       question: "What is your delivery time across South Africa?",
-      answer: "We offer fast delivery across South Africa with turnaround times typically ranging from 48 hours to 7 working days depending on the product and customization requirements."
+      answer:
+        "We offer fast delivery across South Africa with turnaround times typically ranging from 48 hours to 7 working days depending on the product and customization requirements.",
     },
     {
       question: "Do you offer bulk discounts for large orders?",
-      answer: "Yes, we offer competitive bulk pricing for large orders. Contact our sales team at +27 76 035 5295 or apex@w-o-s.co.za for custom quotes on bulk orders."
-    }
+      answer:
+        "Yes, we offer competitive bulk pricing for large orders. Contact our sales team at +27 76 035 5295 or apex@w-o-s.co.za for custom quotes on bulk orders.",
+    },
   ];
 
   const featuredCategories = categories.map((category) => ({
@@ -126,8 +130,8 @@ export default function Index() {
                   top: `${Math.random() * 100}%`,
                   animationDelay: `${Math.random() * 15}s`,
                   animationDuration: `${10 + Math.random() * 8}s`,
-                  width: '3px',
-                  height: '3px',
+                  width: "3px",
+                  height: "3px",
                 }}
               />
             ))}
@@ -214,7 +218,10 @@ export default function Index() {
                   </div>
                 </div>
                 <div className="text-center bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md rounded-2xl p-4 md:p-6 border border-white/20 mobile-glass hover:scale-105 transition-transform duration-300">
-                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-red animate-mobileGlow" style={{ animationDelay: '0.5s' }}>
+                  <div
+                    className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-red animate-mobileGlow"
+                    style={{ animationDelay: "0.5s" }}
+                  >
                     10K+
                   </div>
                   <div className="text-xs sm:text-sm text-gray-300 font-medium mt-1">
@@ -222,7 +229,10 @@ export default function Index() {
                   </div>
                 </div>
                 <div className="text-center bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md rounded-2xl p-4 md:p-6 border border-white/20 mobile-glass hover:scale-105 transition-transform duration-300">
-                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-red animate-mobileGlow" style={{ animationDelay: '1s' }}>
+                  <div
+                    className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-red animate-mobileGlow"
+                    style={{ animationDelay: "1s" }}
+                  >
                     1M+
                   </div>
                   <div className="text-xs sm:text-sm text-gray-300 font-medium mt-1">

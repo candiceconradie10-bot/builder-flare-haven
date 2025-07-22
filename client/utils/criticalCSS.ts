@@ -182,38 +182,41 @@ export const criticalCSS = `
 
 // Function to inject critical CSS
 export function injectCriticalCSS() {
-  if (typeof document !== 'undefined') {
-    const style = document.createElement('style');
+  if (typeof document !== "undefined") {
+    const style = document.createElement("style");
     style.textContent = criticalCSS;
-    style.setAttribute('data-critical', 'true');
+    style.setAttribute("data-critical", "true");
     document.head.insertBefore(style, document.head.firstChild);
   }
 }
 
 // Function to detect if device supports hover (performance optimization)
 export function supportsHover(): boolean {
-  return window.matchMedia('(hover: hover)').matches;
+  return window.matchMedia("(hover: hover)").matches;
 }
 
 // Function to detect if user prefers reduced motion
 export function prefersReducedMotion(): boolean {
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
 // Function to get device type for optimization
-export function getDeviceType(): 'mobile' | 'tablet' | 'desktop' {
+export function getDeviceType(): "mobile" | "tablet" | "desktop" {
   const width = window.innerWidth;
-  if (width < 768) return 'mobile';
-  if (width < 1024) return 'tablet';
-  return 'desktop';
+  if (width < 768) return "mobile";
+  if (width < 1024) return "tablet";
+  return "desktop";
 }
 
 // Function to optimize images based on device
-export function getOptimalImageSize(originalWidth: number, deviceType: string): number {
+export function getOptimalImageSize(
+  originalWidth: number,
+  deviceType: string,
+): number {
   switch (deviceType) {
-    case 'mobile':
+    case "mobile":
       return Math.min(originalWidth, 800);
-    case 'tablet':
+    case "tablet":
       return Math.min(originalWidth, 1200);
     default:
       return originalWidth;
@@ -223,11 +226,11 @@ export function getOptimalImageSize(originalWidth: number, deviceType: string): 
 // Intersection Observer for lazy loading optimization
 export function createOptimizedIntersectionObserver(
   callback: IntersectionObserverCallback,
-  options: IntersectionObserverInit = {}
+  options: IntersectionObserverInit = {},
 ): IntersectionObserver {
   const defaultOptions: IntersectionObserverInit = {
     root: null,
-    rootMargin: '50px',
+    rootMargin: "50px",
     threshold: 0.1,
     ...options,
   };

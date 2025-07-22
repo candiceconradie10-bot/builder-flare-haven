@@ -39,7 +39,10 @@ export function Header() {
   // Optimized click outside handler
   const handleClickOutside = useCallback((event: MouseEvent) => {
     const target = event.target as Element;
-    if (!target.closest('[data-dropdown]') && !target.closest('[data-user-menu]')) {
+    if (
+      !target.closest("[data-dropdown]") &&
+      !target.closest("[data-user-menu]")
+    ) {
       setActiveDropdown(null);
       setShowUserMenu(false);
     }

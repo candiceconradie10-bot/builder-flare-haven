@@ -25,13 +25,16 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 // Initialize performance and viewport optimizations
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   // Inject critical CSS for above-the-fold content
   injectCriticalCSS();
 
   // Initialize viewport optimizations when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeViewportOptimizations);
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      initializeViewportOptimizations,
+    );
   } else {
     initializeViewportOptimizations();
   }

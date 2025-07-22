@@ -22,17 +22,23 @@ export function ProductCard({
   const [isLiked, setIsLiked] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  const handleAddToCart = useCallback((e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    addToCart(product);
-  }, [addToCart, product]);
+  const handleAddToCart = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      addToCart(product);
+    },
+    [addToCart, product],
+  );
 
-  const handleLike = useCallback((e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsLiked(!isLiked);
-  }, [isLiked]);
+  const handleLike = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setIsLiked(!isLiked);
+    },
+    [isLiked],
+  );
 
   const cardSizes = {
     sm: "max-w-xs",
