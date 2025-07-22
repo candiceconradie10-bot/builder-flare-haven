@@ -96,11 +96,13 @@ export default function ProductCategory() {
                 </div>
                 <div className="text-sm text-gray-400">Products</div>
               </div>
-              <div className="text-2xl font-bold text-brand-red ml-8">
-                24h
-              </div>
-              <div className="text-sm text-gray-400">
-                Fast Delivery
+              <div className="text-center ml-8">
+                <div className="text-2xl font-bold text-brand-red">
+                  Fast Delivery
+                </div>
+                <div className="text-sm text-gray-400">
+                  Nationwide
+                </div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-brand-red">★ 4.9</div>
