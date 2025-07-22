@@ -128,97 +128,128 @@ export function Header() {
 
   return (
     <>
-      {/* Mobile-Optimized Top Bar */}
-      <div className="relative bg-gradient-to-r from-brand-red via-red-500 to-brand-red text-white py-4 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-black/30 backdrop-blur-md"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
+      {/* Stunning Mobile-First Top Bar */}
+      <div className="relative bg-gradient-to-r from-brand-red via-red-500 to-brand-red text-white py-3 md:py-4 px-4 overflow-hidden">
+        {/* Enhanced Background Effects */}
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-lg"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-shimmer"></div>
+
+        {/* Mobile-optimized floating particles */}
+        <div className="absolute inset-0">
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-white/30 rounded-full animate-float"
+              style={{
+                left: `${10 + i * 12}%`,
+                top: `${20 + (i % 3) * 20}%`,
+                animationDelay: `${i * 0.5}s`,
+                animationDuration: `${3 + i * 0.5}s`,
+              }}
+            />
+          ))}
+        </div>
 
         <div className="container mx-auto flex justify-between items-center text-sm md:text-base relative z-10">
-          <div className="flex items-center space-x-4 md:space-x-8">
+          <div className="flex items-center space-x-3 md:space-x-8">
             <a
               href="tel:+27760355295"
-              className="flex items-center space-x-2 group cursor-pointer hover:scale-105 transition-transform duration-300"
+              className="flex items-center space-x-2 group cursor-pointer hover:scale-105 active:scale-95 transition-all duration-300 touch-manipulation"
             >
-              <div className="p-2 rounded-full bg-white/20 group-hover:bg-white/30 transition-all duration-300">
-                <Phone className="h-4 w-4 md:h-3 md:w-3" />
+              <div className="p-2 md:p-2 rounded-xl bg-white/20 group-hover:bg-white/30 group-active:bg-white/40 transition-all duration-300 shadow-lg">
+                <Phone className="h-4 w-4 md:h-3 md:w-3 group-hover:rotate-12 transition-transform duration-300" />
               </div>
-              <span className="font-bold text-sm md:text-base group-hover:text-yellow-300 transition-colors duration-300">
+              <span className="font-bold text-sm md:text-base group-hover:text-yellow-300 transition-colors duration-300 drop-shadow-sm">
                 +27 76 035 5295
               </span>
             </a>
             <a
               href="mailto:apex@w-o-s.co.za"
-              className="hidden sm:flex items-center space-x-2 group cursor-pointer hover:scale-105 transition-transform duration-300"
+              className="hidden sm:flex items-center space-x-2 group cursor-pointer hover:scale-105 active:scale-95 transition-all duration-300 touch-manipulation"
             >
-              <div className="p-2 rounded-full bg-white/20 group-hover:bg-white/30 transition-all duration-300">
-                <Mail className="h-4 w-4 md:h-3 md:w-3" />
+              <div className="p-2 md:p-2 rounded-xl bg-white/20 group-hover:bg-white/30 group-active:bg-white/40 transition-all duration-300 shadow-lg">
+                <Mail className="h-4 w-4 md:h-3 md:w-3 group-hover:rotate-12 transition-transform duration-300" />
               </div>
-              <span className="group-hover:text-yellow-300 transition-colors duration-300">
+              <span className="group-hover:text-yellow-300 transition-colors duration-300 drop-shadow-sm">
                 apex@w-o-s.co.za
               </span>
             </a>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3">
             <Link
               to="/track-order"
-              className="group relative font-bold text-sm md:text-base transition-all duration-300 hover:scale-105"
+              className="group relative font-bold text-sm md:text-base transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation"
             >
-              <span className="relative z-10 group-hover:text-yellow-300 transition-colors duration-300">
+              <span className="relative z-10 group-hover:text-yellow-300 transition-colors duration-300 drop-shadow-sm px-3 py-2">
                 Track Order
               </span>
-              <div className="absolute inset-0 bg-yellow-300/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-300/20 to-orange-300/20 rounded-xl scale-0 group-hover:scale-100 transition-transform duration-300 shadow-lg"></div>
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Mobile-First Main Header */}
+      {/* Stunning Mobile-First Main Header */}
       <header
         className={`sticky top-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-black/95 backdrop-blur-2xl border-b border-white/20 shadow-2xl shadow-brand-red/10"
-            : "bg-black/80 backdrop-blur-xl border-b border-white/10"
+            ? "bg-black/98 backdrop-blur-3xl border-b border-white/30 shadow-2xl shadow-brand-red/20"
+            : "bg-black/85 backdrop-blur-2xl border-b border-white/15"
         }`}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-red/5 via-transparent to-red-600/5"></div>
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-20 lg:h-24">
-            {/* Mobile-Optimized Logo */}
+        {/* Enhanced gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-red/8 via-transparent to-red-600/8"></div>
+
+        {/* Subtle mobile-friendly glow effect */}
+        <div className={`absolute inset-0 transition-opacity duration-500 ${
+          isScrolled ? "opacity-100" : "opacity-50"
+        } bg-gradient-to-b from-brand-red/5 to-transparent`}></div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="flex items-center justify-between h-20 md:h-22 lg:h-24">
+            {/* Stunning Mobile-Optimized Logo */}
             <Link
               to="/"
               className="flex items-center space-x-3 group relative touch-manipulation"
             >
               <div className="relative">
-                {/* Simplified mobile-friendly glow */}
-                <div className="absolute -inset-2 bg-gradient-to-br from-brand-red/30 to-red-600/30 rounded-xl blur-md opacity-50 group-hover:opacity-100 transition-all duration-300"></div>
+                {/* Enhanced mobile-friendly glow with multiple layers */}
+                <div className="absolute -inset-3 bg-gradient-to-br from-brand-red/40 via-red-500/30 to-red-600/40 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 group-active:opacity-70 transition-all duration-500 animate-pulse"></div>
+                <div className="absolute -inset-2 bg-gradient-to-br from-brand-red/30 to-red-600/30 rounded-xl blur-md opacity-60 group-hover:opacity-100 transition-all duration-300"></div>
 
-                {/* Logo container - larger touch target */}
-                <div className="relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-xl p-3 lg:p-2 border border-white/20 group-hover:border-brand-red/40 transition-all duration-300">
+                {/* Premium logo container with enhanced touch target */}
+                <div className="relative bg-gradient-to-br from-white/8 to-white/12 backdrop-blur-md rounded-2xl p-4 lg:p-3 border border-white/25 group-hover:border-brand-red/50 group-active:border-brand-red/70 transition-all duration-300 shadow-2xl">
                   <img
                     src="https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F4c5596c02a2a464091eb5609bcf49187"
                     alt="APEX Logo"
-                    className="h-12 lg:h-16 w-auto object-contain group-hover:scale-105 transition-all duration-300 filter group-hover:brightness-110"
+                    className="h-14 md:h-16 lg:h-18 w-auto object-contain group-hover:scale-105 group-active:scale-95 transition-all duration-300 filter group-hover:brightness-110 drop-shadow-lg"
                   />
                 </div>
+
+                {/* Subtle shine effect for premium feel */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-2xl"></div>
               </div>
             </Link>
 
-            {/* Mobile-First Search Bar */}
-            <div className="flex-1 max-w-md lg:max-w-2xl mx-4 lg:mx-8">
+            {/* Stunning Mobile-First Search Bar */}
+            <div className="flex-1 max-w-md lg:max-w-2xl mx-3 lg:mx-8">
               <div className="relative w-full group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-brand-red/20 to-red-600/20 rounded-2xl blur opacity-0 group-focus-within:opacity-100 transition-opacity duration-300"></div>
+                {/* Enhanced glow effects */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-brand-red/30 to-red-600/30 rounded-2xl blur opacity-0 group-focus-within:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-red/20 to-red-600/20 rounded-xl blur-sm opacity-0 group-focus-within:opacity-100 transition-opacity duration-300"></div>
+
                 <div className="relative">
                   <Input
                     type="search"
                     placeholder="Search products..."
-                    className="w-full pl-4 lg:pl-6 pr-12 lg:pr-14 py-3 lg:py-4 bg-white/10 backdrop-blur-md border-white/20 rounded-xl text-white placeholder-white/60 focus:bg-white/20 focus:border-brand-red/50 transition-all duration-300 text-base lg:text-lg touch-manipulation"
+                    className="w-full pl-5 lg:pl-6 pr-14 lg:pr-16 py-4 lg:py-5 bg-white/12 backdrop-blur-lg border-white/25 rounded-2xl text-white placeholder-white/70 focus:bg-white/20 focus:border-brand-red/60 transition-all duration-300 text-base lg:text-lg touch-manipulation shadow-xl hover:shadow-2xl focus:shadow-2xl focus:shadow-brand-red/20"
                   />
                   <Button
                     size="sm"
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red rounded-lg px-3 lg:px-4 py-2 lg:py-2 shadow-lg hover:shadow-red-500/25 transition-all duration-300 touch-manipulation"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red active:scale-95 rounded-xl px-4 lg:px-5 py-3 lg:py-3 shadow-xl hover:shadow-red-500/30 transition-all duration-300 touch-manipulation border border-red-400/20"
                   >
-                    <Search className="h-4 w-4 lg:h-5 lg:w-5" />
+                    <Search className="h-5 w-5 lg:h-5 lg:w-5" />
                   </Button>
                 </div>
               </div>
