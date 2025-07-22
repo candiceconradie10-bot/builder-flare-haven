@@ -567,47 +567,62 @@ export function Header() {
               </Link>
             </div>
 
-            {/* Mobile Navigation - Super User Friendly */}
+            {/* Stunning Mobile Navigation */}
             <nav className="space-y-4">
-              {mainNavItems.map((item) => (
+              {mainNavItems.map((item, index) => (
                 <div
                   key={item.name}
-                  className="bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md rounded-2xl border border-white/20 overflow-hidden"
+                  className={`group bg-gradient-to-br from-white/8 to-white/4 backdrop-blur-lg rounded-3xl border border-white/25 overflow-hidden shadow-2xl hover:shadow-brand-red/20 transition-all duration-500 ${
+                    isMobileMenuOpen ? 'animate-fadeInUp opacity-100' : 'opacity-0'
+                  }`}
+                  style={{
+                    animationDelay: `${index * 100}ms`,
+                    animationFillMode: 'forwards'
+                  }}
                 >
                   <Link
                     to={item.href}
-                    className="flex items-center justify-between w-full p-6 text-white hover:text-brand-red hover:bg-white/10 transition-all duration-300 font-bold text-lg touch-manipulation active:scale-95"
+                    className="flex items-center justify-between w-full p-6 text-white hover:text-white hover:bg-gradient-to-r hover:from-brand-red/20 hover:to-red-600/20 transition-all duration-300 font-bold text-lg touch-manipulation active:scale-95 group-hover:shadow-inner"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     <div className="flex items-center space-x-4">
-                      <span>{item.name}</span>
+                      <span className="group-hover:text-brand-red transition-colors duration-300">{item.name}</span>
                       {item.badge && (
                         <Badge
-                          className={`text-sm px-3 py-1 ${
+                          className={`text-sm px-4 py-2 ${
                             item.badge === "New"
-                              ? "bg-green-500"
+                              ? "bg-gradient-to-r from-green-500 to-emerald-600 shadow-lg shadow-green-500/30"
                               : item.badge === "Hot"
-                                ? "bg-orange-500"
-                                : "bg-brand-red"
-                          } text-white border-0 rounded-full font-bold`}
+                                ? "bg-gradient-to-r from-orange-500 to-red-600 shadow-lg shadow-orange-500/30"
+                                : "bg-gradient-to-r from-brand-red to-red-600 shadow-lg shadow-red-500/30"
+                          } text-white border-0 rounded-full font-bold animate-pulse`}
                         >
                           {item.badge}
                         </Badge>
                       )}
                     </div>
-                    <ChevronDown className="h-6 w-6" />
+                    <ChevronDown className="h-6 w-6 group-hover:rotate-180 group-hover:text-brand-red transition-all duration-300" />
                   </Link>
                   {item.items && (
-                    <div className="bg-black/20 px-4 pb-4">
-                      <div className="space-y-2">
-                        {item.items.map((subItem) => (
+                    <div className="bg-gradient-to-br from-black/30 to-black/20 backdrop-blur-sm px-4 pb-4">
+                      <div className="grid grid-cols-1 gap-2">
+                        {item.items.map((subItem, subIndex) => (
                           <Link
                             key={subItem}
                             to={`${item.href}?category=${subItem.toLowerCase().replace(" ", "-")}`}
-                            className="block p-4 text-white/90 hover:text-brand-red hover:bg-white/10 rounded-xl transition-all duration-200 font-medium text-base touch-manipulation active:scale-95"
+                            className={`block p-4 text-white/90 hover:text-white hover:bg-gradient-to-r hover:from-brand-red/15 hover:to-red-600/15 rounded-2xl transition-all duration-300 font-medium text-base touch-manipulation active:scale-95 border border-transparent hover:border-brand-red/30 shadow-lg hover:shadow-xl ${
+                              isMobileMenuOpen ? 'animate-fadeInUp opacity-100' : 'opacity-0'
+                            }`}
+                            style={{
+                              animationDelay: `${(index * 100) + (subIndex * 50) + 200}ms`,
+                              animationFillMode: 'forwards'
+                            }}
                             onClick={() => setIsMobileMenuOpen(false)}
                           >
-                            {subItem}
+                            <div className="flex items-center justify-between">
+                              <span>{subItem}</span>
+                              <div className="w-2 h-2 bg-brand-red/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            </div>
                           </Link>
                         ))}
                       </div>
@@ -617,25 +632,41 @@ export function Header() {
               ))}
             </nav>
 
-            {/* Mobile Contact Info */}
-            <div className="bg-gradient-to-br from-brand-red/20 to-red-600/20 backdrop-blur-md rounded-2xl p-6 border border-brand-red/30 mt-6">
-              <h3 className="text-white font-bold text-lg mb-4 text-center">
-                Need Help?
+            {/* Stunning Mobile Contact Info */}
+            <div className={`bg-gradient-to-br from-brand-red/25 via-red-600/20 to-brand-red/25 backdrop-blur-lg rounded-3xl p-6 border border-brand-red/40 mt-6 shadow-2xl shadow-brand-red/20 ${
+              isMobileMenuOpen ? 'animate-fadeInUp opacity-100' : 'opacity-0'
+            }`}
+            style={{
+              animationDelay: `${mainNavItems.length * 100 + 300}ms`,
+              animationFillMode: 'forwards'
+            }}>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-brand-red/10 to-transparent rounded-3xl animate-shimmer"></div>
+
+              <h3 className="text-white font-bold text-xl mb-6 text-center relative z-10">
+                <span className="bg-gradient-to-r from-white via-yellow-300 to-white bg-clip-text text-transparent">
+                  Need Help?
+                </span>
               </h3>
-              <div className="space-y-3">
+
+              <div className="space-y-4 relative z-10">
                 <a
                   href="tel:+27760355295"
-                  className="flex items-center space-x-3 text-white hover:text-yellow-300 transition-colors duration-300 p-4 rounded-xl hover:bg-white/10 touch-manipulation active:scale-95"
+                  className="flex items-center space-x-4 text-white hover:text-yellow-300 transition-all duration-300 p-5 rounded-2xl hover:bg-gradient-to-r hover:from-white/10 hover:to-white/5 touch-manipulation active:scale-95 border border-white/20 hover:border-yellow-300/50 shadow-lg hover:shadow-xl group"
                 >
-                  <Phone className="h-6 w-6" />
-                  <span className="font-bold text-lg">+27 76 035 5295</span>
+                  <div className="p-3 bg-white/10 rounded-xl group-hover:bg-yellow-300/20 transition-all duration-300 group-hover:rotate-12">
+                    <Phone className="h-6 w-6" />
+                  </div>
+                  <span className="font-bold text-lg group-hover:scale-105 transition-transform duration-300">+27 76 035 5295</span>
                 </a>
+
                 <a
                   href="mailto:apex@w-o-s.co.za"
-                  className="flex items-center space-x-3 text-white hover:text-yellow-300 transition-colors duration-300 p-4 rounded-xl hover:bg-white/10 touch-manipulation active:scale-95"
+                  className="flex items-center space-x-4 text-white hover:text-yellow-300 transition-all duration-300 p-5 rounded-2xl hover:bg-gradient-to-r hover:from-white/10 hover:to-white/5 touch-manipulation active:scale-95 border border-white/20 hover:border-yellow-300/50 shadow-lg hover:shadow-xl group"
                 >
-                  <Mail className="h-6 w-6" />
-                  <span className="font-bold text-lg">apex@w-o-s.co.za</span>
+                  <div className="p-3 bg-white/10 rounded-xl group-hover:bg-yellow-300/20 transition-all duration-300 group-hover:rotate-12">
+                    <Mail className="h-6 w-6" />
+                  </div>
+                  <span className="font-bold text-lg group-hover:scale-105 transition-transform duration-300">apex@w-o-s.co.za</span>
                 </a>
               </div>
             </div>
