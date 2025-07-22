@@ -239,31 +239,27 @@ export function Header() {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex items-center justify-between h-20 md:h-22 lg:h-24">
-            {/* Stunning Mobile-Optimized Logo */}
+            {/* Optimized Logo */}
             <Link
               to="/"
-              className="flex items-center space-x-3 group relative touch-manipulation"
+              className="flex items-center group relative touch-manipulation flex-shrink-0"
             >
               <div className="relative">
-                {/* Enhanced mobile-friendly glow with multiple layers */}
-                <div className="absolute -inset-3 bg-gradient-to-br from-brand-red/40 via-red-500/30 to-red-600/40 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 group-active:opacity-70 transition-all duration-500 animate-pulse"></div>
-                <div className="absolute -inset-2 bg-gradient-to-br from-brand-red/30 to-red-600/30 rounded-xl blur-md opacity-60 group-hover:opacity-100 transition-all duration-300"></div>
+                {/* Simplified glow effects for better performance */}
+                <div className="absolute -inset-1 bg-gradient-to-br from-brand-red/20 to-red-600/20 rounded-xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-                {/* Premium logo container with enhanced touch target */}
-                <div className="relative bg-gradient-to-br from-white/8 to-white/12 backdrop-blur-md rounded-2xl p-4 lg:p-3 border border-white/25 group-hover:border-brand-red/50 group-active:border-brand-red/70 transition-all duration-300 shadow-2xl">
+                {/* Clean logo container */}
+                <div className="relative bg-gradient-to-br from-white/5 to-white/8 backdrop-blur-sm rounded-xl p-2 md:p-3 border border-white/20 group-hover:border-brand-red/40 transition-all duration-300 shadow-lg">
                   <OptimizedImage
                     src="https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F4c5596c02a2a464091eb5609bcf49187"
                     alt="APEX - Africa's Leading Promotional Products Provider Logo"
-                    className="h-14 md:h-16 lg:h-18 w-auto object-contain group-hover:scale-105 group-active:scale-95 transition-all duration-300 filter group-hover:brightness-110 drop-shadow-lg"
-                    width={200}
-                    height={80}
+                    className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                    width={160}
+                    height={64}
                     priority={true}
                     quality={90}
                   />
                 </div>
-
-                {/* Subtle shine effect for premium feel */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000 rounded-2xl"></div>
               </div>
             </Link>
 
