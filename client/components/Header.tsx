@@ -439,35 +439,62 @@ export function Header() {
           isMobileMenuOpen ? "visible" : "invisible"
         }`}
       >
-        {/* Backdrop */}
+        {/* Enhanced Backdrop with Stunning Effects */}
         <div
-          className={`absolute inset-0 bg-black/80 backdrop-blur-md transition-opacity duration-500 ${
+          className={`absolute inset-0 bg-gradient-to-br from-black/90 via-gray-900/80 to-black/90 backdrop-blur-xl transition-all duration-700 ${
             isMobileMenuOpen ? "opacity-100" : "opacity-0"
           }`}
           onClick={() => setIsMobileMenuOpen(false)}
-        />
+        >
+          {/* Animated background particles */}
+          <div className="absolute inset-0">
+            {[...Array(15)].map((_, i) => (
+              <div
+                key={i}
+                className={`absolute w-1 h-1 bg-brand-red/30 rounded-full transition-all duration-1000 ${
+                  isMobileMenuOpen ? "animate-float opacity-100" : "opacity-0"
+                }`}
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${i * 0.3}s`,
+                  animationDuration: `${4 + Math.random() * 3}s`,
+                }}
+              />
+            ))}
+          </div>
+        </div>
 
-        {/* Menu Panel */}
+        {/* Stunning Menu Panel */}
         <div
-          className={`absolute right-0 top-0 h-full w-full max-w-sm bg-black/95 backdrop-blur-xl border-l border-white/20 transition-transform duration-500 ${
+          className={`absolute right-0 top-0 h-full w-full max-w-sm bg-gradient-to-br from-black/98 via-gray-900/95 to-black/98 backdrop-blur-2xl border-l border-white/30 transition-all duration-700 ease-out shadow-2xl shadow-brand-red/10 ${
             isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <div className="p-6 space-y-6">
-            {/* Mobile Search */}
+          {/* Premium gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-red/5 via-transparent to-red-600/5 pointer-events-none"></div>
+
+          {/* Subtle grid pattern */}
+          <div className="absolute inset-0 opacity-10 pointer-events-none" style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
+            backgroundSize: '20px 20px'
+          }}></div>
+          <div className="p-6 space-y-8 relative z-10">
+            {/* Stunning Mobile Search */}
             <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-brand-red/20 to-red-600/20 rounded-2xl blur opacity-0 group-focus-within:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-brand-red/40 to-red-600/40 rounded-3xl blur opacity-0 group-focus-within:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-red/20 to-red-600/20 rounded-2xl blur-sm opacity-50 group-focus-within:opacity-100 transition-opacity duration-300"></div>
               <div className="relative">
                 <Input
                   type="search"
                   placeholder="Search products..."
-                  className="w-full pl-6 pr-14 py-4 bg-white/10 backdrop-blur-md border-white/20 rounded-xl text-white placeholder-white/60 focus:bg-white/20 focus:border-brand-red/50 transition-all duration-300 text-lg"
+                  className="w-full pl-6 pr-16 py-5 bg-white/15 backdrop-blur-lg border-white/30 rounded-2xl text-white placeholder-white/70 focus:bg-white/25 focus:border-brand-red/60 transition-all duration-300 text-lg font-medium shadow-2xl focus:shadow-brand-red/20"
                 />
                 <Button
                   size="sm"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-brand-red to-red-600 rounded-lg px-4 py-2"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red active:scale-95 rounded-xl px-4 py-3 shadow-xl transition-all duration-300"
                 >
-                  <Search className="h-4 w-4" />
+                  <Search className="h-5 w-5" />
                 </Button>
               </div>
             </div>
@@ -518,21 +545,21 @@ export function Header() {
 
               <Button
                 variant="ghost"
-                className="flex items-center justify-center space-x-3 text-white hover:bg-white/10 hover:text-brand-red rounded-2xl py-6 transition-all duration-300 touch-manipulation active:scale-95 bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md border border-white/20"
+                className="flex items-center justify-center space-x-3 text-white hover:bg-gradient-to-r hover:from-brand-red/20 hover:to-red-600/20 hover:text-white rounded-2xl py-6 transition-all duration-300 touch-manipulation active:scale-95 bg-gradient-to-br from-white/8 to-white/4 backdrop-blur-lg border border-white/25 shadow-xl hover:shadow-2xl hover:border-brand-red/40"
               >
-                <Heart className="h-7 w-7" />
+                <Heart className="h-7 w-7 transition-transform duration-300 hover:scale-110" />
                 <span className="text-base font-bold">Wishlist</span>
               </Button>
 
               <Link to="/cart" onClick={() => setIsMobileMenuOpen(false)}>
                 <Button
                   variant="ghost"
-                  className="w-full flex items-center justify-center space-x-3 text-white hover:bg-white/10 hover:text-brand-red rounded-2xl py-6 transition-all duration-300 relative touch-manipulation active:scale-95 bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-md border border-white/20"
+                  className="w-full flex items-center justify-center space-x-3 text-white hover:bg-gradient-to-r hover:from-brand-red/20 hover:to-red-600/20 hover:text-white rounded-2xl py-6 transition-all duration-300 relative touch-manipulation active:scale-95 bg-gradient-to-br from-white/8 to-white/4 backdrop-blur-lg border border-white/25 shadow-xl hover:shadow-2xl hover:border-brand-red/40"
                 >
-                  <ShoppingCart className="h-7 w-7" />
+                  <ShoppingCart className="h-7 w-7 transition-transform duration-300 hover:scale-110" />
                   <span className="text-base font-bold">Cart</span>
                   {state.itemCount > 0 && (
-                    <Badge className="absolute -top-2 -right-2 bg-gradient-to-r from-brand-red to-red-600 text-white text-sm rounded-full h-7 w-7 flex items-center justify-center border-2 border-black font-bold">
+                    <Badge className="absolute -top-2 -right-2 bg-gradient-to-r from-brand-red to-red-600 text-white text-sm rounded-full h-8 w-8 flex items-center justify-center border-2 border-black font-bold shadow-lg animate-pulse">
                       {state.itemCount}
                     </Badge>
                   )}
