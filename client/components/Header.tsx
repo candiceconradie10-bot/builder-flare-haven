@@ -70,7 +70,6 @@ export function Header() {
     {
       name: "Workwear",
       href: "/corporate-clothing",
-      badge: "New",
       items: [
         "Accessories",
         "Bottoms",
