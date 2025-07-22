@@ -74,7 +74,7 @@ export function Footer() {
               </div>
               <div className="flex items-center space-x-2 text-sm">
                 <Mail className="h-4 w-4 text-brand-red" />
-                <span>info@apex.co.za</span>
+                <span>apex@w-o-s.co.za</span>
               </div>
               <div className="flex items-center space-x-2 text-sm">
                 <Clock className="h-4 w-4 text-brand-red" />
