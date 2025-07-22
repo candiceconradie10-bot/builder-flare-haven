@@ -72,68 +72,71 @@ export default function Index() {
 
   return (
     <div className="min-h-screen">
-      {/* Cinematic Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Advanced Animated Background */}
+      {/* Stunning Mobile-First Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden touch-manipulation">
+        {/* Enhanced Mobile-Optimized Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black">
-          {/* Primary gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-red/20 via-transparent to-red-600/20" />
+          {/* Enhanced gradient overlay for mobile */}
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-red/25 via-transparent to-red-600/25 md:from-brand-red/20 md:to-red-600/20" />
 
-          {/* Floating orbs */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(220,20,60,0.4),transparent_70%)] animate-float" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(220,20,60,0.3),transparent_60%)] animate-floatReverse" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_70%,rgba(139,0,0,0.2),transparent_50%)] animate-breathe" />
+          {/* Mobile-optimized floating orbs */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(220,20,60,0.5),transparent_70%)] animate-float" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(220,20,60,0.4),transparent_60%)] animate-floatReverse" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_70%,rgba(139,0,0,0.3),transparent_50%)] animate-breathe" />
 
-          {/* Grid pattern overlay */}
-          <div className="absolute inset-0 grid-pattern opacity-30" />
+          {/* Enhanced grid pattern for mobile */}
+          <div className="absolute inset-0 grid-pattern opacity-40 md:opacity-30" />
 
-          {/* Animated particles */}
+          {/* Mobile-optimized particles */}
           <div className="absolute inset-0">
-            {[...Array(20)].map((_, i) => (
+            {[...Array(12)].map((_, i) => (
               <div
                 key={i}
                 className="particle animate-particle"
                 style={{
                   left: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 20}s`,
-                  animationDuration: `${15 + Math.random() * 10}s`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 15}s`,
+                  animationDuration: `${10 + Math.random() * 8}s`,
+                  width: '3px',
+                  height: '3px',
                 }}
               />
             ))}
           </div>
         </div>
 
-        {/* Content */}
-        <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8 text-center lg:text-left">
-              {/* Premium Badges */}
-              <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
-                <Badge className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold px-4 py-2 rounded-full border-0 shadow-lg animate-bounce">
-                  <TrendingUp className="h-4 w-4 mr-2" />
+        {/* Mobile-Optimized Content */}
+        <div className="container mx-auto px-4 py-12 md:py-16 lg:py-24 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="space-y-6 md:space-y-8 text-center lg:text-left touch-manipulation">
+              {/* Enhanced Mobile Badges */}
+              <div className="flex flex-wrap gap-3 md:gap-4 justify-center lg:justify-start">
+                <Badge className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold px-5 py-3 md:px-4 md:py-2 rounded-full border-0 shadow-xl mobile-shadow animate-bounce text-sm md:text-base">
+                  <TrendingUp className="h-5 w-5 md:h-4 md:w-4 mr-2" />
                   Premium Quality
                 </Badge>
                 <Badge
-                  className="bg-gradient-to-r from-green-400 to-emerald-500 text-black font-bold px-4 py-2 rounded-full border-0 shadow-lg animate-bounce"
+                  className="bg-gradient-to-r from-green-400 to-emerald-500 text-black font-bold px-5 py-3 md:px-4 md:py-2 rounded-full border-0 shadow-xl mobile-shadow animate-bounce text-sm md:text-base"
                   style={{ animationDelay: "300ms" }}
                 >
-                  <Sparkles className="h-4 w-4 mr-2" />
+                  <Sparkles className="h-5 w-5 md:h-4 md:w-4 mr-2" />
                   10,000+ Products
                 </Badge>
               </div>
 
-              {/* Hero Title with Gradient */}
-              <div className="space-y-4">
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight">
-                  <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
+              {/* Mobile-Optimized Hero Title */}
+              <div className="space-y-4 md:space-y-6">
+                <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black leading-tight mobile-heading">
+                  <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-lg">
                     Africa's
                   </span>
                   <br />
-                  <div className="flex flex-row">
-                    <span className="bg-gradient-to-r from-brand-red via-red-500 to-red-600 bg-clip-text text-transparent animate-pulse">
+                  <div className="flex flex-row items-center justify-center lg:justify-start">
+                    <span className="bg-gradient-to-r from-brand-red via-red-500 to-red-600 bg-clip-text text-transparent animate-pulse drop-shadow-lg">
                       #1
                     </span>
-                    <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-lg">
                       &nbsp;Supplier
                     </span>
                   </div>
