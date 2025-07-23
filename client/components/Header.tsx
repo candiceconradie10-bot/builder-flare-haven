@@ -36,86 +36,96 @@ export function Header() {
   }, []);
 
   // Navigation items
-  const mainNavItems = useMemo(() => [
-    {
-      name: "Clothing",
-      href: "/corporate-gifts",
-      badge: "Popular",
-      items: [
-        "T-Shirts",
-        "Golf Shirts", 
-        "Jackets",
-        "Hoodies",
-        "Kids Clothing",
-        "Tracksuits",
-        "Pants & Shoes",
-        "Body Warmers",
-        "Sweaters",
-      ],
-    },
-    {
-      name: "Workwear",
-      href: "/corporate-clothing",
-      items: [
-        "Accessories",
-        "Bottoms",
-        "Contis", 
-        "Headwear",
-        "HI-VIZ",
-        "Hospitality",
-        "Rainwear",
-        "Security Wear",
-        "Tops",
-        "Warmwear",
-        "Work Jackets & Pants",
-      ],
-    },
-    {
-      name: "Headwear",
-      href: "/workwear",
-      items: ["Caps", "Beanies", "Hats", "Gloves", "Scarves", "Headwear Sets"],
-    },
-    {
-      name: "Safety Gear",
-      href: "/headwear-and-accessories",
-      items: [
-        "Hard Hats",
-        "Gloves",
-        "Respiratory Protection",
-        "Footwear",
-        "Safety Class",
-        "Safety Vests",
-        "Hearing Protection",
-        "Barricade Tape",
-      ],
-    },
-    {
-      name: "Gifting",
-      href: "/gifting",
-      items: ["Corporate Gifts", "Executive Sets", "Gift Hampers"],
-    },
-    {
-      name: "Display",
-      href: "/display",
-      items: ["Banners", "Pop-ups", "Exhibition"],
-    },
-    {
-      name: "Footwear", 
-      href: "/footwear",
-      items: ["Safety Boots", "Corporate Shoes"],
-    },
-    {
-      name: "Custom Products",
-      href: "/custom-products",
-      badge: "Hot",
-      items: ["Laser Engraving", "Embroidery", "Screen Printing"],
-    },
-  ], []);
+  const mainNavItems = useMemo(
+    () => [
+      {
+        name: "Clothing",
+        href: "/corporate-gifts",
+        badge: "Popular",
+        items: [
+          "T-Shirts",
+          "Golf Shirts",
+          "Jackets",
+          "Hoodies",
+          "Kids Clothing",
+          "Tracksuits",
+          "Pants & Shoes",
+          "Body Warmers",
+          "Sweaters",
+        ],
+      },
+      {
+        name: "Workwear",
+        href: "/corporate-clothing",
+        items: [
+          "Accessories",
+          "Bottoms",
+          "Contis",
+          "Headwear",
+          "HI-VIZ",
+          "Hospitality",
+          "Rainwear",
+          "Security Wear",
+          "Tops",
+          "Warmwear",
+          "Work Jackets & Pants",
+        ],
+      },
+      {
+        name: "Headwear",
+        href: "/workwear",
+        items: [
+          "Caps",
+          "Beanies",
+          "Hats",
+          "Gloves",
+          "Scarves",
+          "Headwear Sets",
+        ],
+      },
+      {
+        name: "Safety Gear",
+        href: "/headwear-and-accessories",
+        items: [
+          "Hard Hats",
+          "Gloves",
+          "Respiratory Protection",
+          "Footwear",
+          "Safety Class",
+          "Safety Vests",
+          "Hearing Protection",
+          "Barricade Tape",
+        ],
+      },
+      {
+        name: "Gifting",
+        href: "/gifting",
+        items: ["Corporate Gifts", "Executive Sets", "Gift Hampers"],
+      },
+      {
+        name: "Display",
+        href: "/display",
+        items: ["Banners", "Pop-ups", "Exhibition"],
+      },
+      {
+        name: "Footwear",
+        href: "/footwear",
+        items: ["Safety Boots", "Corporate Shoes"],
+      },
+      {
+        name: "Custom Products",
+        href: "/custom-products",
+        badge: "Hot",
+        items: ["Laser Engraving", "Embroidery", "Screen Printing"],
+      },
+    ],
+    [],
+  );
 
   // Optimized scroll effect with throttling
   useEffect(() => {
     let ticking = false;
-    
+
     const throttledHandleScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
@@ -139,7 +149,10 @@ export function Header() {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
-      if (!target.closest('[data-dropdown]') && !target.closest('[data-user-menu]')) {
+      if (
+        !target.closest("[data-dropdown]") &&
+        !target.closest("[data-user-menu]")
+      ) {
         setActiveDropdown(null);
         setShowUserMenu(false);
       }
@@ -152,13 +165,13 @@ export function Header() {
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
-    
+
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isMobileMenuOpen]);
 
@@ -216,10 +229,9 @@ export function Header() {
         }`}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-brand-red/8 via-transparent to-red-600/8"></div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex items-center justify-between h-16 lg:h-20">
-            
             {/* Logo */}
             <Link
               to="/"
@@ -383,12 +395,16 @@ export function Header() {
                 <div className="relative w-6 h-6">
                   <Menu
                     className={`h-6 w-6 absolute transition-all duration-300 ${
-                      isMobileMenuOpen ? "rotate-90 opacity-0" : "rotate-0 opacity-100"
+                      isMobileMenuOpen
+                        ? "rotate-90 opacity-0"
+                        : "rotate-0 opacity-100"
                     }`}
                   />
                   <X
                     className={`h-6 w-6 absolute transition-all duration-300 ${
-                      isMobileMenuOpen ? "rotate-0 opacity-100" : "-rotate-90 opacity-0"
+                      isMobileMenuOpen
+                        ? "rotate-0 opacity-100"
+                        : "-rotate-90 opacity-0"
                     }`}
                   />
                 </div>
@@ -458,11 +474,10 @@ export function Header() {
             className="absolute inset-0 bg-black/90 backdrop-blur-lg"
             onClick={() => setIsMobileMenuOpen(false)}
           />
-          
+
           {/* Menu Panel */}
           <div className="absolute right-0 top-0 h-full w-full max-w-sm bg-black/95 backdrop-blur-xl border-l border-white/20 overflow-y-auto">
             <div className="p-6 space-y-6">
-              
               {/* Mobile Search */}
               <div className="relative">
                 <Input
@@ -538,7 +553,7 @@ export function Header() {
                   <Heart className="h-6 w-6" />
                   <span className="text-sm font-medium">Wishlist</span>
                 </Button>
-                
+
                 <Link to="/cart" onClick={() => setIsMobileMenuOpen(false)}>
                   <Button
                     variant="ghost"
@@ -558,7 +573,10 @@ export function Header() {
               {/* Mobile Navigation */}
               <nav className="space-y-2">
                 {mainNavItems.map((item) => (
-                  <div key={item.name} className="bg-white/5 backdrop-blur-md rounded-xl border border-white/20 overflow-hidden">
+                  <div
+                    key={item.name}
+                    className="bg-white/5 backdrop-blur-md rounded-xl border border-white/20 overflow-hidden"
+                  >
                     <Link
                       to={item.href}
                       className="flex items-center justify-between w-full p-4 text-white hover:text-brand-red hover:bg-white/10 transition-all duration-300 font-bold"
@@ -582,7 +600,7 @@ export function Header() {
                       </div>
                       <ChevronDown className="h-5 w-5" />
                     </Link>
-                    
+
                     {item.items && (
                       <div className="bg-black/20 px-4 pb-4">
                         <div className="space-y-1">
