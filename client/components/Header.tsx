@@ -243,11 +243,11 @@ export function Header() {
                   <OptimizedImage
                     src="https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F4c5596c02a2a464091eb5609bcf49187"
                     alt="APEX - Africa's Leading Promotional Products Provider"
-                    className="h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
-                    width={140}
-                    height={56}
+                    className="h-12 sm:h-14 md:h-16 lg:h-18 xl:h-20 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                    width={200}
+                    height={80}
                     priority={true}
-                    quality={90}
+                    quality={95}
                   />
                 </div>
               </div>
