@@ -238,8 +238,8 @@ export function Header() {
               className="flex items-center group relative touch-manipulation flex-shrink-0"
             >
               <div className="relative">
-                <div className="absolute -inset-1 bg-gradient-to-br from-brand-red/20 to-red-600/20 rounded-xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative bg-gradient-to-br from-white/5 to-white/8 backdrop-blur-sm rounded-xl p-2 md:p-3 border border-white/20 group-hover:border-brand-red/40 transition-all duration-300 shadow-lg">
+                <div className="absolute -inset-2 bg-gradient-to-br from-brand-red/30 to-red-600/30 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative bg-gradient-to-br from-white/10 to-white/15 backdrop-blur-md rounded-xl p-3 md:p-4 border border-white/30 group-hover:border-brand-red/50 transition-all duration-300 shadow-xl">
                   <OptimizedImage
                     src="https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F4c5596c02a2a464091eb5609bcf49187"
                     alt="APEX - Africa's Leading Promotional Products Provider"
