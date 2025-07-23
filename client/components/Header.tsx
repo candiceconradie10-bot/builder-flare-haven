@@ -243,9 +243,9 @@ export function Header() {
                   <OptimizedImage
                     src="https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F9bb429a85e0b4d2d88ed91995554ee98"
                     alt="APEX - Africa's Leading Promotional Products Provider"
-                    className="h-10 sm:h-12 md:h-14 lg:h-16 xl:h-18 w-auto object-contain group-hover:scale-110 transition-all duration-500 filter drop-shadow-lg"
-                    width={160}
-                    height={72}
+                    className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 w-auto object-contain group-hover:scale-110 transition-all duration-500 filter drop-shadow-lg"
+                    width={240}
+                    height={120}
                     priority={true}
                     quality={98}
                   />
