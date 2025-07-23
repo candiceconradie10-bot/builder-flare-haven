@@ -857,6 +857,58 @@
       0 4px 10px rgba(220, 20, 60, 0.15),
       0 1px 3px rgba(220, 20, 60, 0.1);
   }
+
+  /* Mobile container optimizations */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Mobile card enhancements */
+  .mobile-card {
+    border-radius: 1.5rem;
+    overflow: hidden;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Mobile button enhancements */
+  .mobile-btn {
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    transform: translateZ(0);
+    transition: all 0.2s ease;
+  }
+
+  .mobile-btn:active {
+    transform: scale(0.96);
+  }
+
+  /* Mobile logo container enhancements */
+  .mobile-logo-container {
+    backdrop-filter: blur(20px) saturate(200%);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 1.5rem;
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  /* Mobile navigation enhancements */
+  .mobile-nav {
+    backdrop-filter: blur(30px) saturate(180%);
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Mobile text optimizations */
+  .mobile-text-optimized {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
 }
 
 /* Utility classes for mobile */
