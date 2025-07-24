@@ -80,10 +80,10 @@ export default function Index() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(220,20,60,0.6),transparent_70%)] animate-float" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(220,20,60,0.5),transparent_60%)] animate-floatReverse" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_70%,rgba(139,0,0,0.4),transparent_50%)] animate-breathe" />
-          
+
           {/* Grid pattern */}
           <div className="absolute inset-0 grid-pattern opacity-30" />
-          
+
           {/* Floating particles */}
           <div className="absolute inset-0">
             {[...Array(15)].map((_, i) => (
@@ -129,7 +129,10 @@ export default function Index() {
             </div>
 
             {/* Hero Title */}
-            <div className="space-y-6 animate-fadeInUp" style={{ animationDelay: "200ms" }}>
+            <div
+              className="space-y-6 animate-fadeInUp"
+              style={{ animationDelay: "200ms" }}
+            >
               <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black leading-tight">
                 <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-2xl">
                   Africa's
@@ -147,13 +150,23 @@ export default function Index() {
             </div>
 
             {/* Hero Description */}
-            <p className="text-xl md:text-2xl lg:text-3xl text-gray-300 leading-relaxed max-w-4xl mx-auto animate-fadeInUp" style={{ animationDelay: "400ms" }}>
-              Transform your brand with premium corporate gifts, cutting-edge workwear, and 
-              <span className="text-brand-red font-bold gradient-text"> revolutionary promotional items</span>
+            <p
+              className="text-xl md:text-2xl lg:text-3xl text-gray-300 leading-relaxed max-w-4xl mx-auto animate-fadeInUp"
+              style={{ animationDelay: "400ms" }}
+            >
+              Transform your brand with premium corporate gifts, cutting-edge
+              workwear, and
+              <span className="text-brand-red font-bold gradient-text">
+                {" "}
+                revolutionary promotional items
+              </span>
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fadeInUp" style={{ animationDelay: "600ms" }}>
+            <div
+              className="flex flex-col sm:flex-row gap-6 justify-center animate-fadeInUp"
+              style={{ animationDelay: "600ms" }}
+            >
               <Button
                 size="lg"
                 className="group bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold px-10 py-6 rounded-2xl shadow-2xl mobile-shadow-red hover:shadow-red-500/40 transition-all duration-500 hover:scale-105 active:scale-95 border border-red-500/30 text-xl"
@@ -173,7 +186,10 @@ export default function Index() {
             </div>
 
             {/* Trust Indicators */}
-            <div className="flex flex-wrap items-center justify-center gap-8 pt-8 animate-fadeInUp" style={{ animationDelay: "800ms" }}>
+            <div
+              className="flex flex-wrap items-center justify-center gap-8 pt-8 animate-fadeInUp"
+              style={{ animationDelay: "800ms" }}
+            >
               <div className="flex items-center gap-2 text-gray-300">
                 <Star className="h-5 w-5 text-yellow-400 fill-current" />
                 <span className="font-semibold">25+ Years Experience</span>
@@ -202,7 +218,7 @@ export default function Index() {
       <section className="py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-black" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(220,20,60,0.1),transparent_70%)]" />
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* About Content */}
@@ -221,9 +237,10 @@ export default function Index() {
               </div>
 
               <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-                For over 25 years, APEX has been Africa's leading promotional products provider. 
-                We've built our reputation on delivering premium quality corporate gifts, workwear, 
-                and custom branding solutions that help businesses make lasting impressions.
+                For over 25 years, APEX has been Africa's leading promotional
+                products provider. We've built our reputation on delivering
+                premium quality corporate gifts, workwear, and custom branding
+                solutions that help businesses make lasting impressions.
               </p>
 
               <div className="grid sm:grid-cols-2 gap-6">
@@ -232,8 +249,12 @@ export default function Index() {
                     <Award className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-white text-lg">Quality First</h3>
-                    <p className="text-gray-400">Premium materials and craftsmanship in every product</p>
+                    <h3 className="font-bold text-white text-lg">
+                      Quality First
+                    </h3>
+                    <p className="text-gray-400">
+                      Premium materials and craftsmanship in every product
+                    </p>
                   </div>
                 </div>
 
@@ -242,8 +263,12 @@ export default function Index() {
                     <Users className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-white text-lg">Expert Team</h3>
-                    <p className="text-gray-400">Professional designers and branding specialists</p>
+                    <h3 className="font-bold text-white text-lg">
+                      Expert Team
+                    </h3>
+                    <p className="text-gray-400">
+                      Professional designers and branding specialists
+                    </p>
                   </div>
                 </div>
 
@@ -252,8 +277,12 @@ export default function Index() {
                     <Truck className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-white text-lg">Fast Service</h3>
-                    <p className="text-gray-400">Quick turnaround times nationwide</p>
+                    <h3 className="font-bold text-white text-lg">
+                      Fast Service
+                    </h3>
+                    <p className="text-gray-400">
+                      Quick turnaround times nationwide
+                    </p>
                   </div>
                 </div>
 
@@ -263,7 +292,9 @@ export default function Index() {
                   </div>
                   <div>
                     <h3 className="font-bold text-white text-lg">Guaranteed</h3>
-                    <p className="text-gray-400">100% satisfaction guarantee on all orders</p>
+                    <p className="text-gray-400">
+                      100% satisfaction guarantee on all orders
+                    </p>
                   </div>
                 </div>
               </div>
@@ -284,19 +315,27 @@ export default function Index() {
               <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/20 mobile-glass">
                 <div className="grid grid-cols-2 gap-6">
                   <div className="text-center p-6 rounded-2xl bg-gradient-to-r from-brand-red/20 to-red-600/20 border border-red-500/30">
-                    <div className="text-3xl md:text-4xl font-black text-white">25+</div>
+                    <div className="text-3xl md:text-4xl font-black text-white">
+                      25+
+                    </div>
                     <div className="text-gray-300 font-semibold">Years</div>
                   </div>
                   <div className="text-center p-6 rounded-2xl bg-gradient-to-r from-emerald-500/20 to-green-600/20 border border-green-500/30">
-                    <div className="text-3xl md:text-4xl font-black text-white">10K+</div>
+                    <div className="text-3xl md:text-4xl font-black text-white">
+                      10K+
+                    </div>
                     <div className="text-gray-300 font-semibold">Products</div>
                   </div>
                   <div className="text-center p-6 rounded-2xl bg-gradient-to-r from-blue-500/20 to-cyan-600/20 border border-blue-500/30">
-                    <div className="text-3xl md:text-4xl font-black text-white">1000+</div>
+                    <div className="text-3xl md:text-4xl font-black text-white">
+                      1000+
+                    </div>
                     <div className="text-gray-300 font-semibold">Clients</div>
                   </div>
                   <div className="text-center p-6 rounded-2xl bg-gradient-to-r from-purple-500/20 to-pink-600/20 border border-purple-500/30">
-                    <div className="text-3xl md:text-4xl font-black text-white">24/7</div>
+                    <div className="text-3xl md:text-4xl font-black text-white">
+                      24/7
+                    </div>
                     <div className="text-gray-300 font-semibold">Support</div>
                   </div>
                 </div>
@@ -310,7 +349,7 @@ export default function Index() {
       <section className="py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-black to-gray-900" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(220,20,60,0.15),transparent_70%)]" />
-        
+
         <div className="container mx-auto px-4 relative z-10">
           {/* Section Header */}
           <div className="text-center space-y-6 mb-16 animate-fadeInUp">
@@ -325,8 +364,9 @@ export default function Index() {
               Collections
             </h2>
             <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Discover thousands of premium promotional products, corporate gifts, and custom branding solutions
-              designed to elevate your business presence.
+              Discover thousands of premium promotional products, corporate
+              gifts, and custom branding solutions designed to elevate your
+              business presence.
             </p>
           </div>
 
@@ -351,7 +391,7 @@ export default function Index() {
                         height={300}
                         quality={90}
                       />
-                      
+
                       {/* Floating Icon */}
                       <div className="absolute top-4 right-4 z-20 p-3 rounded-xl bg-gradient-to-r from-brand-red to-red-600 shadow-xl group-hover:scale-110 transition-transform duration-300">
                         {category.title.includes("Gift") ? (
@@ -385,7 +425,9 @@ export default function Index() {
                       <div className="flex items-center justify-between pt-4">
                         <div className="flex items-center gap-2 text-gray-400">
                           <Eye className="h-4 w-4" />
-                          <span className="text-sm font-medium">View Collection</span>
+                          <span className="text-sm font-medium">
+                            View Collection
+                          </span>
                         </div>
                         <ArrowRight className="h-5 w-5 text-brand-red group-hover:translate-x-1 transition-transform duration-300" />
                       </div>
@@ -403,7 +445,8 @@ export default function Index() {
                 Ready to Transform Your Brand?
               </h3>
               <p className="text-gray-300 mb-6">
-                Get a custom quote for your promotional products and branding needs.
+                Get a custom quote for your promotional products and branding
+                needs.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
