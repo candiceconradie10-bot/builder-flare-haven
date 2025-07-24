@@ -61,6 +61,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <ScrollToTop />
             <div className="min-h-screen bg-background flex flex-col">
               <Header />
               <main className="flex-1">
