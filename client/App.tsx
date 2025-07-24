@@ -25,6 +25,17 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+// ScrollToTop component to handle automatic scroll to top on route changes
+function ScrollToTop() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }, [location.pathname]);
+
+  return null;
+}
+
 // Initialize performance and viewport optimizations
 if (typeof window !== "undefined") {
   // Inject critical CSS for above-the-fold content
