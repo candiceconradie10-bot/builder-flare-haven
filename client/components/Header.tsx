@@ -235,22 +235,13 @@ export function Header() {
             {/* Logo */}
             <Link
               to="/"
-              className="flex items-center group relative touch-manipulation flex-shrink-0"
+              className="flex items-center space-x-2"
             >
-              <div className="relative">
-                <div className="absolute -inset-3 bg-gradient-to-br from-brand-red/40 to-red-600/40 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-                <div className="relative bg-gradient-to-br from-white/15 to-white/20 backdrop-blur-xl rounded-2xl p-2 sm:p-3 md:p-4 border border-white/40 group-hover:border-brand-red/60 transition-all duration-500 shadow-2xl group-hover:shadow-red-500/30">
-                  <OptimizedImage
-                    src="https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F9bb429a85e0b4d2d88ed91995554ee98"
-                    alt="APEX - Africa's Leading Promotional Products Provider"
-                    className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 w-auto object-contain group-hover:scale-110 transition-all duration-500 filter drop-shadow-lg"
-                    width={240}
-                    height={120}
-                    priority={true}
-                    quality={98}
-                  />
-                </div>
-              </div>
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F9bb429a85e0b4d2d88ed91995554ee98"
+                alt="APEX Logo"
+                className="h-12 w-auto object-contain"
+              />
             </Link>
 
             {/* Desktop Search */}
