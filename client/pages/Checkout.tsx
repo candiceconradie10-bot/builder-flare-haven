@@ -182,11 +182,17 @@ export default function Checkout() {
       <div className="bg-black border-b border-gray-800">
         <div className="container mx-auto px-4 py-3 sm:py-4">
           <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-            <Link to="/" className="hover:text-brand-red transition-colors touch-manipulation">
+            <Link
+              to="/"
+              className="hover:text-brand-red transition-colors touch-manipulation"
+            >
               Home
             </Link>
             <span>/</span>
-            <Link to="/cart" className="hover:text-brand-red transition-colors touch-manipulation">
+            <Link
+              to="/cart"
+              className="hover:text-brand-red transition-colors touch-manipulation"
+            >
               Cart
             </Link>
             <span>/</span>
@@ -198,7 +204,9 @@ export default function Checkout() {
       <div className="container mx-auto px-4 py-6 sm:py-8">
         {/* Mobile-Optimized Header */}
         <div className="mb-6 sm:mb-8">
-          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">Secure Checkout</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
+            Secure Checkout
+          </h1>
           {authState.user && (
             <div className="flex items-center space-x-2 text-sm sm:text-base text-muted-foreground">
               <CheckCircle className="h-4 w-4 text-green-500" />
@@ -228,7 +236,10 @@ export default function Checkout() {
                 <CardContent className="space-y-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="firstName" className="flex items-center text-sm font-medium">
+                      <Label
+                        htmlFor="firstName"
+                        className="flex items-center text-sm font-medium"
+                      >
                         <span>First Name</span>
                         <span className="text-red-500 ml-1">*</span>
                       </Label>
@@ -247,7 +258,10 @@ export default function Checkout() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="lastName" className="flex items-center text-sm font-medium">
+                      <Label
+                        htmlFor="lastName"
+                        className="flex items-center text-sm font-medium"
+                      >
                         <span>Last Name</span>
                         <span className="text-red-500 ml-1">*</span>
                       </Label>
@@ -267,7 +281,10 @@ export default function Checkout() {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="flex items-center text-sm font-medium">
+                    <Label
+                      htmlFor="email"
+                      className="flex items-center text-sm font-medium"
+                    >
                       <Mail className="h-3 w-3 mr-1" />
                       <span>Email Address</span>
                       <span className="text-red-500 ml-1">*</span>
@@ -289,7 +306,10 @@ export default function Checkout() {
                   </div>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="phone" className="flex items-center text-sm font-medium">
+                      <Label
+                        htmlFor="phone"
+                        className="flex items-center text-sm font-medium"
+                      >
                         <Phone className="h-3 w-3 mr-1" />
                         <span>Phone Number</span>
                         <span className="text-red-500 ml-1">*</span>
@@ -309,7 +329,10 @@ export default function Checkout() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="company" className="flex items-center text-sm font-medium">
+                      <Label
+                        htmlFor="company"
+                        className="flex items-center text-sm font-medium"
+                      >
                         <Building className="h-3 w-3 mr-1" />
                         <span>Company (Optional)</span>
                       </Label>
@@ -340,7 +363,10 @@ export default function Checkout() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="address" className="flex items-center text-sm font-medium">
+                    <Label
+                      htmlFor="address"
+                      className="flex items-center text-sm font-medium"
+                    >
                       <span>Street Address</span>
                       <span className="text-red-500 ml-1">*</span>
                     </Label>
@@ -361,7 +387,10 @@ export default function Checkout() {
                   </div>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="city" className="flex items-center text-sm font-medium">
+                      <Label
+                        htmlFor="city"
+                        className="flex items-center text-sm font-medium"
+                      >
                         <span>City</span>
                         <span className="text-red-500 ml-1">*</span>
                       </Label>
@@ -380,7 +409,10 @@ export default function Checkout() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="province" className="flex items-center text-sm font-medium">
+                      <Label
+                        htmlFor="province"
+                        className="flex items-center text-sm font-medium"
+                      >
                         <span>Province</span>
                         <span className="text-red-500 ml-1">*</span>
                       </Label>
@@ -401,7 +433,10 @@ export default function Checkout() {
                   </div>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="postalCode" className="flex items-center text-sm font-medium">
+                      <Label
+                        htmlFor="postalCode"
+                        className="flex items-center text-sm font-medium"
+                      >
                         <span>Postal Code</span>
                         <span className="text-red-500 ml-1">*</span>
                       </Label>
@@ -420,7 +455,9 @@ export default function Checkout() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="country" className="text-sm font-medium">Country</Label>
+                      <Label htmlFor="country" className="text-sm font-medium">
+                        Country
+                      </Label>
                       <Input
                         id="country"
                         value={shippingAddress.country}
@@ -452,7 +489,11 @@ export default function Checkout() {
                     className="space-y-3"
                   >
                     <div className="flex items-center space-x-3 p-4 rounded-xl border border-border hover:border-brand-red/50 transition-colors touch-manipulation">
-                      <RadioGroupItem value="card" id="card" className="w-5 h-5" />
+                      <RadioGroupItem
+                        value="card"
+                        id="card"
+                        className="w-5 h-5"
+                      />
                       <Label htmlFor="card" className="flex-1 font-medium">
                         Credit/Debit Card
                         <span className="block text-sm text-muted-foreground font-normal">
@@ -461,7 +502,11 @@ export default function Checkout() {
                       </Label>
                     </div>
                     <div className="flex items-center space-x-3 p-4 rounded-xl border border-border hover:border-brand-red/50 transition-colors touch-manipulation">
-                      <RadioGroupItem value="eft" id="eft" className="w-5 h-5" />
+                      <RadioGroupItem
+                        value="eft"
+                        id="eft"
+                        className="w-5 h-5"
+                      />
                       <Label htmlFor="eft" className="flex-1 font-medium">
                         EFT/Bank Transfer
                         <span className="block text-sm text-muted-foreground font-normal">
@@ -470,7 +515,11 @@ export default function Checkout() {
                       </Label>
                     </div>
                     <div className="flex items-center space-x-3 p-4 rounded-xl border border-border hover:border-brand-red/50 transition-colors touch-manipulation">
-                      <RadioGroupItem value="payfast" id="payfast" className="w-5 h-5" />
+                      <RadioGroupItem
+                        value="payfast"
+                        id="payfast"
+                        className="w-5 h-5"
+                      />
                       <Label htmlFor="payfast" className="flex-1 font-medium">
                         PayFast
                         <span className="block text-sm text-muted-foreground font-normal">
@@ -483,7 +532,10 @@ export default function Checkout() {
                   {paymentInfo.method === "card" && (
                     <div className="space-y-4 pt-4 border-t border-border">
                       <div className="space-y-2">
-                        <Label htmlFor="cardName" className="flex items-center text-sm font-medium">
+                        <Label
+                          htmlFor="cardName"
+                          className="flex items-center text-sm font-medium"
+                        >
                           <span>Cardholder Name</span>
                           <span className="text-red-500 ml-1">*</span>
                         </Label>
@@ -502,7 +554,10 @@ export default function Checkout() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="cardNumber" className="flex items-center text-sm font-medium">
+                        <Label
+                          htmlFor="cardNumber"
+                          className="flex items-center text-sm font-medium"
+                        >
                           <span>Card Number</span>
                           <span className="text-red-500 ml-1">*</span>
                         </Label>
@@ -522,7 +577,10 @@ export default function Checkout() {
                       </div>
                       <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-2">
-                          <Label htmlFor="expiryDate" className="flex items-center text-sm font-medium">
+                          <Label
+                            htmlFor="expiryDate"
+                            className="flex items-center text-sm font-medium"
+                          >
                             <span>Expiry Date</span>
                             <span className="text-red-500 ml-1">*</span>
                           </Label>
@@ -541,7 +599,10 @@ export default function Checkout() {
                           />
                         </div>
                         <div className="space-y-2">
-                          <Label htmlFor="cvv" className="flex items-center text-sm font-medium">
+                          <Label
+                            htmlFor="cvv"
+                            className="flex items-center text-sm font-medium"
+                          >
                             <span>CVV</span>
                             <span className="text-red-500 ml-1">*</span>
                           </Label>
@@ -568,8 +629,9 @@ export default function Checkout() {
                       <div className="flex items-start space-x-3">
                         <Truck className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
                         <p className="text-sm text-blue-800 dark:text-blue-200 font-medium">
-                          Bank transfer details will be provided after order confirmation. 
-                          Your order will be processed once payment is received.
+                          Bank transfer details will be provided after order
+                          confirmation. Your order will be processed once
+                          payment is received.
                         </p>
                       </div>
                     </div>
@@ -580,7 +642,8 @@ export default function Checkout() {
                       <div className="flex items-start space-x-3">
                         <Shield className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
                         <p className="text-sm text-green-800 dark:text-green-200 font-medium">
-                          You will be redirected to PayFast to complete your payment securely.
+                          You will be redirected to PayFast to complete your
+                          payment securely.
                         </p>
                       </div>
                     </div>
@@ -600,7 +663,10 @@ export default function Checkout() {
                       }
                       className="mt-1 w-5 h-5"
                     />
-                    <Label htmlFor="terms" className="text-sm leading-relaxed font-medium">
+                    <Label
+                      htmlFor="terms"
+                      className="text-sm leading-relaxed font-medium"
+                    >
                       I agree to the{" "}
                       <Link
                         to="/terms"
@@ -641,7 +707,9 @@ export default function Checkout() {
                         className="flex justify-between text-sm border-b border-border/50 pb-2 last:border-b-0 last:pb-0"
                       >
                         <div className="flex-1 pr-2">
-                          <div className="font-medium line-clamp-1">{item.name}</div>
+                          <div className="font-medium line-clamp-1">
+                            {item.name}
+                          </div>
                           <div className="text-muted-foreground">
                             Qty: {item.quantity} × R{item.price.toFixed(2)}
                           </div>
@@ -657,7 +725,9 @@ export default function Checkout() {
                   <div className="border-t pt-4 space-y-3 bg-gray-50 dark:bg-gray-800/50 rounded-xl p-4 mobile-glass">
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">Subtotal</span>
-                      <span className="font-medium">R{subtotal.toFixed(2)}</span>
+                      <span className="font-medium">
+                        R{subtotal.toFixed(2)}
+                      </span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground flex items-center">
@@ -679,7 +749,9 @@ export default function Checkout() {
                     <div className="border-t pt-3">
                       <div className="flex justify-between text-lg font-bold">
                         <span className="text-foreground">Total</span>
-                        <span className="text-brand-red text-xl">R{total.toFixed(2)}</span>
+                        <span className="text-brand-red text-xl">
+                          R{total.toFixed(2)}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -704,7 +776,10 @@ export default function Checkout() {
                       )}
                     </Button>
                     <Link to="/cart" className="block w-full">
-                      <Button variant="outline" className="w-full py-4 rounded-xl border-2 hover:border-brand-red/50 transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation">
+                      <Button
+                        variant="outline"
+                        className="w-full py-4 rounded-xl border-2 hover:border-brand-red/50 transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation"
+                      >
                         <ArrowLeft className="h-4 w-4 mr-2" />
                         Back to Cart
                       </Button>
@@ -716,15 +791,21 @@ export default function Checkout() {
                     <div className="grid grid-cols-3 gap-2 text-center">
                       <div className="flex flex-col items-center space-y-1 p-2">
                         <Shield className="h-4 w-4 text-green-600" />
-                        <span className="text-xs text-muted-foreground">Secure</span>
+                        <span className="text-xs text-muted-foreground">
+                          Secure
+                        </span>
                       </div>
                       <div className="flex flex-col items-center space-y-1 p-2">
                         <Star className="h-4 w-4 text-yellow-500" />
-                        <span className="text-xs text-muted-foreground">Trusted</span>
+                        <span className="text-xs text-muted-foreground">
+                          Trusted
+                        </span>
                       </div>
                       <div className="flex flex-col items-center space-y-1 p-2">
                         <CheckCircle className="h-4 w-4 text-blue-600" />
-                        <span className="text-xs text-muted-foreground">Verified</span>
+                        <span className="text-xs text-muted-foreground">
+                          Verified
+                        </span>
                       </div>
                     </div>
                     <div className="text-xs text-muted-foreground text-center mt-2 flex items-center justify-center">

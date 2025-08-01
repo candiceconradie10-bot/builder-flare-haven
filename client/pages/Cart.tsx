@@ -35,7 +35,10 @@ export default function Cart() {
         <div className="bg-black border-b border-gray-800">
           <div className="container mx-auto px-4 py-3 sm:py-4">
             <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-              <Link to="/" className="hover:text-brand-red transition-colors touch-manipulation">
+              <Link
+                to="/"
+                className="hover:text-brand-red transition-colors touch-manipulation"
+              >
                 Home
               </Link>
               <span>/</span>
@@ -75,7 +78,10 @@ export default function Cart() {
       <div className="bg-black border-b border-gray-800">
         <div className="container mx-auto px-4 py-3 sm:py-4">
           <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-            <Link to="/" className="hover:text-brand-red transition-colors touch-manipulation">
+            <Link
+              to="/"
+              className="hover:text-brand-red transition-colors touch-manipulation"
+            >
               Home
             </Link>
             <span>/</span>
@@ -87,7 +93,9 @@ export default function Cart() {
       <div className="container mx-auto px-4 py-6 sm:py-8">
         {/* Mobile-Optimized Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 sm:mb-8 space-y-4 sm:space-y-0">
-          <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Shopping Cart</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground">
+            Shopping Cart
+          </h1>
           <Button
             variant="outline"
             onClick={clearCart}
@@ -195,7 +203,7 @@ export default function Cart() {
                   <Tag className="h-5 w-5 mr-2 text-brand-red" />
                   Order Summary
                 </h2>
-                
+
                 {/* Summary Details */}
                 <div className="space-y-3 mb-6 bg-gray-50 dark:bg-gray-800/50 rounded-xl p-4 mobile-glass">
                   <div className="flex justify-between text-sm">
@@ -246,7 +254,8 @@ export default function Cart() {
                     <div className="flex items-start space-x-2">
                       <Truck className="h-4 w-4 text-yellow-600 mt-0.5 flex-shrink-0" />
                       <p className="text-sm text-yellow-800 dark:text-yellow-200 font-medium">
-                        Add R{(500 - state.total).toFixed(2)} more for free shipping!
+                        Add R{(500 - state.total).toFixed(2)} more for free
+                        shipping!
                       </p>
                     </div>
                   </div>
@@ -282,7 +291,10 @@ export default function Cart() {
                     </div>
                   )}
                   <Link to="/" className="block w-full">
-                    <Button variant="outline" className="w-full py-4 rounded-xl border-2 hover:border-brand-red/50 transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation">
+                    <Button
+                      variant="outline"
+                      className="w-full py-4 rounded-xl border-2 hover:border-brand-red/50 transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation"
+                    >
                       <ArrowLeft className="h-4 w-4 mr-2" />
                       Continue Shopping
                     </Button>
@@ -294,11 +306,15 @@ export default function Cart() {
                   <div className="grid grid-cols-2 gap-4 text-center">
                     <div className="flex flex-col items-center space-y-1">
                       <Shield className="h-4 w-4 text-green-600" />
-                      <span className="text-xs text-muted-foreground">Secure Checkout</span>
+                      <span className="text-xs text-muted-foreground">
+                        Secure Checkout
+                      </span>
                     </div>
                     <div className="flex flex-col items-center space-y-1">
                       <Truck className="h-4 w-4 text-blue-600" />
-                      <span className="text-xs text-muted-foreground">Fast Delivery</span>
+                      <span className="text-xs text-muted-foreground">
+                        Fast Delivery
+                      </span>
                     </div>
                   </div>
                 </div>
