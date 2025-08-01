@@ -134,8 +134,8 @@ export default function Auth() {
         ))}
       </div>
 
-      <div className="container mx-auto px-4 py-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+      <div className="container mx-auto px-4 py-6 sm:py-8 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-6xl mx-auto">
           {/* Left Side - Features */}
           <div className="space-y-8 text-center lg:text-left">
             <div className="space-y-4">
