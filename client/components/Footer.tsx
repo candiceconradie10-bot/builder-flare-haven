@@ -53,7 +53,7 @@ export function Footer() {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F4c5596c02a2a464091eb5609bcf49187"
+                src="https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F9bb429a85e0b4d2d88ed91995554ee98"
                 alt="APEX Logo"
                 className="h-12 w-auto object-contain"
               />
