@@ -362,7 +362,7 @@ export default function Auth() {
                   {/* Submit Button */}
                   <Button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold py-3 rounded-xl shadow-lg hover:shadow-red-500/25 transition-all duration-300 hover:scale-[1.02]"
+                    className="w-full bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold py-4 rounded-xl shadow-xl mobile-shadow-red transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation text-base"
                     disabled={state.isLoading}
                   >
                     {state.isLoading ? (
