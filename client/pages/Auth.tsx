@@ -231,7 +231,7 @@ export default function Auth() {
                         required
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="pl-10 bg-white/10 border-white/20 text-white placeholder-gray-400 focus:border-brand-red/50 focus:bg-white/20 transition-all duration-300"
+                        className="pl-10 h-12 rounded-xl bg-white/10 border-white/20 text-white placeholder-gray-400 focus:border-brand-red/50 focus:bg-white/20 transition-all duration-300 text-base"
                         placeholder="your.email@company.com"
                       />
                     </div>
