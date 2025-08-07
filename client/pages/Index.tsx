@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -33,6 +34,9 @@ import {
   Coffee,
   Crown,
   Layers,
+  ChevronLeft,
+  ChevronRight,
+  Pause,
 } from "lucide-react";
 
 export default function Index() {
@@ -62,6 +66,76 @@ export default function Index() {
 
   const featuredCategories = categories.slice(0, 6);
 
+  // Marketing slideshow banners
+  const marketingSlides = [
+    {
+      id: 1,
+      title: "Premium Corporate Gifts",
+      subtitle: "Make a lasting impression",
+      description: "Elevate your brand with our exclusive range of corporate gifts and promotional products",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F9bb429a85e0b4d2d88ed91995554ee98",
+      cta: "Shop Corporate Gifts",
+      link: "/corporate-gifts",
+      gradient: "from-blue-600 to-purple-600",
+    },
+    {
+      id: 2,
+      title: "Professional Workwear",
+      subtitle: "Built for performance",
+      description: "Durable, comfortable workwear designed for the demands of your industry",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F9bb429a85e0b4d2d88ed91995554ee98",
+      cta: "Browse Workwear",
+      link: "/corporate-clothing",
+      gradient: "from-green-600 to-teal-600",
+    },
+    {
+      id: 3,
+      title: "Custom Branding Solutions",
+      subtitle: "Your brand, perfected",
+      description: "Professional embroidery, printing, and laser engraving services for all products",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F9bb429a85e0b4d2d88ed91995554ee98",
+      cta: "Get Custom Quote",
+      link: "/custom-products",
+      gradient: "from-orange-600 to-red-600",
+    },
+    {
+      id: 4,
+      title: "Safety Equipment",
+      subtitle: "Protection you can trust",
+      description: "Comprehensive safety gear to keep your team protected and compliant",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F9bb429a85e0b4d2d88ed91995554ee98",
+      cta: "View Safety Gear",
+      link: "/headwear-and-accessories",
+      gradient: "from-yellow-600 to-orange-600",
+    },
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  // Auto-advance slideshow
+  useEffect(() => {
+    if (!isPlaying) return;
+    
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % marketingSlides.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [isPlaying, marketingSlides.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % marketingSlides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + marketingSlides.length) % marketingSlides.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
+
   return (
     <div className="min-h-screen">
       <SEO
@@ -71,154 +145,157 @@ export default function Index() {
         structuredData={generateFAQSchema(faqData)}
       />
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Stunning Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black">
-          {/* Animated gradient overlays */}
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-red/30 via-transparent to-red-600/30 animate-pulse" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(220,20,60,0.6),transparent_70%)] animate-float" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(220,20,60,0.5),transparent_60%)] animate-floatReverse" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_70%,rgba(139,0,0,0.4),transparent_50%)] animate-breathe" />
+      {/* Marketing Slideshow Hero Section */}
+      <section className="relative h-[70vh] sm:h-[80vh] lg:h-[90vh] overflow-hidden">
+        {/* Slideshow Container */}
+        <div className="relative w-full h-full">
+          {marketingSlides.map((slide, index) => (
+            <div
+              key={slide.id}
+              className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+                index === currentSlide 
+                  ? 'opacity-100 transform translate-x-0' 
+                  : index < currentSlide 
+                    ? 'opacity-0 transform -translate-x-full'
+                    : 'opacity-0 transform translate-x-full'
+              }`}
+            >
+              {/* Background with gradient overlay */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${slide.gradient} opacity-90`} />
+              <div className="absolute inset-0 bg-black/40" />
+              
+              {/* Background Pattern */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.1),transparent_70%)] animate-float" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,255,255,0.05),transparent_60%)] animate-floatReverse" />
+              
+              {/* Grid pattern */}
+              <div className="absolute inset-0 grid-pattern opacity-20" />
 
-          {/* Grid pattern */}
-          <div className="absolute inset-0 grid-pattern opacity-30" />
+              {/* Content */}
+              <div className="relative h-full flex items-center justify-center">
+                <div className="container mx-auto px-4 py-12 relative z-10">
+                  <div className="text-center space-y-6 sm:space-y-8 max-w-4xl mx-auto">
+                    {/* Slide Badge */}
+                    <Badge className="bg-white/20 backdrop-blur-lg text-white border border-white/30 font-bold px-6 py-3 rounded-full shadow-xl mobile-shadow animate-fadeInUp">
+                      <Sparkles className="h-5 w-5 mr-2" />
+                      {slide.subtitle}
+                    </Badge>
 
-          {/* Floating particles */}
-          <div className="absolute inset-0">
-            {[...Array(15)].map((_, i) => (
-              <div
-                key={i}
-                className="particle animate-particle"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 15}s`,
-                  animationDuration: `${12 + Math.random() * 8}s`,
-                  width: window.innerWidth <= 768 ? "3px" : "4px",
-                  height: window.innerWidth <= 768 ? "3px" : "4px",
-                }}
+                    {/* Slide Title */}
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight animate-fadeInUp text-white drop-shadow-2xl" style={{ animationDelay: "200ms" }}>
+                      {slide.title}
+                    </h1>
+
+                    {/* Slide Description */}
+                    <p className="text-lg sm:text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto animate-fadeInUp" style={{ animationDelay: "400ms" }}>
+                      {slide.description}
+                    </p>
+
+                    {/* CTA Buttons */}
+                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center animate-fadeInUp" style={{ animationDelay: "600ms" }}>
+                      <Link to={slide.link}>
+                        <Button
+                          size="lg"
+                          className="w-full sm:w-auto bg-white/20 backdrop-blur-lg border border-white/30 text-white hover:bg-white/30 hover:border-white/50 font-bold px-8 py-4 rounded-xl shadow-xl mobile-shadow transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation text-base"
+                        >
+                          <ShoppingBag className="mr-3 h-5 w-5" />
+                          {slide.cta}
+                          <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                        </Button>
+                      </Link>
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        className="w-full sm:w-auto bg-transparent border-2 border-white/40 text-white hover:bg-white/10 hover:border-white/60 font-bold px-8 py-4 rounded-xl backdrop-blur-lg transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation text-base"
+                      >
+                        <Play className="mr-3 h-5 w-5" />
+                        Learn More
+                      </Button>
+                    </div>
+
+                    {/* Trust Indicators */}
+                    <div className="flex flex-wrap items-center justify-center gap-6 pt-6 animate-fadeInUp" style={{ animationDelay: "800ms" }}>
+                      <div className="flex items-center gap-2 text-white/80 bg-white/10 backdrop-blur-lg rounded-full px-4 py-2">
+                        <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                        <span className="font-semibold text-sm">25+ Years Experience</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-white/80 bg-white/10 backdrop-blur-lg rounded-full px-4 py-2">
+                        <CheckCircle className="h-4 w-4 text-green-400" />
+                        <span className="font-semibold text-sm">10,000+ Products</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-white/80 bg-white/10 backdrop-blur-lg rounded-full px-4 py-2">
+                        <Globe className="h-4 w-4 text-blue-400" />
+                        <span className="font-semibold text-sm">Nationwide Delivery</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Navigation Controls */}
+        <div className="absolute inset-0 flex items-center justify-between p-4 sm:p-6 pointer-events-none">
+          {/* Previous Button */}
+          <Button
+            onClick={prevSlide}
+            variant="ghost"
+            size="sm"
+            className="pointer-events-auto bg-black/30 backdrop-blur-lg border border-white/20 text-white hover:bg-black/50 hover:border-white/40 rounded-full p-3 sm:p-4 transition-all duration-300 hover:scale-110 active:scale-95 touch-manipulation"
+          >
+            <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
+          </Button>
+
+          {/* Next Button */}
+          <Button
+            onClick={nextSlide}
+            variant="ghost"
+            size="sm"
+            className="pointer-events-auto bg-black/30 backdrop-blur-lg border border-white/20 text-white hover:bg-black/50 hover:border-white/40 rounded-full p-3 sm:p-4 transition-all duration-300 hover:scale-110 active:scale-95 touch-manipulation"
+          >
+            <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
+          </Button>
+        </div>
+
+        {/* Bottom Controls */}
+        <div className="absolute bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 flex items-center space-x-4">
+          {/* Slide Indicators */}
+          <div className="flex space-x-2">
+            {marketingSlides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full transition-all duration-300 touch-manipulation ${
+                  index === currentSlide
+                    ? 'bg-white shadow-lg scale-125'
+                    : 'bg-white/40 hover:bg-white/60'
+                }`}
               />
             ))}
           </div>
-        </div>
 
-        {/* Hero Content */}
-        <div className="container mx-auto px-4 py-16 lg:py-24 relative z-10">
-          <div className="text-center space-y-8 lg:space-y-12">
-            {/* Premium Badges */}
-            <div className="flex flex-wrap gap-4 justify-center animate-fadeInUp">
-              <Badge className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold px-6 py-3 rounded-full border-0 shadow-2xl mobile-shadow animate-bounce text-base">
-                <Crown className="h-5 w-5 mr-2" />
-                Premium Quality
-              </Badge>
-              <Badge
-                className="bg-gradient-to-r from-emerald-400 to-green-500 text-black font-bold px-6 py-3 rounded-full border-0 shadow-2xl mobile-shadow animate-bounce text-base"
-                style={{ animationDelay: "300ms" }}
-              >
-                <Sparkles className="h-5 w-5 mr-2" />
-                10,000+ Products
-              </Badge>
-              <Badge
-                className="bg-gradient-to-r from-blue-400 to-cyan-500 text-black font-bold px-6 py-3 rounded-full border-0 shadow-2xl mobile-shadow animate-bounce text-base"
-                style={{ animationDelay: "600ms" }}
-              >
-                <Zap className="h-5 w-5 mr-2" />
-                Fast Delivery
-              </Badge>
-            </div>
-
-            {/* Hero Title */}
-            <div
-              className="space-y-6 animate-fadeInUp"
-              style={{ animationDelay: "200ms" }}
-            >
-              <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black leading-tight">
-                <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-2xl">
-                  Africa's
-                </span>
-                <br />
-                <div className="flex flex-wrap items-center justify-center gap-4">
-                  <span className="bg-gradient-to-r from-brand-red via-red-500 to-red-600 bg-clip-text text-transparent animate-pulse drop-shadow-2xl">
-                    #1
-                  </span>
-                  <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-2xl">
-                    Supplier
-                  </span>
-                </div>
-              </h1>
-            </div>
-
-            {/* Hero Description */}
-            <p
-              className="text-xl md:text-2xl lg:text-3xl text-gray-300 leading-relaxed max-w-4xl mx-auto animate-fadeInUp"
-              style={{ animationDelay: "400ms" }}
-            >
-              Transform your brand with premium corporate gifts, cutting-edge
-              workwear, and
-              <span className="text-brand-red font-bold gradient-text">
-                {" "}
-                revolutionary promotional items
-              </span>
-            </p>
-
-            {/* CTA Buttons */}
-            <div
-              className="flex flex-col sm:flex-row gap-6 justify-center animate-fadeInUp"
-              style={{ animationDelay: "600ms" }}
-            >
-              <Button
-                size="lg"
-                className="group bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold px-10 py-6 rounded-2xl shadow-2xl mobile-shadow-red hover:shadow-red-500/40 transition-all duration-500 hover:scale-105 active:scale-95 border border-red-500/30 text-xl"
-              >
-                <Rocket className="mr-3 h-6 w-6 group-hover:rotate-12 transition-transform duration-300" />
-                Explore Catalogue
-                <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform duration-300" />
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="group bg-transparent border-2 border-white/30 text-white hover:bg-white/10 hover:border-brand-red/50 font-bold px-10 py-6 rounded-2xl backdrop-blur-lg transition-all duration-500 hover:scale-105 active:scale-95 text-xl"
-              >
-                <Play className="mr-3 h-6 w-6 group-hover:scale-110 transition-transform duration-300" />
-                Watch Video
-              </Button>
-            </div>
-
-            {/* Trust Indicators */}
-            <div
-              className="flex flex-wrap items-center justify-center gap-8 pt-8 animate-fadeInUp"
-              style={{ animationDelay: "800ms" }}
-            >
-              <div className="flex items-center gap-2 text-gray-300">
-                <Star className="h-5 w-5 text-yellow-400 fill-current" />
-                <span className="font-semibold">25+ Years Experience</span>
-              </div>
-              <div className="flex items-center gap-2 text-gray-300">
-                <CheckCircle className="h-5 w-5 text-green-400" />
-                <span className="font-semibold">1000+ Happy Clients</span>
-              </div>
-              <div className="flex items-center gap-2 text-gray-300">
-                <Globe className="h-5 w-5 text-blue-400" />
-                <span className="font-semibold">Nationwide Delivery</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse" />
-          </div>
+          {/* Play/Pause Button */}
+          <Button
+            onClick={() => setIsPlaying(!isPlaying)}
+            variant="ghost"
+            size="sm"
+            className="bg-black/30 backdrop-blur-lg border border-white/20 text-white hover:bg-black/50 hover:border-white/40 rounded-full p-2 transition-all duration-300 hover:scale-110 active:scale-95 touch-manipulation"
+          >
+            {isPlaying ? (
+              <Pause className="h-4 w-4" />
+            ) : (
+              <Play className="h-4 w-4" />
+            )}
+          </Button>
         </div>
       </section>
 
       {/* About Section */}
-      <section className="py-20 lg:py-32 relative overflow-hidden">
+      <section className="py-16 sm:py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-black" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(220,20,60,0.1),transparent_70%)]" />
-
+        
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* About Content */}
@@ -228,7 +305,7 @@ export default function Index() {
                   <Heart className="h-4 w-4 mr-2" />
                   About APEX
                 </Badge>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight">
                   Crafting
                   <span className="gradient-text"> Excellence</span>
                   <br />
@@ -237,10 +314,9 @@ export default function Index() {
               </div>
 
               <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-                For over 25 years, APEX has been Africa's leading promotional
-                products provider. We've built our reputation on delivering
-                premium quality corporate gifts, workwear, and custom branding
-                solutions that help businesses make lasting impressions.
+                For over 25 years, APEX has been Africa's leading promotional products provider. 
+                We've built our reputation on delivering premium quality corporate gifts, workwear, 
+                and custom branding solutions that help businesses make lasting impressions.
               </p>
 
               <div className="grid sm:grid-cols-2 gap-6">
@@ -249,12 +325,8 @@ export default function Index() {
                     <Award className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-white text-lg">
-                      Quality First
-                    </h3>
-                    <p className="text-gray-400">
-                      Premium materials and craftsmanship in every product
-                    </p>
+                    <h3 className="font-bold text-white text-lg">Quality First</h3>
+                    <p className="text-gray-400">Premium materials and craftsmanship in every product</p>
                   </div>
                 </div>
 
@@ -263,12 +335,8 @@ export default function Index() {
                     <Users className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-white text-lg">
-                      Expert Team
-                    </h3>
-                    <p className="text-gray-400">
-                      Professional designers and branding specialists
-                    </p>
+                    <h3 className="font-bold text-white text-lg">Expert Team</h3>
+                    <p className="text-gray-400">Professional designers and branding specialists</p>
                   </div>
                 </div>
 
@@ -277,12 +345,8 @@ export default function Index() {
                     <Truck className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-white text-lg">
-                      Fast Service
-                    </h3>
-                    <p className="text-gray-400">
-                      Quick turnaround times nationwide
-                    </p>
+                    <h3 className="font-bold text-white text-lg">Fast Service</h3>
+                    <p className="text-gray-400">Quick turnaround times nationwide</p>
                   </div>
                 </div>
 
@@ -292,9 +356,7 @@ export default function Index() {
                   </div>
                   <div>
                     <h3 className="font-bold text-white text-lg">Guaranteed</h3>
-                    <p className="text-gray-400">
-                      100% satisfaction guarantee on all orders
-                    </p>
+                    <p className="text-gray-400">100% satisfaction guarantee on all orders</p>
                   </div>
                 </div>
               </div>
@@ -315,27 +377,19 @@ export default function Index() {
               <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/20 mobile-glass">
                 <div className="grid grid-cols-2 gap-6">
                   <div className="text-center p-6 rounded-2xl bg-gradient-to-r from-brand-red/20 to-red-600/20 border border-red-500/30">
-                    <div className="text-3xl md:text-4xl font-black text-white">
-                      25+
-                    </div>
+                    <div className="text-3xl md:text-4xl font-black text-white">25+</div>
                     <div className="text-gray-300 font-semibold">Years</div>
                   </div>
                   <div className="text-center p-6 rounded-2xl bg-gradient-to-r from-emerald-500/20 to-green-600/20 border border-green-500/30">
-                    <div className="text-3xl md:text-4xl font-black text-white">
-                      10K+
-                    </div>
+                    <div className="text-3xl md:text-4xl font-black text-white">10K+</div>
                     <div className="text-gray-300 font-semibold">Products</div>
                   </div>
                   <div className="text-center p-6 rounded-2xl bg-gradient-to-r from-blue-500/20 to-cyan-600/20 border border-blue-500/30">
-                    <div className="text-3xl md:text-4xl font-black text-white">
-                      1000+
-                    </div>
+                    <div className="text-3xl md:text-4xl font-black text-white">1000+</div>
                     <div className="text-gray-300 font-semibold">Clients</div>
                   </div>
                   <div className="text-center p-6 rounded-2xl bg-gradient-to-r from-purple-500/20 to-pink-600/20 border border-purple-500/30">
-                    <div className="text-3xl md:text-4xl font-black text-white">
-                      24/7
-                    </div>
+                    <div className="text-3xl md:text-4xl font-black text-white">24/7</div>
                     <div className="text-gray-300 font-semibold">Support</div>
                   </div>
                 </div>
@@ -346,10 +400,10 @@ export default function Index() {
       </section>
 
       {/* Catalogue Section */}
-      <section className="py-20 lg:py-32 relative overflow-hidden">
+      <section className="py-16 sm:py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-black to-gray-900" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(220,20,60,0.15),transparent_70%)]" />
-
+        
         <div className="container mx-auto px-4 relative z-10">
           {/* Section Header */}
           <div className="text-center space-y-6 mb-16 animate-fadeInUp">
@@ -357,16 +411,15 @@ export default function Index() {
               <BookOpen className="h-4 w-4 mr-2" />
               Our Catalogue
             </Badge>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight">
               Explore Our
               <span className="gradient-text"> Premium</span>
               <br />
               Collections
             </h2>
             <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Discover thousands of premium promotional products, corporate
-              gifts, and custom branding solutions designed to elevate your
-              business presence.
+              Discover thousands of premium promotional products, corporate gifts, and custom branding solutions
+              designed to elevate your business presence.
             </p>
           </div>
 
@@ -391,7 +444,7 @@ export default function Index() {
                         height={300}
                         quality={90}
                       />
-
+                      
                       {/* Floating Icon */}
                       <div className="absolute top-4 right-4 z-20 p-3 rounded-xl bg-gradient-to-r from-brand-red to-red-600 shadow-xl group-hover:scale-110 transition-transform duration-300">
                         {category.title.includes("Gift") ? (
@@ -425,9 +478,7 @@ export default function Index() {
                       <div className="flex items-center justify-between pt-4">
                         <div className="flex items-center gap-2 text-gray-400">
                           <Eye className="h-4 w-4" />
-                          <span className="text-sm font-medium">
-                            View Collection
-                          </span>
+                          <span className="text-sm font-medium">View Collection</span>
                         </div>
                         <ArrowRight className="h-5 w-5 text-brand-red group-hover:translate-x-1 transition-transform duration-300" />
                       </div>
@@ -445,8 +496,7 @@ export default function Index() {
                 Ready to Transform Your Brand?
               </h3>
               <p className="text-gray-300 mb-6">
-                Get a custom quote for your promotional products and branding
-                needs.
+                Get a custom quote for your promotional products and branding needs.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
