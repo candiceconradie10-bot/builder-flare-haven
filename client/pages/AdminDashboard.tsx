@@ -223,58 +223,6 @@ export default function AdminDashboard() {
     }
   };
 
-  // Handle content save
-  const handleContentSave = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    try {
-      setLoading(true);
-      
-      const contentData = {
-        section: contentForm.section,
-        title: contentForm.title,
-        description: contentForm.description,
-        image: contentForm.image,
-        order: contentForm.order
-      };
-
-      // @ts-ignore
-      let result;
-      if (contentForm.id) {
-        // Update existing content
-        result = await window.supabase
-          .from('content')
-          .update(contentData)
-          .eq('id', contentForm.id);
-      } else {
-        // Create new content
-        result = await window.supabase
-          .from('content')
-          .insert([contentData]);
-      }
-
-      if (result.error) {
-        throw result.error;
-      }
-
-      alert('Content saved successfully!');
-      setContentForm({
-        id: '',
-        section: '',
-        title: '',
-        description: '',
-        image: '',
-        order: 0
-      });
-      
-      loadContent();
-    } catch (error) {
-      alert('Save failed: ' + (error as Error).message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   // Delete product
   const deleteProduct = async (id: string) => {
     if (!confirm('Are you sure you want to delete this product?')) return;
@@ -311,17 +259,273 @@ export default function AdminDashboard() {
     });
   };
 
-  // Edit content
-  const editContent = (item: any) => {
-    setContentForm({
-      id: item.id,
-      section: item.section,
-      title: item.title,
-      description: item.description,
-      image: item.image,
-      order: item.order
-    });
-  };
+  const renderUploadTab = () => (
+    <div className="space-y-6">
+      <Card className="bg-black/50 backdrop-blur-xl border border-white/20">
+        <CardHeader>
+          <CardTitle className="flex items-center text-white">
+            <Upload className="h-5 w-5 mr-2 text-brand-red" />
+            Upload Files to Supabase Storage
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleFileUpload} className="space-y-4">
+            <div className="space-y-2">
+              <Label className="text-white">File Type</Label>
+              <div className="flex space-x-4">
+                <button
+                  type="button"
+                  onClick={() => setUploadType('image')}
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
+                    uploadType === 'image' 
+                      ? 'bg-brand-red text-white' 
+                      : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                  }`}
+                >
+                  <Image className="h-4 w-4" />
+                  <span>Image</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setUploadType('pdf')}
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
+                    uploadType === 'pdf' 
+                      ? 'bg-brand-red text-white' 
+                      : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                  }`}
+                >
+                  <FileText className="h-4 w-4" />
+                  <span>PDF</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="file" className="text-white">
+                Select {uploadType === 'image' ? 'Image' : 'PDF'} File
+              </Label>
+              <Input
+                id="file"
+                type="file"
+                accept={uploadType === 'image' ? 'image/*' : '.pdf'}
+                onChange={(e) => setSelectedFile(e.target.files?.[0] || null)}
+                className="bg-white/10 border-white/20 text-white file:bg-brand-red file:text-white file:border-0 file:rounded file:px-3 file:py-1"
+              />
+            </div>
+
+            {selectedFile && (
+              <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+                <p className="text-sm text-blue-800 dark:text-blue-200">
+                  <strong>Selected:</strong> {selectedFile.name} ({(selectedFile.size / 1024 / 1024).toFixed(2)} MB)
+                </p>
+              </div>
+            )}
+
+            {uploadProgress > 0 && (
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm text-gray-300">
+                  <span>Upload Progress</span>
+                  <span>{uploadProgress}%</span>
+                </div>
+                <div className="w-full bg-gray-700 rounded-full h-2">
+                  <div 
+                    className="bg-brand-red h-2 rounded-full transition-all duration-300" 
+                    style={{ width: `${uploadProgress}%` }}
+                  />
+                </div>
+              </div>
+            )}
+
+            <Button
+              type="submit"
+              disabled={loading || !selectedFile}
+              className="w-full bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold py-3 rounded-xl"
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Uploading...
+                </>
+              ) : (
+                <>
+                  <Upload className="mr-2 h-4 w-4" />
+                  Upload to Supabase Storage
+                </>
+              )}
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+
+  const renderProductsTab = () => (
+    <div className="space-y-6">
+      <div className="grid lg:grid-cols-2 gap-6">
+        {/* Product Form */}
+        <Card className="bg-black/50 backdrop-blur-xl border border-white/20">
+          <CardHeader>
+            <CardTitle className="flex items-center text-white">
+              <Package className="h-5 w-5 mr-2 text-brand-red" />
+              {productForm.id ? 'Edit Product' : 'Add New Product'}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleProductSave} className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label className="text-white">Product Name</Label>
+                  <Input
+                    value={productForm.name}
+                    onChange={(e) => setProductForm({...productForm, name: e.target.value})}
+                    className="bg-white/10 border-white/20 text-white"
+                    placeholder="Enter product name"
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-white">Price</Label>
+                  <Input
+                    type="number"
+                    step="0.01"
+                    value={productForm.price}
+                    onChange={(e) => setProductForm({...productForm, price: e.target.value})}
+                    className="bg-white/10 border-white/20 text-white"
+                    placeholder="0.00"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label className="text-white">Category</Label>
+                <Input
+                  value={productForm.category}
+                  onChange={(e) => setProductForm({...productForm, category: e.target.value})}
+                  className="bg-white/10 border-white/20 text-white"
+                  placeholder="Enter category"
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label className="text-white">Description</Label>
+                <Textarea
+                  value={productForm.description}
+                  onChange={(e) => setProductForm({...productForm, description: e.target.value})}
+                  className="bg-white/10 border-white/20 text-white"
+                  placeholder="Enter product description"
+                  rows={3}
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label className="text-white">Image URL</Label>
+                <Input
+                  value={productForm.image}
+                  onChange={(e) => setProductForm({...productForm, image: e.target.value})}
+                  className="bg-white/10 border-white/20 text-white"
+                  placeholder="https://example.com/image.jpg"
+                />
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  id="inStock"
+                  checked={productForm.inStock}
+                  onChange={(e) => setProductForm({...productForm, inStock: e.target.checked})}
+                  className="rounded border-white/20"
+                />
+                <Label htmlFor="inStock" className="text-white">In Stock</Label>
+              </div>
+
+              <Button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold"
+              >
+                {loading ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <Save className="mr-2 h-4 w-4" />
+                )}
+                {productForm.id ? 'Update' : 'Create'} Product
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+
+        {/* Products List */}
+        <Card className="bg-black/50 backdrop-blur-xl border border-white/20">
+          <CardHeader className="flex flex-row items-center justify-between">
+            <CardTitle className="text-white">Products</CardTitle>
+            <Button
+              onClick={loadProducts}
+              variant="outline"
+              size="sm"
+              className="border-white/20 text-white hover:bg-white/10"
+            >
+              <RefreshCw className="h-4 w-4" />
+            </Button>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-2 max-h-96 overflow-y-auto">
+              {products.length === 0 ? (
+                <p className="text-gray-400 text-center py-8">No products found</p>
+              ) : (
+                products.map((product: any) => (
+                  <div key={product.id} className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
+                    <div className="flex-1">
+                      <h4 className="text-white font-medium">{product.name}</h4>
+                      <p className="text-sm text-gray-400">R{product.price} • {product.category}</p>
+                    </div>
+                    <div className="flex space-x-1">
+                      <Button
+                        onClick={() => editProduct(product)}
+                        variant="ghost"
+                        size="sm"
+                        className="text-blue-400 hover:bg-blue-500/10"
+                      >
+                        <Edit className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        onClick={() => deleteProduct(product.id)}
+                        variant="ghost"
+                        size="sm"
+                        className="text-red-400 hover:bg-red-500/10"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+
+  const renderContentTab = () => (
+    <div className="space-y-6">
+      <Card className="bg-black/50 backdrop-blur-xl border border-white/20">
+        <CardHeader>
+          <CardTitle className="flex items-center text-white">
+            <FileText className="h-5 w-5 mr-2 text-brand-red" />
+            Content Management
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-gray-300 text-center py-8">
+            Content management features coming soon...
+          </p>
+        </CardContent>
+      </Card>
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
@@ -362,451 +566,49 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {/* Admin Tabs */}
-        <Tabs defaultValue="upload" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3 bg-black/50 backdrop-blur-xl border border-white/20 rounded-xl p-1">
-            <TabsTrigger 
-              value="upload" 
-              className="flex items-center space-x-2 data-[state=active]:bg-brand-red data-[state=active]:text-white rounded-lg"
+        {/* Navigation Tabs */}
+        <div className="space-y-6">
+          <div className="grid w-full grid-cols-3 bg-black/50 backdrop-blur-xl border border-white/20 rounded-xl p-1">
+            <button
+              onClick={() => setActiveTab('upload')}
+              className={`flex items-center justify-center space-x-2 p-3 rounded-lg transition-all duration-300 ${
+                activeTab === 'upload' 
+                  ? 'bg-brand-red text-white' 
+                  : 'text-gray-300 hover:text-white hover:bg-white/10'
+              }`}
             >
               <Upload className="h-4 w-4" />
               <span className="hidden sm:inline">File Upload</span>
-            </TabsTrigger>
-            <TabsTrigger 
-              value="products" 
-              className="flex items-center space-x-2 data-[state=active]:bg-brand-red data-[state=active]:text-white rounded-lg"
+            </button>
+            <button
+              onClick={() => setActiveTab('products')}
+              className={`flex items-center justify-center space-x-2 p-3 rounded-lg transition-all duration-300 ${
+                activeTab === 'products' 
+                  ? 'bg-brand-red text-white' 
+                  : 'text-gray-300 hover:text-white hover:bg-white/10'
+              }`}
             >
               <Package className="h-4 w-4" />
               <span className="hidden sm:inline">Products</span>
-            </TabsTrigger>
-            <TabsTrigger 
-              value="content" 
-              className="flex items-center space-x-2 data-[state=active]:bg-brand-red data-[state=active]:text-white rounded-lg"
+            </button>
+            <button
+              onClick={() => setActiveTab('content')}
+              className={`flex items-center justify-center space-x-2 p-3 rounded-lg transition-all duration-300 ${
+                activeTab === 'content' 
+                  ? 'bg-brand-red text-white' 
+                  : 'text-gray-300 hover:text-white hover:bg-white/10'
+              }`}
             >
               <FileText className="h-4 w-4" />
               <span className="hidden sm:inline">Content</span>
-            </TabsTrigger>
-          </TabsList>
+            </button>
+          </div>
 
-          {/* File Upload Tab */}
-          <TabsContent value="upload" className="space-y-6">
-            <Card className="bg-black/50 backdrop-blur-xl border border-white/20">
-              <CardHeader>
-                <CardTitle className="flex items-center text-white">
-                  <Upload className="h-5 w-5 mr-2 text-brand-red" />
-                  Upload Files to Supabase Storage
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleFileUpload} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label className="text-white">File Type</Label>
-                    <div className="flex space-x-4">
-                      <button
-                        type="button"
-                        onClick={() => setUploadType('image')}
-                        className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
-                          uploadType === 'image' 
-                            ? 'bg-brand-red text-white' 
-                            : 'bg-white/10 text-gray-300 hover:bg-white/20'
-                        }`}
-                      >
-                        <Image className="h-4 w-4" />
-                        <span>Image</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setUploadType('pdf')}
-                        className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
-                          uploadType === 'pdf' 
-                            ? 'bg-brand-red text-white' 
-                            : 'bg-white/10 text-gray-300 hover:bg-white/20'
-                        }`}
-                      >
-                        <FileText className="h-4 w-4" />
-                        <span>PDF</span>
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="file" className="text-white">
-                      Select {uploadType === 'image' ? 'Image' : 'PDF'} File
-                    </Label>
-                    <Input
-                      id="file"
-                      type="file"
-                      accept={uploadType === 'image' ? 'image/*' : '.pdf'}
-                      onChange={(e) => setSelectedFile(e.target.files?.[0] || null)}
-                      className="bg-white/10 border-white/20 text-white file:bg-brand-red file:text-white file:border-0 file:rounded file:px-3 file:py-1"
-                    />
-                  </div>
-
-                  {selectedFile && (
-                    <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
-                      <p className="text-sm text-blue-800 dark:text-blue-200">
-                        <strong>Selected:</strong> {selectedFile.name} ({(selectedFile.size / 1024 / 1024).toFixed(2)} MB)
-                      </p>
-                    </div>
-                  )}
-
-                  {uploadProgress > 0 && (
-                    <div className="space-y-2">
-                      <div className="flex justify-between text-sm text-gray-300">
-                        <span>Upload Progress</span>
-                        <span>{uploadProgress}%</span>
-                      </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <div 
-                          className="bg-brand-red h-2 rounded-full transition-all duration-300" 
-                          style={{ width: `${uploadProgress}%` }}
-                        />
-                      </div>
-                    </div>
-                  )}
-
-                  <Button
-                    type="submit"
-                    disabled={loading || !selectedFile}
-                    className="w-full bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold py-3 rounded-xl"
-                  >
-                    {loading ? (
-                      <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Uploading...
-                      </>
-                    ) : (
-                      <>
-                        <Upload className="mr-2 h-4 w-4" />
-                        Upload to Supabase Storage
-                      </>
-                    )}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Products Tab */}
-          <TabsContent value="products" className="space-y-6">
-            <div className="grid lg:grid-cols-2 gap-6">
-              {/* Product Form */}
-              <Card className="bg-black/50 backdrop-blur-xl border border-white/20">
-                <CardHeader>
-                  <CardTitle className="flex items-center text-white">
-                    <Package className="h-5 w-5 mr-2 text-brand-red" />
-                    {productForm.id ? 'Edit Product' : 'Add New Product'}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <form onSubmit={handleProductSave} className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label className="text-white">Product Name</Label>
-                        <Input
-                          value={productForm.name}
-                          onChange={(e) => setProductForm({...productForm, name: e.target.value})}
-                          className="bg-white/10 border-white/20 text-white"
-                          placeholder="Enter product name"
-                          required
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label className="text-white">Price</Label>
-                        <Input
-                          type="number"
-                          step="0.01"
-                          value={productForm.price}
-                          onChange={(e) => setProductForm({...productForm, price: e.target.value})}
-                          className="bg-white/10 border-white/20 text-white"
-                          placeholder="0.00"
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label className="text-white">Category</Label>
-                      <Input
-                        value={productForm.category}
-                        onChange={(e) => setProductForm({...productForm, category: e.target.value})}
-                        className="bg-white/10 border-white/20 text-white"
-                        placeholder="Enter category"
-                        required
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label className="text-white">Description</Label>
-                      <Textarea
-                        value={productForm.description}
-                        onChange={(e) => setProductForm({...productForm, description: e.target.value})}
-                        className="bg-white/10 border-white/20 text-white"
-                        placeholder="Enter product description"
-                        rows={3}
-                        required
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label className="text-white">Image URL</Label>
-                      <Input
-                        value={productForm.image}
-                        onChange={(e) => setProductForm({...productForm, image: e.target.value})}
-                        className="bg-white/10 border-white/20 text-white"
-                        placeholder="https://example.com/image.jpg"
-                      />
-                    </div>
-
-                    <div className="flex items-center space-x-2">
-                      <input
-                        type="checkbox"
-                        id="inStock"
-                        checked={productForm.inStock}
-                        onChange={(e) => setProductForm({...productForm, inStock: e.target.checked})}
-                        className="rounded border-white/20"
-                      />
-                      <Label htmlFor="inStock" className="text-white">In Stock</Label>
-                    </div>
-
-                    <div className="flex space-x-2">
-                      <Button
-                        type="submit"
-                        disabled={loading}
-                        className="flex-1 bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold"
-                      >
-                        {loading ? (
-                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        ) : (
-                          <Save className="mr-2 h-4 w-4" />
-                        )}
-                        {productForm.id ? 'Update' : 'Create'} Product
-                      </Button>
-                      
-                      {productForm.id && (
-                        <Button
-                          type="button"
-                          variant="outline"
-                          onClick={() => setProductForm({
-                            id: '', name: '', description: '', price: '', category: '', image: '', inStock: true
-                          })}
-                          className="border-white/20 text-white hover:bg-white/10"
-                        >
-                          Cancel
-                        </Button>
-                      )}
-                    </div>
-                  </form>
-                </CardContent>
-              </Card>
-
-              {/* Products List */}
-              <Card className="bg-black/50 backdrop-blur-xl border border-white/20">
-                <CardHeader className="flex flex-row items-center justify-between">
-                  <CardTitle className="text-white">Products</CardTitle>
-                  <Button
-                    onClick={loadProducts}
-                    variant="outline"
-                    size="sm"
-                    className="border-white/20 text-white hover:bg-white/10"
-                  >
-                    <RefreshCw className="h-4 w-4" />
-                  </Button>
-                </CardHeader>
-                <CardContent>
-                  {loading ? (
-                    <div className="flex items-center justify-center py-8">
-                      <Loader2 className="h-6 w-6 animate-spin text-brand-red" />
-                    </div>
-                  ) : (
-                    <div className="space-y-2 max-h-96 overflow-y-auto">
-                      {products.length === 0 ? (
-                        <p className="text-gray-400 text-center py-8">No products found</p>
-                      ) : (
-                        products.map((product: any) => (
-                          <div key={product.id} className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
-                            <div className="flex-1">
-                              <h4 className="text-white font-medium">{product.name}</h4>
-                              <p className="text-sm text-gray-400">R{product.price} • {product.category}</p>
-                            </div>
-                            <div className="flex space-x-1">
-                              <Button
-                                onClick={() => editProduct(product)}
-                                variant="ghost"
-                                size="sm"
-                                className="text-blue-400 hover:bg-blue-500/10"
-                              >
-                                <Edit className="h-4 w-4" />
-                              </Button>
-                              <Button
-                                onClick={() => deleteProduct(product.id)}
-                                variant="ghost"
-                                size="sm"
-                                className="text-red-400 hover:bg-red-500/10"
-                              >
-                                <Trash2 className="h-4 w-4" />
-                              </Button>
-                            </div>
-                          </div>
-                        ))
-                      )}
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
-
-          {/* Content Tab */}
-          <TabsContent value="content" className="space-y-6">
-            <div className="grid lg:grid-cols-2 gap-6">
-              {/* Content Form */}
-              <Card className="bg-black/50 backdrop-blur-xl border border-white/20">
-                <CardHeader>
-                  <CardTitle className="flex items-center text-white">
-                    <FileText className="h-5 w-5 mr-2 text-brand-red" />
-                    {contentForm.id ? 'Edit Content' : 'Add New Content'}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <form onSubmit={handleContentSave} className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label className="text-white">Section</Label>
-                        <Input
-                          value={contentForm.section}
-                          onChange={(e) => setContentForm({...contentForm, section: e.target.value})}
-                          className="bg-white/10 border-white/20 text-white"
-                          placeholder="hero, about, features"
-                          required
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label className="text-white">Order</Label>
-                        <Input
-                          type="number"
-                          value={contentForm.order}
-                          onChange={(e) => setContentForm({...contentForm, order: parseInt(e.target.value)})}
-                          className="bg-white/10 border-white/20 text-white"
-                          placeholder="0"
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label className="text-white">Title</Label>
-                      <Input
-                        value={contentForm.title}
-                        onChange={(e) => setContentForm({...contentForm, title: e.target.value})}
-                        className="bg-white/10 border-white/20 text-white"
-                        placeholder="Enter title"
-                        required
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label className="text-white">Description</Label>
-                      <Textarea
-                        value={contentForm.description}
-                        onChange={(e) => setContentForm({...contentForm, description: e.target.value})}
-                        className="bg-white/10 border-white/20 text-white"
-                        placeholder="Enter description"
-                        rows={3}
-                        required
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label className="text-white">Image URL</Label>
-                      <Input
-                        value={contentForm.image}
-                        onChange={(e) => setContentForm({...contentForm, image: e.target.value})}
-                        className="bg-white/10 border-white/20 text-white"
-                        placeholder="https://example.com/image.jpg"
-                      />
-                    </div>
-
-                    <div className="flex space-x-2">
-                      <Button
-                        type="submit"
-                        disabled={loading}
-                        className="flex-1 bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold"
-                      >
-                        {loading ? (
-                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        ) : (
-                          <Save className="mr-2 h-4 w-4" />
-                        )}
-                        {contentForm.id ? 'Update' : 'Create'} Content
-                      </Button>
-                      
-                      {contentForm.id && (
-                        <Button
-                          type="button"
-                          variant="outline"
-                          onClick={() => setContentForm({
-                            id: '', section: '', title: '', description: '', image: '', order: 0
-                          })}
-                          className="border-white/20 text-white hover:bg-white/10"
-                        >
-                          Cancel
-                        </Button>
-                      )}
-                    </div>
-                  </form>
-                </CardContent>
-              </Card>
-
-              {/* Content List */}
-              <Card className="bg-black/50 backdrop-blur-xl border border-white/20">
-                <CardHeader className="flex flex-row items-center justify-between">
-                  <CardTitle className="text-white">Content</CardTitle>
-                  <Button
-                    onClick={loadContent}
-                    variant="outline"
-                    size="sm"
-                    className="border-white/20 text-white hover:bg-white/10"
-                  >
-                    <RefreshCw className="h-4 w-4" />
-                  </Button>
-                </CardHeader>
-                <CardContent>
-                  {loading ? (
-                    <div className="flex items-center justify-center py-8">
-                      <Loader2 className="h-6 w-6 animate-spin text-brand-red" />
-                    </div>
-                  ) : (
-                    <div className="space-y-2 max-h-96 overflow-y-auto">
-                      {content.length === 0 ? (
-                        <p className="text-gray-400 text-center py-8">No content found</p>
-                      ) : (
-                        content.map((item: any) => (
-                          <div key={item.id} className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
-                            <div className="flex-1">
-                              <h4 className="text-white font-medium">{item.title}</h4>
-                              <p className="text-sm text-gray-400">{item.section} • Order: {item.order}</p>
-                            </div>
-                            <div className="flex space-x-1">
-                              <Button
-                                onClick={() => editContent(item)}
-                                variant="ghost"
-                                size="sm"
-                                className="text-blue-400 hover:bg-blue-500/10"
-                              >
-                                <Edit className="h-4 w-4" />
-                              </Button>
-                            </div>
-                          </div>
-                        ))
-                      )}
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
-        </Tabs>
+          {/* Tab Content */}
+          {activeTab === 'upload' && renderUploadTab()}
+          {activeTab === 'products' && renderProductsTab()}
+          {activeTab === 'content' && renderContentTab()}
+        </div>
       </div>
     </div>
   );
