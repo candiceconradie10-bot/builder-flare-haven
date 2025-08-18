@@ -207,15 +207,7 @@ export function Header() {
           </div>
 
           <div className="flex items-center">
-            <Link
-              to="/track-order"
-              className="group relative font-bold transition-all duration-300 hover:scale-105 touch-manipulation"
-            >
-              <span className="relative z-10 group-hover:text-yellow-300 transition-colors duration-300 px-3 py-2">
-                Track Order
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-300/20 to-orange-300/20 rounded-xl scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-            </Link>
+            {/* Track Order functionality removed */}
           </div>
         </div>
       </div>
