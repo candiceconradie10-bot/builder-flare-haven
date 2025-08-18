@@ -202,7 +202,7 @@ export default function Index() {
 
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center animate-fadeInUp" style={{ animationDelay: "600ms" }}>
-                      <Link to={slide.link}>
+                      <Link key={`slide-link-${slide.id}`} to={slide.link}>
                         <Button
                           size="lg"
                           className="w-full sm:w-auto bg-white/20 backdrop-blur-lg border border-white/30 text-white hover:bg-white/30 hover:border-white/50 font-bold px-8 py-4 rounded-xl shadow-xl mobile-shadow transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation text-base"
@@ -213,6 +213,7 @@ export default function Index() {
                         </Button>
                       </Link>
                       <Button
+                        key={`slide-button-${slide.id}`}
                         variant="outline"
                         size="lg"
                         className="w-full sm:w-auto bg-transparent border-2 border-white/40 text-white hover:bg-white/10 hover:border-white/60 font-bold px-8 py-4 rounded-xl backdrop-blur-lg transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation text-base"
