@@ -7,8 +7,6 @@ import { OptimizedImage } from "@/components/OptimizedImage";
 import { SEO, generateFAQSchema } from "@/components/SEO";
 import { categories } from "@/data/products";
 import {
-  import { supabase } from '../lib/supabaseClient'
-
   ArrowRight,
   Star,
   Truck,
