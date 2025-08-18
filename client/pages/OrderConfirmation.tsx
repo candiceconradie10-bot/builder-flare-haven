@@ -124,15 +124,6 @@ export default function OrderConfirmation() {
                 <Download className="h-4 w-4 mr-2" />
                 Download Invoice
               </Button>
-              <Link to="/track-order">
-                <Button
-                  variant="outline"
-                  className="flex items-center justify-center w-full sm:w-auto"
-                >
-                  <Package className="h-4 w-4 mr-2" />
-                  Track Order
-                </Button>
-              </Link>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
