@@ -354,6 +354,18 @@ export function Header() {
                   )}
                 </Button>
               </Link>
+
+              {/* Admin Login Button */}
+              <Link to="/admin-login">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-white hover:bg-white/10 hover:text-brand-red transition-all duration-300 rounded-xl p-2 font-medium"
+                  title="Admin Login"
+                >
+                  <Settings className="h-5 w-5" />
+                </Button>
+              </Link>
             </div>
 
             {/* Mobile Actions */}
