@@ -70,6 +70,7 @@ const App = () => (
                   <Route path="/" element={<Index />} />
                   <Route path="/cart" element={<Cart />} />
                   <Route path="/auth" element={<Auth />} />
+                  <Route path="/admin-login" element={<AdminLogin />} />
                   <Route
                     path="/checkout"
                     element={
