@@ -79,51 +79,36 @@ export default function Index() {
   const marketingSlides = [
     {
       id: 1,
-      title: "Premium Corporate Gifts",
-      subtitle: "Make a lasting impression",
+      title: "Gear Up, Stand Out",
+      subtitle: "Spring Fashion Collection",
       description:
-        "Elevate your brand with our exclusive range of corporate gifts and promotional products",
-      image:
-        "https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F9bb429a85e0b4d2d88ed91995554ee98",
-      cta: "Shop Corporate Gifts",
+        "Embrace the lively spirit of spring with our newest fashion collection, featuring vibrant colors and elegance",
+      backgroundImage:
+        "https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F80eeac5f3fb241888157c2f2a4ccf42b?format=webp&width=1920",
+      cta: "Shop Collection",
       link: "/corporate-gifts",
-      gradient: "from-blue-600 to-purple-600",
     },
     {
       id: 2,
-      title: "Professional Workwear",
-      subtitle: "Built for performance",
+      title: "Professional Excellence",
+      subtitle: "APEX Collection",
       description:
-        "Durable, comfortable workwear designed for the demands of your industry",
-      image:
-        "https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F9bb429a85e0b4d2d88ed91995554ee98",
-      cta: "Browse Workwear",
+        "Discover our premium range of professional workwear and corporate solutions designed for modern businesses",
+      backgroundImage:
+        "https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F40f759488e564397a9ebb0c2e6fe0268?format=webp&width=1920",
+      cta: "Explore APEX",
       link: "/corporate-clothing",
-      gradient: "from-green-600 to-teal-600",
     },
     {
       id: 3,
-      title: "Custom Branding Solutions",
-      subtitle: "Your brand, perfected",
+      title: "W.O.S APEX",
+      subtitle: "Complete Solutions",
       description:
-        "Professional embroidery, printing, and laser engraving services for all products",
-      image:
-        "https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F9bb429a85e0b4d2d88ed91995554ee98",
-      cta: "Get Custom Quote",
+        "From workwear to safety equipment, discover our comprehensive range of professional products and services",
+      backgroundImage:
+        "https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2Fda98de9fb8244ece8c68751c4926e3ef?format=webp&width=1920",
+      cta: "View All Products",
       link: "/custom-products",
-      gradient: "from-orange-600 to-red-600",
-    },
-    {
-      id: 4,
-      title: "Safety Equipment",
-      subtitle: "Protection you can trust",
-      description:
-        "Comprehensive safety gear to keep your team protected and compliant",
-      image:
-        "https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F9bb429a85e0b4d2d88ed91995554ee98",
-      cta: "View Safety Gear",
-      link: "/headwear-and-accessories",
-      gradient: "from-yellow-600 to-orange-600",
     },
   ];
 
@@ -179,11 +164,14 @@ export default function Index() {
                     : "opacity-0 transform translate-x-full"
               }`}
             >
-              {/* Background with gradient overlay */}
+              {/* Background Image */}
               <div
-                className={`absolute inset-0 bg-gradient-to-br ${slide.gradient} opacity-90`}
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style={{
+                  backgroundImage: `url(${slide.backgroundImage})`,
+                }}
               />
-              <div className="absolute inset-0 bg-black/40" />
+              <div className="absolute inset-0 bg-black/50" />
 
               {/* Background Pattern */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.1),transparent_70%)] animate-float" />
