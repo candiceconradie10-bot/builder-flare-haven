@@ -24,42 +24,44 @@ export default function AdminLogin() {
     // Add the custom login form handler
     const handleLogin = async (e: Event) => {
       e.preventDefault();
-      
-      const email = (document.querySelector('#email') as HTMLInputElement)?.value;
-      const password = (document.querySelector('#password') as HTMLInputElement)?.value;
-      
+
+      const email = (document.querySelector("#email") as HTMLInputElement)
+        ?.value;
+      const password = (document.querySelector("#password") as HTMLInputElement)
+        ?.value;
+
       if (!email || !password) {
-        alert('Please fill in all fields');
+        alert("Please fill in all fields");
         return;
       }
 
       try {
         // @ts-ignore - window.supabase is available globally
-        const { data, error } = await window.supabase.auth.signInWithPassword({ 
-          email, 
-          password 
+        const { data, error } = await window.supabase.auth.signInWithPassword({
+          email,
+          password,
         });
-        
+
         if (error) {
-          alert('Login failed: ' + error.message);
+          alert("Login failed: " + error.message);
         } else {
-          alert('Login successful!');
-          window.location.href = '/admin-dashboard'; // Redirect to admin dashboard
+          alert("Login successful!");
+          window.location.href = "/admin-dashboard"; // Redirect to admin dashboard
         }
       } catch (err) {
-        alert('Login error: ' + (err as Error).message);
+        alert("Login error: " + (err as Error).message);
       }
     };
 
-    const form = document.querySelector('#loginForm');
+    const form = document.querySelector("#loginForm");
     if (form) {
-      form.addEventListener('submit', handleLogin);
+      form.addEventListener("submit", handleLogin);
     }
 
     // Cleanup
     return () => {
       if (form) {
-        form.removeEventListener('submit', handleLogin);
+        form.removeEventListener("submit", handleLogin);
       }
     };
   }, []);
@@ -113,12 +115,12 @@ export default function AdminLogin() {
             {/* Card glow effect */}
             <div className="absolute inset-0 bg-gradient-to-br from-brand-red/10 via-transparent to-red-600/10 opacity-0 hover:opacity-100 transition-opacity duration-500" />
             <div className="absolute -inset-1 bg-gradient-to-br from-brand-red/20 to-red-600/20 rounded-2xl blur opacity-30" />
-            
+
             <CardHeader className="text-center space-y-4 relative z-10">
               <div className="mx-auto w-16 h-16 bg-gradient-to-br from-brand-red to-red-600 rounded-2xl flex items-center justify-center shadow-2xl">
                 <Crown className="h-8 w-8 text-white" />
               </div>
-              
+
               <Badge className="bg-gradient-to-r from-yellow-500/20 to-orange-500/20 text-yellow-400 border border-yellow-500/30 font-bold px-4 py-2 rounded-full">
                 <Shield className="h-4 w-4 mr-2" />
                 Admin Access
@@ -198,8 +200,9 @@ export default function AdminLogin() {
                 <div className="flex items-start space-x-3">
                   <Shield className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
                   <div className="text-sm text-blue-800 dark:text-blue-200">
-                    <strong>Security Notice:</strong> This is a protected admin area. 
-                    All login attempts are monitored and logged for security purposes.
+                    <strong>Security Notice:</strong> This is a protected admin
+                    area. All login attempts are monitored and logged for
+                    security purposes.
                   </div>
                 </div>
               </div>

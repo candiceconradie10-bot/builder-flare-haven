@@ -29,31 +29,31 @@ export default function AdminDashboard() {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [products, setProducts] = useState([]);
   const [content, setContent] = useState([]);
-  const [activeTab, setActiveTab] = useState('upload');
+  const [activeTab, setActiveTab] = useState("upload");
 
   // File Upload State
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [uploadType, setUploadType] = useState<'image' | 'pdf'>('image');
+  const [uploadType, setUploadType] = useState<"image" | "pdf">("image");
 
   // Product Form State
   const [productForm, setProductForm] = useState({
-    id: '',
-    name: '',
-    description: '',
-    price: '',
-    category: '',
-    image: '',
-    inStock: true
+    id: "",
+    name: "",
+    description: "",
+    price: "",
+    category: "",
+    image: "",
+    inStock: true,
   });
 
   // Content Form State
   const [contentForm, setContentForm] = useState({
-    id: '',
-    section: '',
-    title: '',
-    description: '',
-    image: '',
-    order: 0
+    id: "",
+    section: "",
+    title: "",
+    description: "",
+    image: "",
+    order: 0,
   });
 
   // Initialize Supabase functions
@@ -63,18 +63,18 @@ export default function AdminDashboard() {
       try {
         // @ts-ignore
         const { data, error } = await window.supabase.storage
-          .from('uploads')
+          .from("uploads")
           .upload(`images/${file.name}`, file);
-          
+
         if (error) {
-          console.error('Upload error:', error);
+          console.error("Upload error:", error);
           return { error };
         } else {
-          console.log('Uploaded:', data);
+          console.log("Uploaded:", data);
           return { data };
         }
       } catch (err) {
-        console.error('Upload function error:', err);
+        console.error("Upload function error:", err);
         return { error: err };
       }
     };
@@ -89,17 +89,17 @@ export default function AdminDashboard() {
       setLoading(true);
       // @ts-ignore
       const { data, error } = await window.supabase
-        .from('products')
-        .select('*')
-        .order('created_at', { ascending: false });
+        .from("products")
+        .select("*")
+        .order("created_at", { ascending: false });
 
       if (error) {
-        console.error('Error loading products:', error);
+        console.error("Error loading products:", error);
       } else {
         setProducts(data || []);
       }
     } catch (err) {
-      console.error('Load products error:', err);
+      console.error("Load products error:", err);
     } finally {
       setLoading(false);
     }
@@ -110,26 +110,26 @@ export default function AdminDashboard() {
     try {
       // @ts-ignore
       const { data, error } = await window.supabase
-        .from('content')
-        .select('*')
-        .order('order', { ascending: true });
+        .from("content")
+        .select("*")
+        .order("order", { ascending: true });
 
       if (error) {
-        console.error('Error loading content:', error);
+        console.error("Error loading content:", error);
       } else {
         setContent(data || []);
       }
     } catch (err) {
-      console.error('Load content error:', err);
+      console.error("Load content error:", err);
     }
   };
 
   // Handle file upload
   const handleFileUpload = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!selectedFile) {
-      alert('Please select a file to upload');
+      alert("Please select a file to upload");
       return;
     }
 
@@ -139,7 +139,7 @@ export default function AdminDashboard() {
 
       // Simulate upload progress
       const progressInterval = setInterval(() => {
-        setUploadProgress(prev => {
+        setUploadProgress((prev) => {
           if (prev >= 90) {
             clearInterval(progressInterval);
             return 90;
@@ -150,7 +150,7 @@ export default function AdminDashboard() {
 
       // @ts-ignore
       const result = await window.uploadFile(selectedFile);
-      
+
       clearInterval(progressInterval);
       setUploadProgress(100);
 
@@ -158,11 +158,11 @@ export default function AdminDashboard() {
         throw result.error;
       }
 
-      alert('File uploaded successfully!');
+      alert("File uploaded successfully!");
       setSelectedFile(null);
       setUploadProgress(0);
     } catch (error) {
-      alert('Upload failed: ' + (error as Error).message);
+      alert("Upload failed: " + (error as Error).message);
       setUploadProgress(0);
     } finally {
       setLoading(false);
@@ -172,17 +172,17 @@ export default function AdminDashboard() {
   // Handle product save
   const handleProductSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     try {
       setLoading(true);
-      
+
       const productData = {
         name: productForm.name,
         description: productForm.description,
         price: parseFloat(productForm.price),
         category: productForm.category,
         image: productForm.image,
-        in_stock: productForm.inStock
+        in_stock: productForm.inStock,
       };
 
       // @ts-ignore
@@ -190,34 +190,32 @@ export default function AdminDashboard() {
       if (productForm.id) {
         // Update existing product
         result = await window.supabase
-          .from('products')
+          .from("products")
           .update(productData)
-          .eq('id', productForm.id);
+          .eq("id", productForm.id);
       } else {
         // Create new product
-        result = await window.supabase
-          .from('products')
-          .insert([productData]);
+        result = await window.supabase.from("products").insert([productData]);
       }
 
       if (result.error) {
         throw result.error;
       }
 
-      alert('Product saved successfully!');
+      alert("Product saved successfully!");
       setProductForm({
-        id: '',
-        name: '',
-        description: '',
-        price: '',
-        category: '',
-        image: '',
-        inStock: true
+        id: "",
+        name: "",
+        description: "",
+        price: "",
+        category: "",
+        image: "",
+        inStock: true,
       });
-      
+
       loadProducts();
     } catch (error) {
-      alert('Save failed: ' + (error as Error).message);
+      alert("Save failed: " + (error as Error).message);
     } finally {
       setLoading(false);
     }
@@ -225,22 +223,22 @@ export default function AdminDashboard() {
 
   // Delete product
   const deleteProduct = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this product?')) return;
-    
+    if (!confirm("Are you sure you want to delete this product?")) return;
+
     try {
       setLoading(true);
       // @ts-ignore
       const { error } = await window.supabase
-        .from('products')
+        .from("products")
         .delete()
-        .eq('id', id);
+        .eq("id", id);
 
       if (error) throw error;
-      
-      alert('Product deleted successfully!');
+
+      alert("Product deleted successfully!");
       loadProducts();
     } catch (error) {
-      alert('Delete failed: ' + (error as Error).message);
+      alert("Delete failed: " + (error as Error).message);
     } finally {
       setLoading(false);
     }
@@ -255,7 +253,7 @@ export default function AdminDashboard() {
       price: product.price.toString(),
       category: product.category,
       image: product.image,
-      inStock: product.in_stock
+      inStock: product.in_stock,
     });
   };
 
@@ -275,11 +273,11 @@ export default function AdminDashboard() {
               <div className="flex space-x-4">
                 <button
                   type="button"
-                  onClick={() => setUploadType('image')}
+                  onClick={() => setUploadType("image")}
                   className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
-                    uploadType === 'image' 
-                      ? 'bg-brand-red text-white' 
-                      : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                    uploadType === "image"
+                      ? "bg-brand-red text-white"
+                      : "bg-white/10 text-gray-300 hover:bg-white/20"
                   }`}
                 >
                   <Image className="h-4 w-4" />
@@ -287,11 +285,11 @@ export default function AdminDashboard() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setUploadType('pdf')}
+                  onClick={() => setUploadType("pdf")}
                   className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
-                    uploadType === 'pdf' 
-                      ? 'bg-brand-red text-white' 
-                      : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                    uploadType === "pdf"
+                      ? "bg-brand-red text-white"
+                      : "bg-white/10 text-gray-300 hover:bg-white/20"
                   }`}
                 >
                   <FileText className="h-4 w-4" />
@@ -302,12 +300,12 @@ export default function AdminDashboard() {
 
             <div className="space-y-2">
               <Label htmlFor="file" className="text-white">
-                Select {uploadType === 'image' ? 'Image' : 'PDF'} File
+                Select {uploadType === "image" ? "Image" : "PDF"} File
               </Label>
               <Input
                 id="file"
                 type="file"
-                accept={uploadType === 'image' ? 'image/*' : '.pdf'}
+                accept={uploadType === "image" ? "image/*" : ".pdf"}
                 onChange={(e) => setSelectedFile(e.target.files?.[0] || null)}
                 className="bg-white/10 border-white/20 text-white file:bg-brand-red file:text-white file:border-0 file:rounded file:px-3 file:py-1"
               />
@@ -316,7 +314,8 @@ export default function AdminDashboard() {
             {selectedFile && (
               <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
                 <p className="text-sm text-blue-800 dark:text-blue-200">
-                  <strong>Selected:</strong> {selectedFile.name} ({(selectedFile.size / 1024 / 1024).toFixed(2)} MB)
+                  <strong>Selected:</strong> {selectedFile.name} (
+                  {(selectedFile.size / 1024 / 1024).toFixed(2)} MB)
                 </p>
               </div>
             )}
@@ -328,8 +327,8 @@ export default function AdminDashboard() {
                   <span>{uploadProgress}%</span>
                 </div>
                 <div className="w-full bg-gray-700 rounded-full h-2">
-                  <div 
-                    className="bg-brand-red h-2 rounded-full transition-all duration-300" 
+                  <div
+                    className="bg-brand-red h-2 rounded-full transition-all duration-300"
                     style={{ width: `${uploadProgress}%` }}
                   />
                 </div>
@@ -367,7 +366,7 @@ export default function AdminDashboard() {
           <CardHeader>
             <CardTitle className="flex items-center text-white">
               <Package className="h-5 w-5 mr-2 text-brand-red" />
-              {productForm.id ? 'Edit Product' : 'Add New Product'}
+              {productForm.id ? "Edit Product" : "Add New Product"}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -377,7 +376,9 @@ export default function AdminDashboard() {
                   <Label className="text-white">Product Name</Label>
                   <Input
                     value={productForm.name}
-                    onChange={(e) => setProductForm({...productForm, name: e.target.value})}
+                    onChange={(e) =>
+                      setProductForm({ ...productForm, name: e.target.value })
+                    }
                     className="bg-white/10 border-white/20 text-white"
                     placeholder="Enter product name"
                     required
@@ -389,7 +390,9 @@ export default function AdminDashboard() {
                     type="number"
                     step="0.01"
                     value={productForm.price}
-                    onChange={(e) => setProductForm({...productForm, price: e.target.value})}
+                    onChange={(e) =>
+                      setProductForm({ ...productForm, price: e.target.value })
+                    }
                     className="bg-white/10 border-white/20 text-white"
                     placeholder="0.00"
                     required
@@ -401,7 +404,9 @@ export default function AdminDashboard() {
                 <Label className="text-white">Category</Label>
                 <Input
                   value={productForm.category}
-                  onChange={(e) => setProductForm({...productForm, category: e.target.value})}
+                  onChange={(e) =>
+                    setProductForm({ ...productForm, category: e.target.value })
+                  }
                   className="bg-white/10 border-white/20 text-white"
                   placeholder="Enter category"
                   required
@@ -412,7 +417,12 @@ export default function AdminDashboard() {
                 <Label className="text-white">Description</Label>
                 <Textarea
                   value={productForm.description}
-                  onChange={(e) => setProductForm({...productForm, description: e.target.value})}
+                  onChange={(e) =>
+                    setProductForm({
+                      ...productForm,
+                      description: e.target.value,
+                    })
+                  }
                   className="bg-white/10 border-white/20 text-white"
                   placeholder="Enter product description"
                   rows={3}
@@ -424,7 +434,9 @@ export default function AdminDashboard() {
                 <Label className="text-white">Image URL</Label>
                 <Input
                   value={productForm.image}
-                  onChange={(e) => setProductForm({...productForm, image: e.target.value})}
+                  onChange={(e) =>
+                    setProductForm({ ...productForm, image: e.target.value })
+                  }
                   className="bg-white/10 border-white/20 text-white"
                   placeholder="https://example.com/image.jpg"
                 />
@@ -435,10 +447,17 @@ export default function AdminDashboard() {
                   type="checkbox"
                   id="inStock"
                   checked={productForm.inStock}
-                  onChange={(e) => setProductForm({...productForm, inStock: e.target.checked})}
+                  onChange={(e) =>
+                    setProductForm({
+                      ...productForm,
+                      inStock: e.target.checked,
+                    })
+                  }
                   className="rounded border-white/20"
                 />
-                <Label htmlFor="inStock" className="text-white">In Stock</Label>
+                <Label htmlFor="inStock" className="text-white">
+                  In Stock
+                </Label>
               </div>
 
               <Button
@@ -451,7 +470,7 @@ export default function AdminDashboard() {
                 ) : (
                   <Save className="mr-2 h-4 w-4" />
                 )}
-                {productForm.id ? 'Update' : 'Create'} Product
+                {productForm.id ? "Update" : "Create"} Product
               </Button>
             </form>
           </CardContent>
@@ -473,13 +492,20 @@ export default function AdminDashboard() {
           <CardContent>
             <div className="space-y-2 max-h-96 overflow-y-auto">
               {products.length === 0 ? (
-                <p className="text-gray-400 text-center py-8">No products found</p>
+                <p className="text-gray-400 text-center py-8">
+                  No products found
+                </p>
               ) : (
                 products.map((product: any) => (
-                  <div key={product.id} className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
+                  <div
+                    key={product.id}
+                    className="flex items-center justify-between p-3 bg-white/5 rounded-lg"
+                  >
                     <div className="flex-1">
                       <h4 className="text-white font-medium">{product.name}</h4>
-                      <p className="text-sm text-gray-400">R{product.price} • {product.category}</p>
+                      <p className="text-sm text-gray-400">
+                        R{product.price} • {product.category}
+                      </p>
                     </div>
                     <div className="flex space-x-1">
                       <Button
@@ -547,13 +573,15 @@ export default function AdminDashboard() {
                   Back to Home
                 </Button>
               </Link>
-              
+
               <div className="flex items-center space-x-3">
                 <div className="w-12 h-12 bg-gradient-to-br from-brand-red to-red-600 rounded-xl flex items-center justify-center">
                   <Crown className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-2xl sm:text-3xl font-bold text-white">Admin Dashboard</h1>
+                  <h1 className="text-2xl sm:text-3xl font-bold text-white">
+                    Admin Dashboard
+                  </h1>
                   <p className="text-gray-400">Manage your APEX platform</p>
                 </div>
               </div>
@@ -570,33 +598,33 @@ export default function AdminDashboard() {
         <div className="space-y-6">
           <div className="grid w-full grid-cols-3 bg-black/50 backdrop-blur-xl border border-white/20 rounded-xl p-1">
             <button
-              onClick={() => setActiveTab('upload')}
+              onClick={() => setActiveTab("upload")}
               className={`flex items-center justify-center space-x-2 p-3 rounded-lg transition-all duration-300 ${
-                activeTab === 'upload' 
-                  ? 'bg-brand-red text-white' 
-                  : 'text-gray-300 hover:text-white hover:bg-white/10'
+                activeTab === "upload"
+                  ? "bg-brand-red text-white"
+                  : "text-gray-300 hover:text-white hover:bg-white/10"
               }`}
             >
               <Upload className="h-4 w-4" />
               <span className="hidden sm:inline">File Upload</span>
             </button>
             <button
-              onClick={() => setActiveTab('products')}
+              onClick={() => setActiveTab("products")}
               className={`flex items-center justify-center space-x-2 p-3 rounded-lg transition-all duration-300 ${
-                activeTab === 'products' 
-                  ? 'bg-brand-red text-white' 
-                  : 'text-gray-300 hover:text-white hover:bg-white/10'
+                activeTab === "products"
+                  ? "bg-brand-red text-white"
+                  : "text-gray-300 hover:text-white hover:bg-white/10"
               }`}
             >
               <Package className="h-4 w-4" />
               <span className="hidden sm:inline">Products</span>
             </button>
             <button
-              onClick={() => setActiveTab('content')}
+              onClick={() => setActiveTab("content")}
               className={`flex items-center justify-center space-x-2 p-3 rounded-lg transition-all duration-300 ${
-                activeTab === 'content' 
-                  ? 'bg-brand-red text-white' 
-                  : 'text-gray-300 hover:text-white hover:bg-white/10'
+                activeTab === "content"
+                  ? "bg-brand-red text-white"
+                  : "text-gray-300 hover:text-white hover:bg-white/10"
               }`}
             >
               <FileText className="h-4 w-4" />
@@ -605,9 +633,9 @@ export default function AdminDashboard() {
           </div>
 
           {/* Tab Content */}
-          {activeTab === 'upload' && renderUploadTab()}
-          {activeTab === 'products' && renderProductsTab()}
-          {activeTab === 'content' && renderContentTab()}
+          {activeTab === "upload" && renderUploadTab()}
+          {activeTab === "products" && renderProductsTab()}
+          {activeTab === "content" && renderContentTab()}
         </div>
       </div>
     </div>
