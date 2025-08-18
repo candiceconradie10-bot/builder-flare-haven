@@ -29,6 +29,7 @@ export default function AdminDashboard() {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [products, setProducts] = useState([]);
   const [content, setContent] = useState([]);
+  const [activeTab, setActiveTab] = useState('upload');
 
   // File Upload State
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
