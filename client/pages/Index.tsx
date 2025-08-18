@@ -7,6 +7,8 @@ import { OptimizedImage } from "@/components/OptimizedImage";
 import { SEO, generateFAQSchema } from "@/components/SEO";
 import { categories } from "@/data/products";
 import {
+  import { supabase } from '../lib/supabaseClient'
+
   ArrowRight,
   Star,
   Truck,
@@ -40,6 +42,15 @@ import {
 } from "lucide-react";
 
 export default function Index() {
+  React.useEffect(() => {
+    async function getData() {
+      let { data, error } = await supabase.from('test').select('*')
+      console.log('Supabase data:', data)
+      if (error) console.error('Supabase error:', error)
+    }
+    getData()
+  }, [])
+
   // SEO structured data for FAQ
   const faqData = [
     {
