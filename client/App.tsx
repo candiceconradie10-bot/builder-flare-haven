@@ -72,6 +72,7 @@ const App = () => (
                   <Route path="/cart" element={<Cart />} />
                   <Route path="/auth" element={<Auth />} />
                   <Route path="/admin-login" element={<AdminLogin />} />
+                  <Route path="/admin-dashboard" element={<AdminDashboard />} />
                   <Route
                     path="/checkout"
                     element={
