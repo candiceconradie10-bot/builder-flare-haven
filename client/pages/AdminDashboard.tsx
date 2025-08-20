@@ -81,7 +81,7 @@ export default function AdminDashboard() {
     },
     {
       id: 2,
-      name: "Slide 2", 
+      name: "Slide 2",
       url: "https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F40f759488e564397a9ebb0c2e6fe0268?format=webp&width=1920",
     },
     {
@@ -93,11 +93,27 @@ export default function AdminDashboard() {
 
   // Content Sections
   const contentSections = [
-    { id: "hero", name: "Hero Section", description: "Main slideshow and CTA buttons" },
-    { id: "about", name: "About Section", description: "Company information and values" },
-    { id: "catalogue", name: "Catalogue Section", description: "Product categories display" },
+    {
+      id: "hero",
+      name: "Hero Section",
+      description: "Main slideshow and CTA buttons",
+    },
+    {
+      id: "about",
+      name: "About Section",
+      description: "Company information and values",
+    },
+    {
+      id: "catalogue",
+      name: "Catalogue Section",
+      description: "Product categories display",
+    },
     { id: "footer", name: "Footer", description: "Footer content and links" },
-    { id: "header", name: "Header", description: "Navigation and contact info" },
+    {
+      id: "header",
+      name: "Header",
+      description: "Navigation and contact info",
+    },
   ];
 
   // Initialize data
@@ -311,7 +327,9 @@ export default function AdminDashboard() {
           .eq("id", contentForm.id);
       } else {
         // Create new content
-        result = await window.supabase.from("site_content").insert([contentData]);
+        result = await window.supabase
+          .from("site_content")
+          .insert([contentData]);
       }
 
       if (result.error) {
@@ -361,7 +379,9 @@ export default function AdminDashboard() {
           .eq("id", catalogueForm.id);
       } else {
         // Create new catalogue
-        result = await window.supabase.from("catalogues").insert([catalogueData]);
+        result = await window.supabase
+          .from("catalogues")
+          .insert([catalogueData]);
       }
 
       if (result.error) {
@@ -391,7 +411,10 @@ export default function AdminDashboard() {
     try {
       setLoading(true);
       // @ts-ignore
-      const { error } = await window.supabase.from("products").delete().eq("id", id);
+      const { error } = await window.supabase
+        .from("products")
+        .delete()
+        .eq("id", id);
       if (error) throw error;
       alert("Product deleted successfully!");
       loadProducts();
@@ -407,7 +430,10 @@ export default function AdminDashboard() {
     try {
       setLoading(true);
       // @ts-ignore
-      const { error } = await window.supabase.from("site_content").delete().eq("id", id);
+      const { error } = await window.supabase
+        .from("site_content")
+        .delete()
+        .eq("id", id);
       if (error) throw error;
       alert("Content deleted successfully!");
       loadContent();
@@ -423,7 +449,10 @@ export default function AdminDashboard() {
     try {
       setLoading(true);
       // @ts-ignore
-      const { error } = await window.supabase.from("catalogues").delete().eq("id", id);
+      const { error } = await window.supabase
+        .from("catalogues")
+        .delete()
+        .eq("id", id);
       if (error) throw error;
       alert("Catalogue deleted successfully!");
       loadCatalogues();
@@ -471,23 +500,25 @@ export default function AdminDashboard() {
 
   // Add new background image
   const addBackgroundImage = () => {
-    const newId = Math.max(...backgroundImages.map(img => img.id)) + 1;
+    const newId = Math.max(...backgroundImages.map((img) => img.id)) + 1;
     setBackgroundImages([
       ...backgroundImages,
-      { id: newId, name: `Slide ${newId}`, url: "" }
+      { id: newId, name: `Slide ${newId}`, url: "" },
     ]);
   };
 
   // Update background image
   const updateBackgroundImage = (id: number, field: string, value: string) => {
-    setBackgroundImages(backgroundImages.map(img =>
-      img.id === id ? { ...img, [field]: value } : img
-    ));
+    setBackgroundImages(
+      backgroundImages.map((img) =>
+        img.id === id ? { ...img, [field]: value } : img,
+      ),
+    );
   };
 
   // Remove background image
   const removeBackgroundImage = (id: number) => {
-    setBackgroundImages(backgroundImages.filter(img => img.id !== id));
+    setBackgroundImages(backgroundImages.filter((img) => img.id !== id));
   };
 
   const renderContentTab = () => (
@@ -507,13 +538,19 @@ export default function AdminDashboard() {
                 <Label className="text-white">Section</Label>
                 <select
                   value={contentForm.section}
-                  onChange={(e) => setContentForm({ ...contentForm, section: e.target.value })}
+                  onChange={(e) =>
+                    setContentForm({ ...contentForm, section: e.target.value })
+                  }
                   className="w-full bg-white/10 border border-white/20 text-white rounded-md px-3 py-2"
                   required
                 >
                   <option value="">Select Section</option>
-                  {contentSections.map(section => (
-                    <option key={section.id} value={section.id} className="bg-gray-800">
+                  {contentSections.map((section) => (
+                    <option
+                      key={section.id}
+                      value={section.id}
+                      className="bg-gray-800"
+                    >
                       {section.name}
                     </option>
                   ))}
@@ -524,7 +561,9 @@ export default function AdminDashboard() {
                 <Label className="text-white">Title</Label>
                 <Input
                   value={contentForm.title}
-                  onChange={(e) => setContentForm({ ...contentForm, title: e.target.value })}
+                  onChange={(e) =>
+                    setContentForm({ ...contentForm, title: e.target.value })
+                  }
                   className="bg-white/10 border-white/20 text-white"
                   placeholder="Enter title"
                   required
@@ -535,7 +574,12 @@ export default function AdminDashboard() {
                 <Label className="text-white">Description</Label>
                 <Textarea
                   value={contentForm.description}
-                  onChange={(e) => setContentForm({ ...contentForm, description: e.target.value })}
+                  onChange={(e) =>
+                    setContentForm({
+                      ...contentForm,
+                      description: e.target.value,
+                    })
+                  }
                   className="bg-white/10 border-white/20 text-white"
                   placeholder="Enter description"
                   rows={3}
@@ -546,7 +590,9 @@ export default function AdminDashboard() {
                 <Label className="text-white">Full Content</Label>
                 <Textarea
                   value={contentForm.content}
-                  onChange={(e) => setContentForm({ ...contentForm, content: e.target.value })}
+                  onChange={(e) =>
+                    setContentForm({ ...contentForm, content: e.target.value })
+                  }
                   className="bg-white/10 border-white/20 text-white"
                   placeholder="Enter full content (HTML allowed)"
                   rows={5}
@@ -558,7 +604,9 @@ export default function AdminDashboard() {
                   <Label className="text-white">Image URL</Label>
                   <Input
                     value={contentForm.image}
-                    onChange={(e) => setContentForm({ ...contentForm, image: e.target.value })}
+                    onChange={(e) =>
+                      setContentForm({ ...contentForm, image: e.target.value })
+                    }
                     className="bg-white/10 border-white/20 text-white"
                     placeholder="https://example.com/image.jpg"
                   />
@@ -568,7 +616,12 @@ export default function AdminDashboard() {
                   <Input
                     type="number"
                     value={contentForm.order}
-                    onChange={(e) => setContentForm({ ...contentForm, order: parseInt(e.target.value) })}
+                    onChange={(e) =>
+                      setContentForm({
+                        ...contentForm,
+                        order: parseInt(e.target.value),
+                      })
+                    }
                     className="bg-white/10 border-white/20 text-white"
                     placeholder="0"
                   />
@@ -580,7 +633,11 @@ export default function AdminDashboard() {
                 disabled={loading}
                 className="w-full bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold"
               >
-                {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />}
+                {loading ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <Save className="mr-2 h-4 w-4" />
+                )}
                 {contentForm.id ? "Update" : "Create"} Content
               </Button>
             </form>
@@ -591,26 +648,48 @@ export default function AdminDashboard() {
         <Card className="bg-black/50 backdrop-blur-xl border border-white/20">
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="text-white">Site Content</CardTitle>
-            <Button onClick={loadContent} variant="outline" size="sm" className="border-white/20 text-white hover:bg-white/10">
+            <Button
+              onClick={loadContent}
+              variant="outline"
+              size="sm"
+              className="border-white/20 text-white hover:bg-white/10"
+            >
               <RefreshCw className="h-4 w-4" />
             </Button>
           </CardHeader>
           <CardContent>
             <div className="space-y-2 max-h-96 overflow-y-auto">
               {content.length === 0 ? (
-                <p className="text-gray-400 text-center py-8">No content found</p>
+                <p className="text-gray-400 text-center py-8">
+                  No content found
+                </p>
               ) : (
                 content.map((item: any) => (
-                  <div key={item.id} className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
+                  <div
+                    key={item.id}
+                    className="flex items-center justify-between p-3 bg-white/5 rounded-lg"
+                  >
                     <div className="flex-1">
                       <h4 className="text-white font-medium">{item.title}</h4>
-                      <p className="text-sm text-gray-400">{item.section} • Order: {item.order}</p>
+                      <p className="text-sm text-gray-400">
+                        {item.section} • Order: {item.order}
+                      </p>
                     </div>
                     <div className="flex space-x-1">
-                      <Button onClick={() => editContent(item)} variant="ghost" size="sm" className="text-blue-400 hover:bg-blue-500/10">
+                      <Button
+                        onClick={() => editContent(item)}
+                        variant="ghost"
+                        size="sm"
+                        className="text-blue-400 hover:bg-blue-500/10"
+                      >
                         <Edit className="h-4 w-4" />
                       </Button>
-                      <Button onClick={() => deleteContent(item.id)} variant="ghost" size="sm" className="text-red-400 hover:bg-red-500/10">
+                      <Button
+                        onClick={() => deleteContent(item.id)}
+                        variant="ghost"
+                        size="sm"
+                        className="text-red-400 hover:bg-red-500/10"
+                      >
                         <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>
@@ -629,7 +708,11 @@ export default function AdminDashboard() {
             <Image className="h-5 w-5 mr-2 text-brand-red" />
             Hero Slideshow Background Images
           </CardTitle>
-          <Button onClick={addBackgroundImage} size="sm" className="bg-brand-red hover:bg-red-600">
+          <Button
+            onClick={addBackgroundImage}
+            size="sm"
+            className="bg-brand-red hover:bg-red-600"
+          >
             <Plus className="h-4 w-4 mr-2" />
             Add Image
           </Button>
@@ -637,25 +720,40 @@ export default function AdminDashboard() {
         <CardContent>
           <div className="space-y-4">
             {backgroundImages.map((image) => (
-              <div key={image.id} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 bg-white/5 rounded-lg">
+              <div
+                key={image.id}
+                className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 bg-white/5 rounded-lg"
+              >
                 <div className="flex-1 space-y-2">
                   <Input
                     value={image.name}
-                    onChange={(e) => updateBackgroundImage(image.id, 'name', e.target.value)}
+                    onChange={(e) =>
+                      updateBackgroundImage(image.id, "name", e.target.value)
+                    }
                     className="bg-white/10 border-white/20 text-white"
                     placeholder="Image name"
                   />
                   <Input
                     value={image.url}
-                    onChange={(e) => updateBackgroundImage(image.id, 'url', e.target.value)}
+                    onChange={(e) =>
+                      updateBackgroundImage(image.id, "url", e.target.value)
+                    }
                     className="bg-white/10 border-white/20 text-white"
                     placeholder="Image URL"
                   />
                 </div>
                 {image.url && (
-                  <div className="w-20 h-12 bg-cover bg-center rounded border border-white/20" style={{ backgroundImage: `url(${image.url})` }} />
+                  <div
+                    className="w-20 h-12 bg-cover bg-center rounded border border-white/20"
+                    style={{ backgroundImage: `url(${image.url})` }}
+                  />
                 )}
-                <Button onClick={() => removeBackgroundImage(image.id)} variant="ghost" size="sm" className="text-red-400 hover:bg-red-500/10">
+                <Button
+                  onClick={() => removeBackgroundImage(image.id)}
+                  variant="ghost"
+                  size="sm"
+                  className="text-red-400 hover:bg-red-500/10"
+                >
                   <X className="h-4 w-4" />
                 </Button>
               </div>
@@ -684,7 +782,9 @@ export default function AdminDashboard() {
                   <Label className="text-white">Product Name</Label>
                   <Input
                     value={productForm.name}
-                    onChange={(e) => setProductForm({ ...productForm, name: e.target.value })}
+                    onChange={(e) =>
+                      setProductForm({ ...productForm, name: e.target.value })
+                    }
                     className="bg-white/10 border-white/20 text-white"
                     placeholder="Enter product name"
                     required
@@ -696,7 +796,9 @@ export default function AdminDashboard() {
                     type="number"
                     step="0.01"
                     value={productForm.price}
-                    onChange={(e) => setProductForm({ ...productForm, price: e.target.value })}
+                    onChange={(e) =>
+                      setProductForm({ ...productForm, price: e.target.value })
+                    }
                     className="bg-white/10 border-white/20 text-white"
                     placeholder="0.00"
                     required
@@ -708,17 +810,34 @@ export default function AdminDashboard() {
                 <Label className="text-white">Category</Label>
                 <select
                   value={productForm.category}
-                  onChange={(e) => setProductForm({ ...productForm, category: e.target.value })}
+                  onChange={(e) =>
+                    setProductForm({ ...productForm, category: e.target.value })
+                  }
                   className="w-full bg-white/10 border border-white/20 text-white rounded-md px-3 py-2"
                   required
                 >
                   <option value="">Select Category</option>
-                  <option value="corporate-gifts" className="bg-gray-800">Corporate Gifts</option>
-                  <option value="corporate-clothing" className="bg-gray-800">Clothing</option>
-                  <option value="workwear" className="bg-gray-800">Workwear</option>
-                  <option value="headwear-and-accessories" className="bg-gray-800">Headwear & Accessories</option>
-                  <option value="safety-gear" className="bg-gray-800">Safety Gear</option>
-                  <option value="custom-products" className="bg-gray-800">Custom Products</option>
+                  <option value="corporate-gifts" className="bg-gray-800">
+                    Corporate Gifts
+                  </option>
+                  <option value="corporate-clothing" className="bg-gray-800">
+                    Clothing
+                  </option>
+                  <option value="workwear" className="bg-gray-800">
+                    Workwear
+                  </option>
+                  <option
+                    value="headwear-and-accessories"
+                    className="bg-gray-800"
+                  >
+                    Headwear & Accessories
+                  </option>
+                  <option value="safety-gear" className="bg-gray-800">
+                    Safety Gear
+                  </option>
+                  <option value="custom-products" className="bg-gray-800">
+                    Custom Products
+                  </option>
                 </select>
               </div>
 
@@ -726,7 +845,12 @@ export default function AdminDashboard() {
                 <Label className="text-white">Description</Label>
                 <Textarea
                   value={productForm.description}
-                  onChange={(e) => setProductForm({ ...productForm, description: e.target.value })}
+                  onChange={(e) =>
+                    setProductForm({
+                      ...productForm,
+                      description: e.target.value,
+                    })
+                  }
                   className="bg-white/10 border-white/20 text-white"
                   placeholder="Enter product description"
                   rows={3}
@@ -738,7 +862,9 @@ export default function AdminDashboard() {
                 <Label className="text-white">Image URL</Label>
                 <Input
                   value={productForm.image}
-                  onChange={(e) => setProductForm({ ...productForm, image: e.target.value })}
+                  onChange={(e) =>
+                    setProductForm({ ...productForm, image: e.target.value })
+                  }
                   className="bg-white/10 border-white/20 text-white"
                   placeholder="https://example.com/image.jpg"
                 />
@@ -749,10 +875,17 @@ export default function AdminDashboard() {
                   type="checkbox"
                   id="inStock"
                   checked={productForm.inStock}
-                  onChange={(e) => setProductForm({ ...productForm, inStock: e.target.checked })}
+                  onChange={(e) =>
+                    setProductForm({
+                      ...productForm,
+                      inStock: e.target.checked,
+                    })
+                  }
                   className="rounded border-white/20"
                 />
-                <Label htmlFor="inStock" className="text-white">In Stock</Label>
+                <Label htmlFor="inStock" className="text-white">
+                  In Stock
+                </Label>
               </div>
 
               <Button
@@ -760,7 +893,11 @@ export default function AdminDashboard() {
                 disabled={loading}
                 className="w-full bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold"
               >
-                {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />}
+                {loading ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <Save className="mr-2 h-4 w-4" />
+                )}
                 {productForm.id ? "Update" : "Create"} Product
               </Button>
             </form>
@@ -771,26 +908,48 @@ export default function AdminDashboard() {
         <Card className="bg-black/50 backdrop-blur-xl border border-white/20">
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="text-white">Products</CardTitle>
-            <Button onClick={loadProducts} variant="outline" size="sm" className="border-white/20 text-white hover:bg-white/10">
+            <Button
+              onClick={loadProducts}
+              variant="outline"
+              size="sm"
+              className="border-white/20 text-white hover:bg-white/10"
+            >
               <RefreshCw className="h-4 w-4" />
             </Button>
           </CardHeader>
           <CardContent>
             <div className="space-y-2 max-h-96 overflow-y-auto">
               {products.length === 0 ? (
-                <p className="text-gray-400 text-center py-8">No products found</p>
+                <p className="text-gray-400 text-center py-8">
+                  No products found
+                </p>
               ) : (
                 products.map((product: any) => (
-                  <div key={product.id} className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
+                  <div
+                    key={product.id}
+                    className="flex items-center justify-between p-3 bg-white/5 rounded-lg"
+                  >
                     <div className="flex-1">
                       <h4 className="text-white font-medium">{product.name}</h4>
-                      <p className="text-sm text-gray-400">R{product.price} • {product.category}</p>
+                      <p className="text-sm text-gray-400">
+                        R{product.price} • {product.category}
+                      </p>
                     </div>
                     <div className="flex space-x-1">
-                      <Button onClick={() => editProduct(product)} variant="ghost" size="sm" className="text-blue-400 hover:bg-blue-500/10">
+                      <Button
+                        onClick={() => editProduct(product)}
+                        variant="ghost"
+                        size="sm"
+                        className="text-blue-400 hover:bg-blue-500/10"
+                      >
                         <Edit className="h-4 w-4" />
                       </Button>
-                      <Button onClick={() => deleteProduct(product.id)} variant="ghost" size="sm" className="text-red-400 hover:bg-red-500/10">
+                      <Button
+                        onClick={() => deleteProduct(product.id)}
+                        variant="ghost"
+                        size="sm"
+                        className="text-red-400 hover:bg-red-500/10"
+                      >
                         <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>
@@ -822,7 +981,12 @@ export default function AdminDashboard() {
                   <Label className="text-white">Catalogue Name</Label>
                   <Input
                     value={catalogueForm.name}
-                    onChange={(e) => setCatalogueForm({ ...catalogueForm, name: e.target.value })}
+                    onChange={(e) =>
+                      setCatalogueForm({
+                        ...catalogueForm,
+                        name: e.target.value,
+                      })
+                    }
                     className="bg-white/10 border-white/20 text-white"
                     placeholder="Enter catalogue name"
                     required
@@ -832,17 +996,34 @@ export default function AdminDashboard() {
                   <Label className="text-white">Category</Label>
                   <select
                     value={catalogueForm.category}
-                    onChange={(e) => setCatalogueForm({ ...catalogueForm, category: e.target.value })}
+                    onChange={(e) =>
+                      setCatalogueForm({
+                        ...catalogueForm,
+                        category: e.target.value,
+                      })
+                    }
                     className="w-full bg-white/10 border border-white/20 text-white rounded-md px-3 py-2"
                     required
                   >
                     <option value="">Select Category</option>
-                    <option value="corporate-gifts" className="bg-gray-800">Corporate Gifts</option>
-                    <option value="clothing" className="bg-gray-800">Clothing</option>
-                    <option value="workwear" className="bg-gray-800">Workwear</option>
-                    <option value="headwear" className="bg-gray-800">Headwear & Accessories</option>
-                    <option value="safety" className="bg-gray-800">Safety Equipment</option>
-                    <option value="custom" className="bg-gray-800">Custom Branding</option>
+                    <option value="corporate-gifts" className="bg-gray-800">
+                      Corporate Gifts
+                    </option>
+                    <option value="clothing" className="bg-gray-800">
+                      Clothing
+                    </option>
+                    <option value="workwear" className="bg-gray-800">
+                      Workwear
+                    </option>
+                    <option value="headwear" className="bg-gray-800">
+                      Headwear & Accessories
+                    </option>
+                    <option value="safety" className="bg-gray-800">
+                      Safety Equipment
+                    </option>
+                    <option value="custom" className="bg-gray-800">
+                      Custom Branding
+                    </option>
                   </select>
                 </div>
               </div>
@@ -851,7 +1032,12 @@ export default function AdminDashboard() {
                 <Label className="text-white">PDF URL</Label>
                 <Input
                   value={catalogueForm.pdfUrl}
-                  onChange={(e) => setCatalogueForm({ ...catalogueForm, pdfUrl: e.target.value })}
+                  onChange={(e) =>
+                    setCatalogueForm({
+                      ...catalogueForm,
+                      pdfUrl: e.target.value,
+                    })
+                  }
                   className="bg-white/10 border-white/20 text-white"
                   placeholder="https://example.com/catalogue.pdf"
                   required
@@ -862,7 +1048,12 @@ export default function AdminDashboard() {
                 <Label className="text-white">Description</Label>
                 <Textarea
                   value={catalogueForm.description}
-                  onChange={(e) => setCatalogueForm({ ...catalogueForm, description: e.target.value })}
+                  onChange={(e) =>
+                    setCatalogueForm({
+                      ...catalogueForm,
+                      description: e.target.value,
+                    })
+                  }
                   className="bg-white/10 border-white/20 text-white"
                   placeholder="Enter catalogue description"
                   rows={3}
@@ -874,7 +1065,11 @@ export default function AdminDashboard() {
                 disabled={loading}
                 className="w-full bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold"
               >
-                {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />}
+                {loading ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <Save className="mr-2 h-4 w-4" />
+                )}
                 {catalogueForm.id ? "Update" : "Create"} Catalogue
               </Button>
             </form>
@@ -885,29 +1080,58 @@ export default function AdminDashboard() {
         <Card className="bg-black/50 backdrop-blur-xl border border-white/20">
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="text-white">Catalogues</CardTitle>
-            <Button onClick={loadCatalogues} variant="outline" size="sm" className="border-white/20 text-white hover:bg-white/10">
+            <Button
+              onClick={loadCatalogues}
+              variant="outline"
+              size="sm"
+              className="border-white/20 text-white hover:bg-white/10"
+            >
               <RefreshCw className="h-4 w-4" />
             </Button>
           </CardHeader>
           <CardContent>
             <div className="space-y-2 max-h-96 overflow-y-auto">
               {catalogues.length === 0 ? (
-                <p className="text-gray-400 text-center py-8">No catalogues found</p>
+                <p className="text-gray-400 text-center py-8">
+                  No catalogues found
+                </p>
               ) : (
                 catalogues.map((catalogue: any) => (
-                  <div key={catalogue.id} className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
+                  <div
+                    key={catalogue.id}
+                    className="flex items-center justify-between p-3 bg-white/5 rounded-lg"
+                  >
                     <div className="flex-1">
-                      <h4 className="text-white font-medium">{catalogue.name}</h4>
-                      <p className="text-sm text-gray-400">{catalogue.category}</p>
+                      <h4 className="text-white font-medium">
+                        {catalogue.name}
+                      </h4>
+                      <p className="text-sm text-gray-400">
+                        {catalogue.category}
+                      </p>
                     </div>
                     <div className="flex space-x-1">
-                      <Button onClick={() => window.open(catalogue.pdf_url, '_blank')} variant="ghost" size="sm" className="text-green-400 hover:bg-green-500/10">
+                      <Button
+                        onClick={() => window.open(catalogue.pdf_url, "_blank")}
+                        variant="ghost"
+                        size="sm"
+                        className="text-green-400 hover:bg-green-500/10"
+                      >
                         <Eye className="h-4 w-4" />
                       </Button>
-                      <Button onClick={() => editCatalogue(catalogue)} variant="ghost" size="sm" className="text-blue-400 hover:bg-blue-500/10">
+                      <Button
+                        onClick={() => editCatalogue(catalogue)}
+                        variant="ghost"
+                        size="sm"
+                        className="text-blue-400 hover:bg-blue-500/10"
+                      >
                         <Edit className="h-4 w-4" />
                       </Button>
-                      <Button onClick={() => deleteCatalogue(catalogue.id)} variant="ghost" size="sm" className="text-red-400 hover:bg-red-500/10">
+                      <Button
+                        onClick={() => deleteCatalogue(catalogue.id)}
+                        variant="ghost"
+                        size="sm"
+                        className="text-red-400 hover:bg-red-500/10"
+                      >
                         <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>
@@ -939,7 +1163,9 @@ export default function AdminDashboard() {
                   type="button"
                   onClick={() => setUploadType("image")}
                   className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
-                    uploadType === "image" ? "bg-brand-red text-white" : "bg-white/10 text-gray-300 hover:bg-white/20"
+                    uploadType === "image"
+                      ? "bg-brand-red text-white"
+                      : "bg-white/10 text-gray-300 hover:bg-white/20"
                   }`}
                 >
                   <Image className="h-4 w-4" />
@@ -949,7 +1175,9 @@ export default function AdminDashboard() {
                   type="button"
                   onClick={() => setUploadType("pdf")}
                   className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
-                    uploadType === "pdf" ? "bg-brand-red text-white" : "bg-white/10 text-gray-300 hover:bg-white/20"
+                    uploadType === "pdf"
+                      ? "bg-brand-red text-white"
+                      : "bg-white/10 text-gray-300 hover:bg-white/20"
                   }`}
                 >
                   <FileText className="h-4 w-4" />
@@ -959,7 +1187,9 @@ export default function AdminDashboard() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="file" className="text-white">Select {uploadType === "image" ? "Image" : "PDF"} File</Label>
+              <Label htmlFor="file" className="text-white">
+                Select {uploadType === "image" ? "Image" : "PDF"} File
+              </Label>
               <Input
                 id="file"
                 type="file"
@@ -972,7 +1202,8 @@ export default function AdminDashboard() {
             {selectedFile && (
               <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
                 <p className="text-sm text-blue-800 dark:text-blue-200">
-                  <strong>Selected:</strong> {selectedFile.name} ({(selectedFile.size / 1024 / 1024).toFixed(2)} MB)
+                  <strong>Selected:</strong> {selectedFile.name} (
+                  {(selectedFile.size / 1024 / 1024).toFixed(2)} MB)
                 </p>
               </div>
             )}
@@ -1027,7 +1258,10 @@ export default function AdminDashboard() {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
             <div className="flex items-center space-x-4">
               <Link to="/">
-                <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 hover:border-brand-red/50">
+                <Button
+                  variant="outline"
+                  className="border-white/30 text-white hover:bg-white/10 hover:border-brand-red/50"
+                >
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   <span className="hidden sm:inline">Back to Home</span>
                 </Button>
@@ -1038,8 +1272,12 @@ export default function AdminDashboard() {
                   <Crown className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-white">Admin Dashboard</h1>
-                  <p className="text-gray-400 text-sm sm:text-base">Manage your W.O.S APEX platform</p>
+                  <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-white">
+                    Admin Dashboard
+                  </h1>
+                  <p className="text-gray-400 text-sm sm:text-base">
+                    Manage your W.O.S APEX platform
+                  </p>
                 </div>
               </div>
             </div>
@@ -1065,7 +1303,9 @@ export default function AdminDashboard() {
             <button
               onClick={() => setActiveTab("content")}
               className={`flex items-center justify-center space-x-1 sm:space-x-2 p-2 sm:p-3 rounded-lg transition-all duration-300 ${
-                activeTab === "content" ? "bg-brand-red text-white" : "text-gray-300 hover:text-white hover:bg-white/10"
+                activeTab === "content"
+                  ? "bg-brand-red text-white"
+                  : "text-gray-300 hover:text-white hover:bg-white/10"
               }`}
             >
               <Layout className="h-4 w-4" />
@@ -1074,7 +1314,9 @@ export default function AdminDashboard() {
             <button
               onClick={() => setActiveTab("products")}
               className={`flex items-center justify-center space-x-1 sm:space-x-2 p-2 sm:p-3 rounded-lg transition-all duration-300 ${
-                activeTab === "products" ? "bg-brand-red text-white" : "text-gray-300 hover:text-white hover:bg-white/10"
+                activeTab === "products"
+                  ? "bg-brand-red text-white"
+                  : "text-gray-300 hover:text-white hover:bg-white/10"
               }`}
             >
               <Package className="h-4 w-4" />
@@ -1083,7 +1325,9 @@ export default function AdminDashboard() {
             <button
               onClick={() => setActiveTab("catalogues")}
               className={`flex items-center justify-center space-x-1 sm:space-x-2 p-2 sm:p-3 rounded-lg transition-all duration-300 ${
-                activeTab === "catalogues" ? "bg-brand-red text-white" : "text-gray-300 hover:text-white hover:bg-white/10"
+                activeTab === "catalogues"
+                  ? "bg-brand-red text-white"
+                  : "text-gray-300 hover:text-white hover:bg-white/10"
               }`}
             >
               <Download className="h-4 w-4" />
@@ -1092,7 +1336,9 @@ export default function AdminDashboard() {
             <button
               onClick={() => setActiveTab("upload")}
               className={`flex items-center justify-center space-x-1 sm:space-x-2 p-2 sm:p-3 rounded-lg transition-all duration-300 ${
-                activeTab === "upload" ? "bg-brand-red text-white" : "text-gray-300 hover:text-white hover:bg-white/10"
+                activeTab === "upload"
+                  ? "bg-brand-red text-white"
+                  : "text-gray-300 hover:text-white hover:bg-white/10"
               }`}
             >
               <Upload className="h-4 w-4" />

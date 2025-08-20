@@ -59,7 +59,10 @@ export function Footer() {
               />
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
-              W.O.S APEX is your one-stop online destination for premium clothing, durable workwear and curated gifting. Driven by W.O.S, W.O.S APEX stands at the intersection of function and flare. Welcome to W.O.S APEX
+              W.O.S APEX is your one-stop online destination for premium
+              clothing, durable workwear and curated gifting. Driven by W.O.S,
+              W.O.S APEX stands at the intersection of function and flare.
+              Welcome to W.O.S APEX
             </p>
             <div className="space-y-2">
               <div className="flex items-center space-x-2 text-sm">

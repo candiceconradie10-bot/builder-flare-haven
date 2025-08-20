@@ -40,7 +40,6 @@ import {
 } from "lucide-react";
 
 export default function Index() {
-
   // SEO structured data for FAQ
   const faqData = [
     {
@@ -263,7 +262,10 @@ export default function Index() {
       </section>
 
       {/* About Section */}
-      <section id="about-section" className="py-16 sm:py-20 lg:py-32 relative overflow-hidden">
+      <section
+        id="about-section"
+        className="py-16 sm:py-20 lg:py-32 relative overflow-hidden"
+      >
         <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-black" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(220,20,60,0.1),transparent_70%)]" />
 
@@ -283,7 +285,11 @@ export default function Index() {
               </div>
 
               <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-                At W.O.S APEX we believe your clothing should work as hard as you do, and look good doing it. W.O.S APEX is your one-stop online destination for premium clothing, durable workwear and curated gifting. Driven by W.O.S, W.O.S APEX stands at the intersection of function and flare.
+                At W.O.S APEX we believe your clothing should work as hard as
+                you do, and look good doing it. W.O.S APEX is your one-stop
+                online destination for premium clothing, durable workwear and
+                curated gifting. Driven by W.O.S, W.O.S APEX stands at the
+                intersection of function and flare.
               </p>
               <p className="text-lg md:text-xl text-gray-300 leading-relaxed mt-4">
                 Welcome to W.O.S APEX
@@ -344,7 +350,6 @@ export default function Index() {
                   </div>
                 </div>
               </div>
-
             </div>
 
             {/* About Visual */}
@@ -384,7 +389,10 @@ export default function Index() {
       </section>
 
       {/* Catalogue Section */}
-      <section id="catalogue-section" className="py-16 sm:py-20 lg:py-32 relative overflow-hidden">
+      <section
+        id="catalogue-section"
+        className="py-16 sm:py-20 lg:py-32 relative overflow-hidden"
+      >
         <div className="absolute inset-0 bg-gradient-to-b from-black to-gray-900" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(220,20,60,0.15),transparent_70%)]" />
 
@@ -483,15 +491,20 @@ export default function Index() {
                 Browse Our Catalogues
               </h3>
               <p className="text-gray-300 mb-6">
-                Download our comprehensive product catalogues to explore our full range of offerings.
+                Download our comprehensive product catalogues to explore our
+                full range of offerings.
               </p>
               <div className="relative inline-block">
                 <select className="appearance-none bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold px-8 py-4 pr-12 rounded-xl shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer border-0 outline-none">
                   <option value="">Download Catalogue</option>
-                  <option value="corporate-gifts">Corporate Gifts Catalogue</option>
+                  <option value="corporate-gifts">
+                    Corporate Gifts Catalogue
+                  </option>
                   <option value="clothing">Clothing Catalogue</option>
                   <option value="workwear">Workwear Catalogue</option>
-                  <option value="headwear">Headwear & Accessories Catalogue</option>
+                  <option value="headwear">
+                    Headwear & Accessories Catalogue
+                  </option>
                   <option value="safety">Safety Equipment Catalogue</option>
                   <option value="custom">Custom Branding Solutions</option>
                 </select>
