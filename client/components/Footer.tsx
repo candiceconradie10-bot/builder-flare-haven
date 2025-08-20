@@ -35,13 +35,7 @@ export function Footer() {
   ];
 
   const companyInfo = [
-    "About Us",
-    "Our Story",
-    "Careers",
-    "Press Releases",
-    "Sustainability",
-    "Quality Promise",
-    "Blog",
+    // Company links removed as requested
   ];
 
   return (
