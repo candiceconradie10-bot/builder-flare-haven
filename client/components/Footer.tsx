@@ -59,14 +59,12 @@ export function Footer() {
               />
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
-              Africa's leading promotional products provider with over 25 years
-              of experience. We specialize in corporate gifts, clothing, and
-              custom branding solutions.
+              W.O.S APEX is your one-stop online destination for premium clothing, durable workwear and curated gifting. Driven by W.O.S, W.O.S APEX stands at the intersection of function and flare. Welcome to W.O.S APEX
             </p>
             <div className="space-y-2">
               <div className="flex items-center space-x-2 text-sm">
                 <MapPin className="h-4 w-4 text-brand-red" />
-                <span>123 Business St, Johannesburg, SA</span>
+                <span>Cape Town, South Africa</span>
               </div>
               <div className="flex items-center space-x-2 text-sm">
                 <Phone className="h-4 w-4 text-brand-red" />
