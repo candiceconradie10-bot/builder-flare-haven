@@ -736,10 +736,13 @@ export default function AdminDashboard() {
           </CardContent>
         </Card>
 
-        {/* Content List */}
+        {/* Current Site Content Overview */}
         <Card className="bg-black/50 backdrop-blur-xl border border-white/20">
           <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="text-white">Site Content</CardTitle>
+            <CardTitle className="text-white flex items-center">
+              <Eye className="h-5 w-5 mr-2 text-brand-red" />
+              Current Site Content
+            </CardTitle>
             <Button
               onClick={loadContent}
               variant="outline"
@@ -750,43 +753,104 @@ export default function AdminDashboard() {
             </Button>
           </CardHeader>
           <CardContent>
-            <div className="space-y-2 max-h-96 overflow-y-auto">
-              {content.length === 0 ? (
-                <p className="text-gray-400 text-center py-8">
-                  No content found
-                </p>
-              ) : (
-                content.map((item: any) => (
-                  <div
-                    key={item.id}
-                    className="flex items-center justify-between p-3 bg-white/5 rounded-lg"
-                  >
-                    <div className="flex-1">
-                      <h4 className="text-white font-medium">{item.title}</h4>
-                      <p className="text-sm text-gray-400">
-                        {item.section} • Order: {item.order}
-                      </p>
+            <div className="space-y-4 max-h-96 overflow-y-auto">
+              {contentSections.map((section) => (
+                <div key={section.id} className="p-4 bg-white/5 rounded-lg border border-white/10">
+                  <div className="flex items-start justify-between mb-2">
+                    <div>
+                      <h4 className="text-white font-medium flex items-center">
+                        <Globe className="h-4 w-4 mr-2 text-brand-red" />
+                        {section.name}
+                      </h4>
+                      <p className="text-sm text-gray-400">{section.description}</p>
                     </div>
-                    <div className="flex space-x-1">
-                      <Button
-                        onClick={() => editContent(item)}
-                        variant="ghost"
-                        size="sm"
-                        className="text-blue-400 hover:bg-blue-500/10"
-                      >
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        onClick={() => deleteContent(item.id)}
-                        variant="ghost"
-                        size="sm"
-                        className="text-red-400 hover:bg-red-500/10"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
+                    <Button
+                      onClick={() => {
+                        if (section.currentContent) {
+                          setContentForm({
+                            id: '',
+                            section: section.id,
+                            title: section.currentContent.title || '',
+                            description: section.currentContent.description || '',
+                            image: '',
+                            content: JSON.stringify(section.currentContent, null, 2),
+                            order: 0,
+                          });
+                        }
+                      }}
+                      variant="ghost"
+                      size="sm"
+                      className="text-blue-400 hover:bg-blue-500/10"
+                      title="Load content for editing"
+                    >
+                      <Edit className="h-4 w-4" />
+                    </Button>
                   </div>
-                ))
+
+                  {section.currentContent && (
+                    <div className="text-xs text-gray-300 space-y-1 bg-black/20 p-3 rounded border-l-2 border-brand-red/50">
+                      {section.currentContent.title && (
+                        <div><strong className="text-brand-red">Title:</strong> {section.currentContent.title}</div>
+                      )}
+                      {section.currentContent.description && (
+                        <div><strong className="text-brand-red">Description:</strong> {section.currentContent.description.substring(0, 100)}{section.currentContent.description.length > 100 ? '...' : ''}</div>
+                      )}
+                      {section.currentContent.companyDescription && (
+                        <div><strong className="text-brand-red">Company Description:</strong> {section.currentContent.companyDescription.substring(0, 100)}...</div>
+                      )}
+                      {section.currentContent.location && (
+                        <div><strong className="text-brand-red">Location:</strong> {section.currentContent.location}</div>
+                      )}
+                      {section.currentContent.phone && (
+                        <div><strong className="text-brand-red">Phone:</strong> {section.currentContent.phone}</div>
+                      )}
+                      {section.currentContent.email && (
+                        <div><strong className="text-brand-red">Email:</strong> {section.currentContent.email}</div>
+                      )}
+                      {section.currentContent.features && (
+                        <div>
+                          <strong className="text-brand-red">Features:</strong>
+                          <ul className="ml-4 list-disc">
+                            {section.currentContent.features.slice(0, 2).map((feature, idx) => (
+                              <li key={idx} className="text-xs">{feature.substring(0, 80)}...</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+
+              {/* Custom Content from Database */}
+              {content.length > 0 && (
+                <>
+                  <div className="border-t border-white/20 pt-4">
+                    <h5 className="text-white font-medium mb-2 flex items-center">
+                      <Database className="h-4 w-4 mr-2 text-brand-red" />
+                      Custom Database Content
+                    </h5>
+                  </div>
+                  {content.map((item: any) => (
+                    <div key={item.id} className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10">
+                      <div className="flex-1">
+                        <h4 className="text-white font-medium">{item.title}</h4>
+                        <p className="text-sm text-gray-400">{item.section} • Order: {item.order}</p>
+                        {item.description && (
+                          <p className="text-xs text-gray-500 mt-1">{item.description.substring(0, 80)}...</p>
+                        )}
+                      </div>
+                      <div className="flex space-x-1">
+                        <Button onClick={() => editContent(item)} variant="ghost" size="sm" className="text-blue-400 hover:bg-blue-500/10">
+                          <Edit className="h-4 w-4" />
+                        </Button>
+                        <Button onClick={() => deleteContent(item.id)} variant="ghost" size="sm" className="text-red-400 hover:bg-red-500/10">
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </>
               )}
             </div>
           </CardContent>
