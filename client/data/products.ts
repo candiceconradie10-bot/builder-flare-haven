@@ -140,11 +140,11 @@ export const categories = [
     title: "Corporate Gifts",
     description: "Premium branded items for your business",
     image: "/api/placeholder/400/300",
-    href: "/corporate-gifts",
+    href: "/gifting",
     count: products.filter((p) => p.category === "corporate-gifts").length,
   },
   {
-    title: "Corporate Clothing",
+    title: "Clothing",
     description: "Professional apparel for your team",
     image: "/api/placeholder/400/300",
     href: "/corporate-clothing",
@@ -161,7 +161,7 @@ export const categories = [
     title: "Headwear & Accessories",
     description: "Caps, hats, and promotional accessories",
     image: "/api/placeholder/400/300",
-    href: "/headwear-and-accessories",
+    href: "/headwear",
     count: products.filter((p) => p.category === "headwear-and-accessories")
       .length,
   },
