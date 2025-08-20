@@ -91,28 +91,71 @@ export default function AdminDashboard() {
     },
   ]);
 
-  // Content Sections
+  // Content Sections with current content
   const contentSections = [
     {
       id: "hero",
       name: "Hero Section",
       description: "Main slideshow and CTA buttons",
+      currentContent: {
+        title: "Hero Slideshow",
+        description: "Background images with Learn More and View All Products buttons",
+        buttons: ["Learn More (links to #about-section)", "View All Products (links to #catalogue-section)"],
+        images: ["3 banner images currently displayed"]
+      }
     },
     {
       id: "about",
       name: "About Section",
       description: "Company information and values",
+      currentContent: {
+        title: "Welcome to W.O.S APEX",
+        description: "At W.O.S APEX we believe your clothing should work as hard as you do, and look good doing it. W.O.S APEX is your one-stop online destination for premium clothing, durable workwear and curated gifting. Driven by W.O.S, W.O.S APEX stands at the intersection of function and flare.\n\nWelcome to W.O.S APEX",
+        features: [
+          "Quality First: Premium materials and craftsmanship in every product",
+          "Expert Team: Professional designers and branding specialists",
+          "Fast Service: Quick turnaround times nationwide",
+          "Guaranteed: 100% satisfaction guarantee on all orders"
+        ]
+      }
     },
     {
       id: "catalogue",
       name: "Catalogue Section",
       description: "Product categories display",
+      currentContent: {
+        title: "Explore Our Premium Collections",
+        description: "Discover thousands of premium promotional products, corporate gifts, and custom branding solutions designed to elevate your business presence.",
+        ctaTitle: "Browse Our Catalogues",
+        ctaDescription: "Download our comprehensive product catalogues to explore our full range of offerings.",
+        categories: ["Corporate Gifts -> /gifting", "Clothing -> /corporate-clothing", "Workwear -> /workwear", "Headwear & Accessories -> /headwear"]
+      }
     },
-    { id: "footer", name: "Footer", description: "Footer content and links" },
+    {
+      id: "footer",
+      name: "Footer",
+      description: "Footer content and links",
+      currentContent: {
+        companyDescription: "W.O.S APEX is your one-stop online destination for premium clothing, durable workwear and curated gifting. Driven by W.O.S, W.O.S APEX stands at the intersection of function and flare. Welcome to W.O.S APEX",
+        location: "Cape Town, South Africa",
+        phone: "+27 76 035 5295",
+        email: "apex@w-o-s.co.za",
+        hours: "Mon-Fri: 8AM-5PM",
+        newsletterText: "Subscribe to our newsletter for the latest deals and product updates.",
+        socialMedia: ["Facebook", "Twitter", "Instagram", "LinkedIn"]
+      }
+    },
     {
       id: "header",
       name: "Header",
       description: "Navigation and contact info",
+      currentContent: {
+        topBarPhone: "+27 76 035 5295",
+        topBarEmail: "apex@w-o-s.co.za",
+        searchPlaceholder: "Search products...",
+        navItems: ["Clothing", "Workwear", "Headwear", "Safety Gear", "Gifting", "Display", "Footwear", "Custom Products"],
+        logo: "APEX Logo with company branding"
+      }
     },
   ];
 
