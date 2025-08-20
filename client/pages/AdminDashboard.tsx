@@ -581,9 +581,21 @@ export default function AdminDashboard() {
                 <Label className="text-white">Section</Label>
                 <select
                   value={contentForm.section}
-                  onChange={(e) =>
-                    setContentForm({ ...contentForm, section: e.target.value })
-                  }
+                  onChange={(e) => {
+                    const selectedSection = contentSections.find(s => s.id === e.target.value);
+                    if (selectedSection && selectedSection.currentContent) {
+                      // Auto-populate with current content
+                      setContentForm({
+                        ...contentForm,
+                        section: e.target.value,
+                        title: selectedSection.currentContent.title || '',
+                        description: selectedSection.currentContent.description || '',
+                        content: JSON.stringify(selectedSection.currentContent, null, 2),
+                      });
+                    } else {
+                      setContentForm({ ...contentForm, section: e.target.value });
+                    }
+                  }}
                   className="w-full bg-white/10 border border-white/20 text-white rounded-md px-3 py-2"
                   required
                 >
@@ -599,6 +611,43 @@ export default function AdminDashboard() {
                   ))}
                 </select>
               </div>
+
+              {/* Show Current Content Preview */}
+              {contentForm.section && contentSections.find(s => s.id === contentForm.section)?.currentContent && (
+                <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+                  <h4 className="text-sm font-semibold text-blue-800 dark:text-blue-200 mb-2">📋 Current Content in this section:</h4>
+                  <div className="text-sm text-blue-700 dark:text-blue-300 space-y-2 max-h-40 overflow-y-auto">
+                    {(() => {
+                      const current = contentSections.find(s => s.id === contentForm.section)?.currentContent;
+                      if (!current) return null;
+
+                      return Object.entries(current).map(([key, value]) => {
+                        if (Array.isArray(value)) {
+                          return (
+                            <div key={key} className="border-l-2 border-blue-300 pl-2">
+                              <strong className="capitalize">{key.replace(/([A-Z])/g, ' $1')}:</strong>
+                              <ul className="ml-4 list-disc">
+                                {value.map((item, idx) => (
+                                  <li key={idx} className="text-xs">{typeof item === 'object' ? `${item.title}: ${item.desc}` : item}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          );
+                        }
+                        return (
+                          <div key={key} className="border-l-2 border-blue-300 pl-2">
+                            <strong className="capitalize">{key.replace(/([A-Z])/g, ' $1')}:</strong>
+                            <span className="text-xs block mt-1">{typeof value === 'string' ? (value.length > 200 ? value.substring(0, 200) + '...' : value) : String(value)}</span>
+                          </div>
+                        );
+                      });
+                    })()}
+                  </div>
+                  <p className="text-xs text-blue-600 dark:text-blue-400 mt-2 italic">
+                    💡 This content is automatically loaded into the form fields below for editing
+                  </p>
+                </div>
+              )}
 
               <div className="space-y-2">
                 <Label className="text-white">Title</Label>
