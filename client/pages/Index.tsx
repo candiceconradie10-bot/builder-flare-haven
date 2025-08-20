@@ -345,14 +345,6 @@ export default function Index() {
                 </div>
               </div>
 
-              <Button
-                size="lg"
-                className="group bg-gradient-to-r from-white/10 to-white/20 hover:from-white/20 hover:to-white/30 text-white font-bold px-8 py-4 rounded-xl backdrop-blur-lg border border-white/20 hover:border-brand-red/50 transition-all duration-300 hover:scale-105"
-              >
-                <Coffee className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
-                Learn Our Story
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </Button>
             </div>
 
             {/* About Visual */}
@@ -484,33 +476,26 @@ export default function Index() {
             ))}
           </div>
 
-          {/* CTA Section */}
+          {/* Download Catalogues Section */}
           <div className="text-center space-y-8 animate-fadeInUp">
             <div className="max-w-2xl mx-auto p-8 rounded-3xl bg-gradient-to-r from-brand-red/20 to-red-600/20 backdrop-blur-xl border border-red-500/30 mobile-glass">
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                Ready to Transform Your Brand?
+                Browse Our Catalogues
               </h3>
               <p className="text-gray-300 mb-6">
-                Get a custom quote for your promotional products and branding
-                needs.
+                Download our comprehensive product catalogues to explore our full range of offerings.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  size="lg"
-                  className="group bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold px-8 py-4 rounded-xl shadow-xl hover:shadow-red-500/30 transition-all duration-300 hover:scale-105"
-                >
-                  <ShoppingBag className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
-                  Browse All Products
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="group bg-transparent border-2 border-white/30 text-white hover:bg-white/10 hover:border-brand-red/50 font-bold px-8 py-4 rounded-xl backdrop-blur-lg transition-all duration-300 hover:scale-105"
-                >
-                  <Download className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
-                  Download Catalogue
-                </Button>
+              <div className="relative inline-block">
+                <select className="appearance-none bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold px-8 py-4 pr-12 rounded-xl shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer border-0 outline-none">
+                  <option value="">Download Catalogue</option>
+                  <option value="corporate-gifts">Corporate Gifts Catalogue</option>
+                  <option value="clothing">Clothing Catalogue</option>
+                  <option value="workwear">Workwear Catalogue</option>
+                  <option value="headwear">Headwear & Accessories Catalogue</option>
+                  <option value="safety">Safety Equipment Catalogue</option>
+                  <option value="custom">Custom Branding Solutions</option>
+                </select>
+                <Download className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 pointer-events-none" />
               </div>
             </div>
           </div>
