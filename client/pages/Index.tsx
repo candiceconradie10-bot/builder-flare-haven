@@ -185,7 +185,7 @@ export default function Index() {
                   backgroundImage: `url(${slide.backgroundImage})`,
                 }}
               />
-              <div className="absolute inset-0 bg-black/50" />
+              <div className="absolute inset-0 bg-black/25" />
 
               {/* Background Pattern */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.1),transparent_70%)] animate-float" />
@@ -200,22 +200,26 @@ export default function Index() {
                   <div className="text-center max-w-2xl mx-auto">
                     {/* CTA Buttons at bottom */}
                     <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
-                      <Button
-                        variant="outline"
-                        size="lg"
-                        className="w-full sm:w-auto bg-transparent border-2 border-white/40 text-white hover:bg-white/10 hover:border-white/60 font-bold px-8 py-4 rounded-xl backdrop-blur-lg transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation text-base"
-                      >
-                        <Play className="mr-3 h-5 w-5" />
-                        Learn More
-                      </Button>
-                      <Button
-                        size="lg"
-                        className="w-full sm:w-auto bg-white/20 backdrop-blur-lg border border-white/30 text-white hover:bg-white/30 hover:border-white/50 font-bold px-8 py-4 rounded-xl shadow-xl mobile-shadow transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation text-base"
-                      >
-                        <ShoppingBag className="mr-3 h-5 w-5" />
-                        View All Products
-                        <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-                      </Button>
+                      <a href="#about-section">
+                        <Button
+                          variant="outline"
+                          size="lg"
+                          className="w-full sm:w-auto bg-transparent border-2 border-white/40 text-white hover:bg-white/10 hover:border-white/60 font-bold px-8 py-4 rounded-xl backdrop-blur-lg transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation text-base"
+                        >
+                          <Play className="mr-3 h-5 w-5" />
+                          Learn More
+                        </Button>
+                      </a>
+                      <a href="#catalogue-section">
+                        <Button
+                          size="lg"
+                          className="w-full sm:w-auto bg-white/20 backdrop-blur-lg border border-white/30 text-white hover:bg-white/30 hover:border-white/50 font-bold px-8 py-4 rounded-xl shadow-xl mobile-shadow transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation text-base"
+                        >
+                          <ShoppingBag className="mr-3 h-5 w-5" />
+                          View All Products
+                          <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                        </Button>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -281,7 +285,7 @@ export default function Index() {
       </section>
 
       {/* About Section */}
-      <section className="py-16 sm:py-20 lg:py-32 relative overflow-hidden">
+      <section id="about-section" className="py-16 sm:py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-black" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(220,20,60,0.1),transparent_70%)]" />
 
@@ -295,18 +299,16 @@ export default function Index() {
                   About APEX
                 </Badge>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight">
-                  Crafting
-                  <span className="gradient-text"> Excellence</span>
-                  <br />
-                  Since 1998
+                  Welcome to
+                  <span className="gradient-text"> W.O.S APEX</span>
                 </h2>
               </div>
 
               <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-                For over 25 years, APEX has been Africa's leading promotional
-                products provider. We've built our reputation on delivering
-                premium quality corporate gifts, workwear, and custom branding
-                solutions that help businesses make lasting impressions.
+                At W.O.S APEX we believe your clothing should work as hard as you do, and look good doing it. W.O.S APEX is your one-stop online destination for premium clothing, durable workwear and curated gifting. Driven by W.O.S, W.O.S APEX stands at the intersection of function and flare.
+              </p>
+              <p className="text-lg md:text-xl text-gray-300 leading-relaxed mt-4">
+                Welcome to W.O.S APEX
               </p>
 
               <div className="grid sm:grid-cols-2 gap-6">
@@ -412,7 +414,7 @@ export default function Index() {
       </section>
 
       {/* Catalogue Section */}
-      <section className="py-16 sm:py-20 lg:py-32 relative overflow-hidden">
+      <section id="catalogue-section" className="py-16 sm:py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-black to-gray-900" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(220,20,60,0.15),transparent_70%)]" />
 
