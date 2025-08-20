@@ -99,10 +99,14 @@ export default function AdminDashboard() {
       description: "Main slideshow and CTA buttons",
       currentContent: {
         title: "Hero Slideshow",
-        description: "Background images with Learn More and View All Products buttons",
-        buttons: ["Learn More (links to #about-section)", "View All Products (links to #catalogue-section)"],
-        images: ["3 banner images currently displayed"]
-      }
+        description:
+          "Background images with Learn More and View All Products buttons",
+        buttons: [
+          "Learn More (links to #about-section)",
+          "View All Products (links to #catalogue-section)",
+        ],
+        images: ["3 banner images currently displayed"],
+      },
     },
     {
       id: "about",
@@ -110,14 +114,15 @@ export default function AdminDashboard() {
       description: "Company information and values",
       currentContent: {
         title: "Welcome to W.O.S APEX",
-        description: "At W.O.S APEX we believe your clothing should work as hard as you do, and look good doing it. W.O.S APEX is your one-stop online destination for premium clothing, durable workwear and curated gifting. Driven by W.O.S, W.O.S APEX stands at the intersection of function and flare.\n\nWelcome to W.O.S APEX",
+        description:
+          "At W.O.S APEX we believe your clothing should work as hard as you do, and look good doing it. W.O.S APEX is your one-stop online destination for premium clothing, durable workwear and curated gifting. Driven by W.O.S, W.O.S APEX stands at the intersection of function and flare.\n\nWelcome to W.O.S APEX",
         features: [
           "Quality First: Premium materials and craftsmanship in every product",
           "Expert Team: Professional designers and branding specialists",
           "Fast Service: Quick turnaround times nationwide",
-          "Guaranteed: 100% satisfaction guarantee on all orders"
-        ]
-      }
+          "Guaranteed: 100% satisfaction guarantee on all orders",
+        ],
+      },
     },
     {
       id: "catalogue",
@@ -125,25 +130,34 @@ export default function AdminDashboard() {
       description: "Product categories display",
       currentContent: {
         title: "Explore Our Premium Collections",
-        description: "Discover thousands of premium promotional products, corporate gifts, and custom branding solutions designed to elevate your business presence.",
+        description:
+          "Discover thousands of premium promotional products, corporate gifts, and custom branding solutions designed to elevate your business presence.",
         ctaTitle: "Browse Our Catalogues",
-        ctaDescription: "Download our comprehensive product catalogues to explore our full range of offerings.",
-        categories: ["Corporate Gifts -> /gifting", "Clothing -> /corporate-clothing", "Workwear -> /workwear", "Headwear & Accessories -> /headwear"]
-      }
+        ctaDescription:
+          "Download our comprehensive product catalogues to explore our full range of offerings.",
+        categories: [
+          "Corporate Gifts -> /gifting",
+          "Clothing -> /corporate-clothing",
+          "Workwear -> /workwear",
+          "Headwear & Accessories -> /headwear",
+        ],
+      },
     },
     {
       id: "footer",
       name: "Footer",
       description: "Footer content and links",
       currentContent: {
-        companyDescription: "W.O.S APEX is your one-stop online destination for premium clothing, durable workwear and curated gifting. Driven by W.O.S, W.O.S APEX stands at the intersection of function and flare. Welcome to W.O.S APEX",
+        companyDescription:
+          "W.O.S APEX is your one-stop online destination for premium clothing, durable workwear and curated gifting. Driven by W.O.S, W.O.S APEX stands at the intersection of function and flare. Welcome to W.O.S APEX",
         location: "Cape Town, South Africa",
         phone: "+27 76 035 5295",
         email: "apex@w-o-s.co.za",
         hours: "Mon-Fri: 8AM-5PM",
-        newsletterText: "Subscribe to our newsletter for the latest deals and product updates.",
-        socialMedia: ["Facebook", "Twitter", "Instagram", "LinkedIn"]
-      }
+        newsletterText:
+          "Subscribe to our newsletter for the latest deals and product updates.",
+        socialMedia: ["Facebook", "Twitter", "Instagram", "LinkedIn"],
+      },
     },
     {
       id: "header",
@@ -153,9 +167,18 @@ export default function AdminDashboard() {
         topBarPhone: "+27 76 035 5295",
         topBarEmail: "apex@w-o-s.co.za",
         searchPlaceholder: "Search products...",
-        navItems: ["Clothing", "Workwear", "Headwear", "Safety Gear", "Gifting", "Display", "Footwear", "Custom Products"],
-        logo: "APEX Logo with company branding"
-      }
+        navItems: [
+          "Clothing",
+          "Workwear",
+          "Headwear",
+          "Safety Gear",
+          "Gifting",
+          "Display",
+          "Footwear",
+          "Custom Products",
+        ],
+        logo: "APEX Logo with company branding",
+      },
     },
   ];
 
@@ -582,18 +605,28 @@ export default function AdminDashboard() {
                 <select
                   value={contentForm.section}
                   onChange={(e) => {
-                    const selectedSection = contentSections.find(s => s.id === e.target.value);
+                    const selectedSection = contentSections.find(
+                      (s) => s.id === e.target.value,
+                    );
                     if (selectedSection && selectedSection.currentContent) {
                       // Auto-populate with current content
                       setContentForm({
                         ...contentForm,
                         section: e.target.value,
-                        title: selectedSection.currentContent.title || '',
-                        description: selectedSection.currentContent.description || '',
-                        content: JSON.stringify(selectedSection.currentContent, null, 2),
+                        title: selectedSection.currentContent.title || "",
+                        description:
+                          selectedSection.currentContent.description || "",
+                        content: JSON.stringify(
+                          selectedSection.currentContent,
+                          null,
+                          2,
+                        ),
                       });
                     } else {
-                      setContentForm({ ...contentForm, section: e.target.value });
+                      setContentForm({
+                        ...contentForm,
+                        section: e.target.value,
+                      });
                     }
                   }}
                   className="w-full bg-white/10 border border-white/20 text-white rounded-md px-3 py-2"
@@ -613,41 +646,68 @@ export default function AdminDashboard() {
               </div>
 
               {/* Show Current Content Preview */}
-              {contentForm.section && contentSections.find(s => s.id === contentForm.section)?.currentContent && (
-                <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
-                  <h4 className="text-sm font-semibold text-blue-800 dark:text-blue-200 mb-2">📋 Current Content in this section:</h4>
-                  <div className="text-sm text-blue-700 dark:text-blue-300 space-y-2 max-h-40 overflow-y-auto">
-                    {(() => {
-                      const current = contentSections.find(s => s.id === contentForm.section)?.currentContent;
-                      if (!current) return null;
+              {contentForm.section &&
+                contentSections.find((s) => s.id === contentForm.section)
+                  ?.currentContent && (
+                  <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+                    <h4 className="text-sm font-semibold text-blue-800 dark:text-blue-200 mb-2">
+                      📋 Current Content in this section:
+                    </h4>
+                    <div className="text-sm text-blue-700 dark:text-blue-300 space-y-2 max-h-40 overflow-y-auto">
+                      {(() => {
+                        const current = contentSections.find(
+                          (s) => s.id === contentForm.section,
+                        )?.currentContent;
+                        if (!current) return null;
 
-                      return Object.entries(current).map(([key, value]) => {
-                        if (Array.isArray(value)) {
+                        return Object.entries(current).map(([key, value]) => {
+                          if (Array.isArray(value)) {
+                            return (
+                              <div
+                                key={key}
+                                className="border-l-2 border-blue-300 pl-2"
+                              >
+                                <strong className="capitalize">
+                                  {key.replace(/([A-Z])/g, " $1")}:
+                                </strong>
+                                <ul className="ml-4 list-disc">
+                                  {value.map((item, idx) => (
+                                    <li key={idx} className="text-xs">
+                                      {typeof item === "object"
+                                        ? `${item.title}: ${item.desc}`
+                                        : item}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            );
+                          }
                           return (
-                            <div key={key} className="border-l-2 border-blue-300 pl-2">
-                              <strong className="capitalize">{key.replace(/([A-Z])/g, ' $1')}:</strong>
-                              <ul className="ml-4 list-disc">
-                                {value.map((item, idx) => (
-                                  <li key={idx} className="text-xs">{typeof item === 'object' ? `${item.title}: ${item.desc}` : item}</li>
-                                ))}
-                              </ul>
+                            <div
+                              key={key}
+                              className="border-l-2 border-blue-300 pl-2"
+                            >
+                              <strong className="capitalize">
+                                {key.replace(/([A-Z])/g, " $1")}:
+                              </strong>
+                              <span className="text-xs block mt-1">
+                                {typeof value === "string"
+                                  ? value.length > 200
+                                    ? value.substring(0, 200) + "..."
+                                    : value
+                                  : String(value)}
+                              </span>
                             </div>
                           );
-                        }
-                        return (
-                          <div key={key} className="border-l-2 border-blue-300 pl-2">
-                            <strong className="capitalize">{key.replace(/([A-Z])/g, ' $1')}:</strong>
-                            <span className="text-xs block mt-1">{typeof value === 'string' ? (value.length > 200 ? value.substring(0, 200) + '...' : value) : String(value)}</span>
-                          </div>
-                        );
-                      });
-                    })()}
+                        });
+                      })()}
+                    </div>
+                    <p className="text-xs text-blue-600 dark:text-blue-400 mt-2 italic">
+                      💡 This content is automatically loaded into the form
+                      fields below for editing
+                    </p>
                   </div>
-                  <p className="text-xs text-blue-600 dark:text-blue-400 mt-2 italic">
-                    💡 This content is automatically loaded into the form fields below for editing
-                  </p>
-                </div>
-              )}
+                )}
 
               <div className="space-y-2">
                 <Label className="text-white">Title</Label>
@@ -755,25 +815,35 @@ export default function AdminDashboard() {
           <CardContent>
             <div className="space-y-4 max-h-96 overflow-y-auto">
               {contentSections.map((section) => (
-                <div key={section.id} className="p-4 bg-white/5 rounded-lg border border-white/10">
+                <div
+                  key={section.id}
+                  className="p-4 bg-white/5 rounded-lg border border-white/10"
+                >
                   <div className="flex items-start justify-between mb-2">
                     <div>
                       <h4 className="text-white font-medium flex items-center">
                         <Globe className="h-4 w-4 mr-2 text-brand-red" />
                         {section.name}
                       </h4>
-                      <p className="text-sm text-gray-400">{section.description}</p>
+                      <p className="text-sm text-gray-400">
+                        {section.description}
+                      </p>
                     </div>
                     <Button
                       onClick={() => {
                         if (section.currentContent) {
                           setContentForm({
-                            id: '',
+                            id: "",
                             section: section.id,
-                            title: section.currentContent.title || '',
-                            description: section.currentContent.description || '',
-                            image: '',
-                            content: JSON.stringify(section.currentContent, null, 2),
+                            title: section.currentContent.title || "",
+                            description:
+                              section.currentContent.description || "",
+                            image: "",
+                            content: JSON.stringify(
+                              section.currentContent,
+                              null,
+                              2,
+                            ),
                             order: 0,
                           });
                         }
@@ -790,30 +860,63 @@ export default function AdminDashboard() {
                   {section.currentContent && (
                     <div className="text-xs text-gray-300 space-y-1 bg-black/20 p-3 rounded border-l-2 border-brand-red/50">
                       {section.currentContent.title && (
-                        <div><strong className="text-brand-red">Title:</strong> {section.currentContent.title}</div>
+                        <div>
+                          <strong className="text-brand-red">Title:</strong>{" "}
+                          {section.currentContent.title}
+                        </div>
                       )}
                       {section.currentContent.description && (
-                        <div><strong className="text-brand-red">Description:</strong> {section.currentContent.description.substring(0, 100)}{section.currentContent.description.length > 100 ? '...' : ''}</div>
+                        <div>
+                          <strong className="text-brand-red">
+                            Description:
+                          </strong>{" "}
+                          {section.currentContent.description.substring(0, 100)}
+                          {section.currentContent.description.length > 100
+                            ? "..."
+                            : ""}
+                        </div>
                       )}
                       {section.currentContent.companyDescription && (
-                        <div><strong className="text-brand-red">Company Description:</strong> {section.currentContent.companyDescription.substring(0, 100)}...</div>
+                        <div>
+                          <strong className="text-brand-red">
+                            Company Description:
+                          </strong>{" "}
+                          {section.currentContent.companyDescription.substring(
+                            0,
+                            100,
+                          )}
+                          ...
+                        </div>
                       )}
                       {section.currentContent.location && (
-                        <div><strong className="text-brand-red">Location:</strong> {section.currentContent.location}</div>
+                        <div>
+                          <strong className="text-brand-red">Location:</strong>{" "}
+                          {section.currentContent.location}
+                        </div>
                       )}
                       {section.currentContent.phone && (
-                        <div><strong className="text-brand-red">Phone:</strong> {section.currentContent.phone}</div>
+                        <div>
+                          <strong className="text-brand-red">Phone:</strong>{" "}
+                          {section.currentContent.phone}
+                        </div>
                       )}
                       {section.currentContent.email && (
-                        <div><strong className="text-brand-red">Email:</strong> {section.currentContent.email}</div>
+                        <div>
+                          <strong className="text-brand-red">Email:</strong>{" "}
+                          {section.currentContent.email}
+                        </div>
                       )}
                       {section.currentContent.features && (
                         <div>
                           <strong className="text-brand-red">Features:</strong>
                           <ul className="ml-4 list-disc">
-                            {section.currentContent.features.slice(0, 2).map((feature, idx) => (
-                              <li key={idx} className="text-xs">{feature.substring(0, 80)}...</li>
-                            ))}
+                            {section.currentContent.features
+                              .slice(0, 2)
+                              .map((feature, idx) => (
+                                <li key={idx} className="text-xs">
+                                  {feature.substring(0, 80)}...
+                                </li>
+                              ))}
                           </ul>
                         </div>
                       )}
@@ -832,19 +935,36 @@ export default function AdminDashboard() {
                     </h5>
                   </div>
                   {content.map((item: any) => (
-                    <div key={item.id} className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10">
+                    <div
+                      key={item.id}
+                      className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10"
+                    >
                       <div className="flex-1">
                         <h4 className="text-white font-medium">{item.title}</h4>
-                        <p className="text-sm text-gray-400">{item.section} • Order: {item.order}</p>
+                        <p className="text-sm text-gray-400">
+                          {item.section} • Order: {item.order}
+                        </p>
                         {item.description && (
-                          <p className="text-xs text-gray-500 mt-1">{item.description.substring(0, 80)}...</p>
+                          <p className="text-xs text-gray-500 mt-1">
+                            {item.description.substring(0, 80)}...
+                          </p>
                         )}
                       </div>
                       <div className="flex space-x-1">
-                        <Button onClick={() => editContent(item)} variant="ghost" size="sm" className="text-blue-400 hover:bg-blue-500/10">
+                        <Button
+                          onClick={() => editContent(item)}
+                          variant="ghost"
+                          size="sm"
+                          className="text-blue-400 hover:bg-blue-500/10"
+                        >
                           <Edit className="h-4 w-4" />
                         </Button>
-                        <Button onClick={() => deleteContent(item.id)} variant="ghost" size="sm" className="text-red-400 hover:bg-red-500/10">
+                        <Button
+                          onClick={() => deleteContent(item.id)}
+                          variant="ghost"
+                          size="sm"
+                          className="text-red-400 hover:bg-red-500/10"
+                        >
                           <Trash2 className="h-4 w-4" />
                         </Button>
                       </div>
