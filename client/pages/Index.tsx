@@ -40,28 +40,6 @@ import {
 } from "lucide-react";
 
 export default function Index() {
-  React.useEffect(() => {
-    async function getData() {
-      // Check if Supabase is available
-      if (typeof window !== "undefined" && window.supabase) {
-        try {
-          let { data, error } = await window.supabase.from("test").select("*");
-          console.log("Supabase data:", data);
-          if (error) {
-            console.error(
-              "Supabase error:",
-              error.message || JSON.stringify(error),
-            );
-          }
-        } catch (err) {
-          console.error("Supabase connection error:", err.message || err);
-        }
-      } else {
-        console.warn("Supabase client not available");
-      }
-    }
-    getData();
-  }, []);
 
   // SEO structured data for FAQ
   const faqData = [
