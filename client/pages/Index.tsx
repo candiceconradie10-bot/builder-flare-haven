@@ -141,7 +141,7 @@ export default function Index() {
       />
 
       {/* Marketing Slideshow Hero Section */}
-      <section className="relative h-[70vh] sm:h-[80vh] lg:h-[90vh] overflow-hidden">
+      <section className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[90vh] overflow-hidden">
         {/* Slideshow Container */}
         <div className="relative w-full h-full">
           {marketingSlides.map((slide, index) => (
@@ -173,28 +173,28 @@ export default function Index() {
 
               {/* Content - Buttons positioned at bottom */}
               <div className="relative h-full flex items-end justify-center">
-                <div className="container mx-auto px-4 pb-20 relative z-10">
+                <div className="container mx-auto px-4 pb-16 sm:pb-20 relative z-10">
                   <div className="text-center max-w-2xl mx-auto">
                     {/* CTA Buttons at bottom */}
-                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
-                      <a href="#about-section">
+                    <div className="flex flex-col gap-4 sm:flex-row sm:gap-6 justify-center px-4 sm:px-0">
+                      <a href="#about-section" className="w-full sm:w-auto">
                         <Button
                           variant="outline"
                           size="lg"
-                          className="w-full sm:w-auto bg-transparent border-2 border-white/40 text-white hover:bg-white/10 hover:border-white/60 font-bold px-8 py-4 rounded-xl backdrop-blur-lg transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation text-base"
+                          className="w-full min-h-[56px] bg-transparent border-2 border-white/40 text-white hover:bg-white/10 hover:border-white/60 font-bold px-6 py-4 sm:px-8 rounded-xl backdrop-blur-lg transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation text-base sm:text-lg active:bg-white/20"
                         >
-                          <Play className="mr-3 h-5 w-5" />
-                          Learn More
+                          <Play className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6" />
+                          <span className="text-sm sm:text-base font-bold">Learn More</span>
                         </Button>
                       </a>
-                      <a href="#catalogue-section">
+                      <a href="#catalogue-section" className="w-full sm:w-auto">
                         <Button
                           size="lg"
-                          className="w-full sm:w-auto bg-white/20 backdrop-blur-lg border border-white/30 text-white hover:bg-white/30 hover:border-white/50 font-bold px-8 py-4 rounded-xl shadow-xl mobile-shadow transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation text-base"
+                          className="w-full min-h-[56px] bg-white/20 backdrop-blur-lg border border-white/30 text-white hover:bg-white/30 hover:border-white/50 font-bold px-6 py-4 sm:px-8 rounded-xl shadow-xl mobile-shadow transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation text-base sm:text-lg active:bg-white/40"
                         >
-                          <ShoppingBag className="mr-3 h-5 w-5" />
-                          View All Products
-                          <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                          <ShoppingBag className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6" />
+                          <span className="text-sm sm:text-base font-bold">View All Products</span>
+                          <ArrowRight className="ml-2 sm:ml-3 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform duration-300" />
                         </Button>
                       </a>
                     </div>
@@ -212,9 +212,10 @@ export default function Index() {
             onClick={prevSlide}
             variant="ghost"
             size="sm"
-            className="pointer-events-auto bg-black/30 backdrop-blur-lg border border-white/20 text-white hover:bg-black/50 hover:border-white/40 rounded-full p-3 sm:p-4 transition-all duration-300 hover:scale-110 active:scale-95 touch-manipulation"
+            className="pointer-events-auto bg-black/30 backdrop-blur-lg border border-white/20 text-white hover:bg-black/50 hover:border-white/40 rounded-full min-w-[48px] min-h-[48px] p-3 sm:p-4 transition-all duration-300 hover:scale-110 active:scale-95 touch-manipulation active:bg-black/60"
+            aria-label="Previous slide"
           >
-            <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
+            <ChevronLeft className="h-6 w-6" />
           </Button>
 
           {/* Next Button */}
@@ -222,9 +223,10 @@ export default function Index() {
             onClick={nextSlide}
             variant="ghost"
             size="sm"
-            className="pointer-events-auto bg-black/30 backdrop-blur-lg border border-white/20 text-white hover:bg-black/50 hover:border-white/40 rounded-full p-3 sm:p-4 transition-all duration-300 hover:scale-110 active:scale-95 touch-manipulation"
+            className="pointer-events-auto bg-black/30 backdrop-blur-lg border border-white/20 text-white hover:bg-black/50 hover:border-white/40 rounded-full min-w-[48px] min-h-[48px] p-3 sm:p-4 transition-all duration-300 hover:scale-110 active:scale-95 touch-manipulation active:bg-black/60"
+            aria-label="Next slide"
           >
-            <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
+            <ChevronRight className="h-6 w-6" />
           </Button>
         </div>
 
@@ -236,11 +238,12 @@ export default function Index() {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full transition-all duration-300 touch-manipulation ${
+                className={`min-w-[44px] min-h-[44px] w-4 h-4 sm:w-5 sm:h-5 rounded-full transition-all duration-300 touch-manipulation p-2 ${
                   index === currentSlide
                     ? "bg-white shadow-lg scale-125"
-                    : "bg-white/40 hover:bg-white/60"
+                    : "bg-white/40 hover:bg-white/60 active:bg-white/80"
                 }`}
+                aria-label={`Go to slide ${index + 1}`}
               />
             ))}
           </div>
@@ -250,7 +253,8 @@ export default function Index() {
             onClick={() => setIsPlaying(!isPlaying)}
             variant="ghost"
             size="sm"
-            className="bg-black/30 backdrop-blur-lg border border-white/20 text-white hover:bg-black/50 hover:border-white/40 rounded-full p-2 transition-all duration-300 hover:scale-110 active:scale-95 touch-manipulation"
+            className="bg-black/30 backdrop-blur-lg border border-white/20 text-white hover:bg-black/50 hover:border-white/40 rounded-full min-w-[44px] min-h-[44px] p-3 transition-all duration-300 hover:scale-110 active:scale-95 touch-manipulation active:bg-black/60"
+            aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
           >
             {isPlaying ? (
               <Pause className="h-4 w-4" />
