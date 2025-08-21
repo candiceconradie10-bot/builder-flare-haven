@@ -366,12 +366,13 @@ export function Header() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-white hover:bg-white/10 hover:text-brand-red transition-all duration-300 rounded-xl p-3 relative group touch-manipulation"
+                  className="text-white hover:bg-white/10 hover:text-brand-red transition-all duration-300 rounded-xl min-w-[48px] min-h-[48px] p-3 relative group touch-manipulation active:bg-white/20"
+                  aria-label={`Shopping cart ${state.itemCount > 0 ? `with ${state.itemCount} items` : 'empty'}`}
                 >
                   <ShoppingCart className="h-6 w-6" />
                   {state.itemCount > 0 && (
-                    <Badge className="absolute -top-1 -right-1 bg-gradient-to-r from-brand-red to-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center border-2 border-black font-bold">
-                      {state.itemCount}
+                    <Badge className="absolute -top-1 -right-1 bg-gradient-to-r from-brand-red to-red-600 text-white text-xs rounded-full min-w-[20px] h-5 flex items-center justify-center border-2 border-black font-bold px-1">
+                      {state.itemCount > 99 ? '99+' : state.itemCount}
                     </Badge>
                   )}
                 </Button>
@@ -381,8 +382,10 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-white hover:bg-white/10 rounded-xl p-3 transition-all duration-300 touch-manipulation active:scale-95"
+                className="text-white hover:bg-white/10 rounded-xl min-w-[48px] min-h-[48px] p-3 transition-all duration-300 touch-manipulation active:scale-95 active:bg-white/20"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isMobileMenuOpen}
               >
                 <div className="relative w-6 h-6">
                   <Menu
@@ -465,10 +468,16 @@ export function Header() {
           <div
             className="absolute inset-0 bg-black/90 backdrop-blur-lg"
             onClick={() => setIsMobileMenuOpen(false)}
+            aria-hidden="true"
           />
 
           {/* Menu Panel */}
-          <div className="absolute right-0 top-0 h-full w-full max-w-sm bg-black/95 backdrop-blur-xl border-l border-white/20 overflow-y-auto">
+          <div
+            className="absolute right-0 top-0 h-full w-full max-w-sm bg-black/95 backdrop-blur-xl border-l border-white/20 overflow-y-auto"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile navigation menu"
+          >
             <div className="p-6 space-y-6">
               {/* Mobile Search */}
               <div className="relative">
@@ -540,7 +549,8 @@ export function Header() {
               <div className="grid grid-cols-2 gap-4">
                 <Button
                   variant="ghost"
-                  className="flex flex-col items-center space-y-2 text-white hover:bg-white/10 hover:text-brand-red rounded-xl p-4 h-auto"
+                  className="flex flex-col items-center space-y-2 text-white hover:bg-white/10 hover:text-brand-red rounded-xl p-4 h-auto min-h-[80px] touch-manipulation active:bg-white/20"
+                  aria-label="Wishlist"
                 >
                   <Heart className="h-6 w-6" />
                   <span className="text-sm font-medium">Wishlist</span>
@@ -549,13 +559,14 @@ export function Header() {
                 <Link to="/cart" onClick={() => setIsMobileMenuOpen(false)}>
                   <Button
                     variant="ghost"
-                    className="w-full flex flex-col items-center space-y-2 text-white hover:bg-white/10 hover:text-brand-red rounded-xl p-4 h-auto relative"
+                    className="w-full flex flex-col items-center space-y-2 text-white hover:bg-white/10 hover:text-brand-red rounded-xl p-4 h-auto min-h-[80px] relative touch-manipulation active:bg-white/20"
+                    aria-label={`Go to cart ${state.itemCount > 0 ? `with ${state.itemCount} items` : ''}`}
                   >
                     <ShoppingCart className="h-6 w-6" />
                     <span className="text-sm font-medium">Cart</span>
                     {state.itemCount > 0 && (
-                      <Badge className="absolute -top-1 -right-1 bg-gradient-to-r from-brand-red to-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
-                        {state.itemCount}
+                      <Badge className="absolute -top-1 -right-1 bg-gradient-to-r from-brand-red to-red-600 text-white text-xs rounded-full min-w-[20px] h-5 flex items-center justify-center font-bold px-1">
+                        {state.itemCount > 99 ? '99+' : state.itemCount}
                       </Badge>
                     )}
                   </Button>
@@ -571,7 +582,7 @@ export function Header() {
                   >
                     <Link
                       to={item.href}
-                      className="flex items-center justify-between w-full p-4 text-white hover:text-brand-red hover:bg-white/10 transition-all duration-300 font-bold"
+                      className="flex items-center justify-between w-full p-4 text-white hover:text-brand-red hover:bg-white/10 transition-all duration-300 font-bold min-h-[56px] touch-manipulation active:bg-white/20"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       <div className="flex items-center space-x-3">
@@ -600,7 +611,7 @@ export function Header() {
                             <Link
                               key={subItem}
                               to={`${item.href}?category=${subItem.toLowerCase().replace(" ", "-")}`}
-                              className="block p-3 text-white/80 hover:text-brand-red hover:bg-white/10 rounded-lg transition-all duration-200 font-medium"
+                              className="block p-3 text-white/80 hover:text-brand-red hover:bg-white/10 rounded-lg transition-all duration-200 font-medium min-h-[48px] touch-manipulation active:bg-white/20 flex items-center"
                               onClick={() => setIsMobileMenuOpen(false)}
                             >
                               {subItem}
@@ -621,14 +632,16 @@ export function Header() {
                 <div className="space-y-3">
                   <a
                     href="tel:+27760355295"
-                    className="flex items-center space-x-3 text-white hover:text-yellow-300 transition-colors duration-300 p-3 rounded-lg hover:bg-white/10"
+                    className="flex items-center space-x-3 text-white hover:text-yellow-300 transition-colors duration-300 p-4 rounded-lg hover:bg-white/10 min-h-[56px] touch-manipulation active:bg-white/20"
+                    aria-label="Call us at +27 76 035 5295"
                   >
                     <Phone className="h-5 w-5" />
                     <span className="font-bold">+27 76 035 5295</span>
                   </a>
                   <a
                     href="mailto:apex@w-o-s.co.za"
-                    className="flex items-center space-x-3 text-white hover:text-yellow-300 transition-colors duration-300 p-3 rounded-lg hover:bg-white/10"
+                    className="flex items-center space-x-3 text-white hover:text-yellow-300 transition-colors duration-300 p-4 rounded-lg hover:bg-white/10 min-h-[56px] touch-manipulation active:bg-white/20"
+                    aria-label="Email us at apex@w-o-s.co.za"
                   >
                     <Mail className="h-5 w-5" />
                     <span className="font-bold">apex@w-o-s.co.za</span>
