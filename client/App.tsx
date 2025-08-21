@@ -72,7 +72,10 @@ const App = () => (
                 <Route path="/admin-login" element={<AdminLogin />} />
                 <Route path="/admin-dashboard" element={<AdminDashboard />} />
                 <Route path="/checkout" element={<Checkout />} />
-                <Route path="/order-confirmation" element={<OrderConfirmation />} />
+                <Route
+                  path="/order-confirmation"
+                  element={<OrderConfirmation />}
+                />
                 <Route path="/:category" element={<ProductCategory />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
