@@ -356,7 +356,7 @@ export default function Index() {
             <div className="relative animate-fadeInRight">
               <div className="absolute -inset-4 bg-gradient-to-r from-brand-red/30 to-red-600/30 rounded-3xl blur-2xl opacity-60 animate-pulse" />
               <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/20 mobile-glass">
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="text-center p-6 rounded-2xl bg-gradient-to-r from-emerald-500/20 to-green-600/20 border border-green-500/30">
                     <div className="text-3xl md:text-4xl font-black text-white">
                       10K+
