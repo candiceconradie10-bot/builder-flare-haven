@@ -150,19 +150,28 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     dispatch({ type: "AUTH_START" });
 
     try {
-      // Simulate API call - in real app, this would be an actual API request
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      if (!window.supabase) {
+        throw new Error("Supabase client not initialized");
+      }
 
-      // Mock validation - in real app, validate against backend
-      if (email && password.length >= 6) {
+      const { data, error } = await window.supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      if (data.user) {
         const user: User = {
-          id: `user_${Date.now()}`,
-          email,
-          firstName: email.split("@")[0].split(".")[0] || "User",
-          lastName: email.split("@")[0].split(".")[1] || "Name",
-          phone: "",
-          company: "",
-          addresses: [
+          id: data.user.id,
+          email: data.user.email || email,
+          firstName: data.user.user_metadata?.firstName || email.split("@")[0].split(".")[0] || "User",
+          lastName: data.user.user_metadata?.lastName || email.split("@")[0].split(".")[1] || "Name",
+          phone: data.user.user_metadata?.phone || "",
+          company: data.user.user_metadata?.company || "",
+          addresses: data.user.user_metadata?.addresses || [
             {
               id: "addr_1",
               type: "shipping",
@@ -176,15 +185,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           ],
         };
 
-        // Store in localStorage (in real app, handle JWT tokens properly)
+        // Store in localStorage
         localStorage.setItem("apex_user", JSON.stringify(user));
-        localStorage.setItem("apex_token", `token_${Date.now()}`);
+        localStorage.setItem("apex_token", data.session?.access_token || "");
 
         dispatch({ type: "AUTH_SUCCESS", payload: user });
-      } else {
-        throw new Error(
-          "Invalid email or password. Password must be at least 6 characters.",
-        );
       }
     } catch (error) {
       const errorMessage =
