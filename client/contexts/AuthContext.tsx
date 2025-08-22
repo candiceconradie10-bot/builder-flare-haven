@@ -203,10 +203,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     dispatch({ type: "AUTH_START" });
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1200));
+      if (!window.supabase) {
+        throw new Error("Supabase client not initialized");
+      }
 
-      // Mock validation
+      // Validation
       if (
         !userData.email ||
         !userData.password ||
@@ -220,21 +221,40 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         throw new Error("Password must be at least 6 characters");
       }
 
-      const user: User = {
-        id: `user_${Date.now()}`,
+      const { data, error } = await window.supabase.auth.signUp({
         email: userData.email,
-        firstName: userData.firstName,
-        lastName: userData.lastName,
-        phone: userData.phone || "",
-        company: userData.company || "",
-        addresses: [],
-      };
+        password: userData.password,
+        options: {
+          data: {
+            firstName: userData.firstName,
+            lastName: userData.lastName,
+            phone: userData.phone || "",
+            company: userData.company || "",
+          },
+        },
+      });
 
-      // Store in localStorage
-      localStorage.setItem("apex_user", JSON.stringify(user));
-      localStorage.setItem("apex_token", `token_${Date.now()}`);
+      if (error) {
+        throw new Error(error.message);
+      }
 
-      dispatch({ type: "AUTH_SUCCESS", payload: user });
+      if (data.user) {
+        const user: User = {
+          id: data.user.id,
+          email: data.user.email || userData.email,
+          firstName: userData.firstName,
+          lastName: userData.lastName,
+          phone: userData.phone || "",
+          company: userData.company || "",
+          addresses: [],
+        };
+
+        // Store in localStorage
+        localStorage.setItem("apex_user", JSON.stringify(user));
+        localStorage.setItem("apex_token", data.session?.access_token || "");
+
+        dispatch({ type: "AUTH_SUCCESS", payload: user });
+      }
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : "Signup failed";
