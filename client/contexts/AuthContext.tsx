@@ -130,19 +130,71 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
-  // Check for stored auth token on mount
+  // Check for Supabase session on mount
   useEffect(() => {
-    const storedUser = localStorage.getItem("apex_user");
-    const storedToken = localStorage.getItem("apex_token");
+    const initializeAuth = async () => {
+      if (!window.supabase) return;
 
-    if (storedUser && storedToken) {
       try {
-        const user = JSON.parse(storedUser);
-        dispatch({ type: "AUTH_SUCCESS", payload: user });
+        const { data: { session } } = await window.supabase.auth.getSession();
+
+        if (session?.user) {
+          const user: User = {
+            id: session.user.id,
+            email: session.user.email || "",
+            firstName: session.user.user_metadata?.firstName || "User",
+            lastName: session.user.user_metadata?.lastName || "Name",
+            phone: session.user.user_metadata?.phone || "",
+            company: session.user.user_metadata?.company || "",
+            addresses: session.user.user_metadata?.addresses || [],
+          };
+
+          localStorage.setItem("apex_user", JSON.stringify(user));
+          localStorage.setItem("apex_token", session.access_token);
+          dispatch({ type: "AUTH_SUCCESS", payload: user });
+        } else {
+          // Clear any stale data
+          localStorage.removeItem("apex_user");
+          localStorage.removeItem("apex_token");
+        }
       } catch (error) {
+        console.error("Auth initialization error:", error);
         localStorage.removeItem("apex_user");
         localStorage.removeItem("apex_token");
       }
+    };
+
+    initializeAuth();
+
+    // Listen for auth state changes
+    if (window.supabase) {
+      const { data: { subscription } } = window.supabase.auth.onAuthStateChange(
+        (event, session) => {
+          if (event === 'SIGNED_IN' && session?.user) {
+            const user: User = {
+              id: session.user.id,
+              email: session.user.email || "",
+              firstName: session.user.user_metadata?.firstName || "User",
+              lastName: session.user.user_metadata?.lastName || "Name",
+              phone: session.user.user_metadata?.phone || "",
+              company: session.user.user_metadata?.company || "",
+              addresses: session.user.user_metadata?.addresses || [],
+            };
+
+            localStorage.setItem("apex_user", JSON.stringify(user));
+            localStorage.setItem("apex_token", session.access_token);
+            dispatch({ type: "AUTH_SUCCESS", payload: user });
+          } else if (event === 'SIGNED_OUT') {
+            localStorage.removeItem("apex_user");
+            localStorage.removeItem("apex_token");
+            dispatch({ type: "LOGOUT" });
+          }
+        }
+      );
+
+      return () => {
+        subscription.unsubscribe();
+      };
     }
   }, []);
 
