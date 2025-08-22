@@ -263,31 +263,23 @@ export default function Cart() {
 
                 {/* Action Buttons */}
                 <div className="space-y-3">
-                  {authState.isAuthenticated ? (
-                    <Link to="/checkout" className="block w-full">
-                      <Button className="w-full bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold py-4 rounded-xl shadow-xl mobile-shadow-red transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation">
-                        <CreditCard className="h-5 w-5 mr-2" />
-                        Proceed to Checkout
-                      </Button>
-                    </Link>
-                  ) : (
-                    <div className="space-y-3">
-                      <Link
-                        to="/auth"
-                        state={{ from: { pathname: "/checkout" } }}
-                        className="block w-full"
-                      >
-                        <Button className="w-full bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold py-4 rounded-xl shadow-xl mobile-shadow-red transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation">
-                          <CreditCard className="h-5 w-5 mr-2" />
-                          Sign In to Checkout
-                        </Button>
-                      </Link>
-                      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-3">
-                        <p className="text-xs text-center text-blue-800 dark:text-blue-200 flex items-center justify-center">
-                          <Shield className="h-3 w-3 mr-1" />
-                          Create an account or sign in to place your order
-                        </p>
-                      </div>
+                  <Link to="/checkout" className="block w-full">
+                    <Button className="w-full bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold py-4 rounded-xl shadow-xl mobile-shadow-red transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation">
+                      <CreditCard className="h-5 w-5 mr-2" />
+                      Proceed to Checkout
+                    </Button>
+                  </Link>
+
+                  {!authState.isAuthenticated && (
+                    <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-3">
+                      <p className="text-xs text-center text-blue-800 dark:text-blue-200 flex items-center justify-center">
+                        <Shield className="h-3 w-3 mr-1" />
+                        Continue as guest or{" "}
+                        <Link to="/auth" className="underline ml-1 hover:text-brand-red">
+                          sign in
+                        </Link>{" "}
+                        for faster checkout
+                      </p>
                     </div>
                   )}
                   <Link to="/" className="block w-full">
