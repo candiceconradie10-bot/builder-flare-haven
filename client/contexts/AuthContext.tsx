@@ -99,7 +99,7 @@ interface AuthContextType {
   state: AuthState;
   login: (email: string, password: string) => Promise<void>;
   signup: (userData: SignupData) => Promise<void>;
-  logout: () => void;
+  logout: () => Promise<void>;
   updateUser: (userData: Partial<User>) => void;
   clearError: () => void;
 }
