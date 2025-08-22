@@ -34,6 +34,9 @@ export default function Auth() {
     company: "",
   });
 
+  const [formErrors, setFormErrors] = useState<{[key: string]: string}>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const { state, login, signup, clearError } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
@@ -57,9 +60,49 @@ export default function Auth() {
     }
   }, [state.error, toast]);
 
+  const validateForm = () => {
+    const errors: {[key: string]: string} = {};
+
+    // Email validation
+    if (!formData.email) {
+      errors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = "Please enter a valid email address";
+    }
+
+    // Password validation
+    if (!formData.password) {
+      errors.password = "Password is required";
+    } else if (formData.password.length < 6) {
+      errors.password = "Password must be at least 6 characters";
+    }
+
+    // For signup, validate additional fields
+    if (!isLogin) {
+      if (!formData.firstName.trim()) {
+        errors.firstName = "First name is required";
+      }
+      if (!formData.lastName.trim()) {
+        errors.lastName = "Last name is required";
+      }
+      if (formData.phone && !/^[+]?[1-9][\d\s\-()]{7,15}$/.test(formData.phone)) {
+        errors.phone = "Please enter a valid phone number";
+      }
+    }
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     clearError();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
 
     try {
       if (isLogin) {
@@ -77,14 +120,25 @@ export default function Auth() {
       }
     } catch (error) {
       // Error is handled by useEffect above
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
+
+    // Clear field error when user starts typing
+    if (formErrors[name]) {
+      setFormErrors({
+        ...formErrors,
+        [name]: "",
+      });
+    }
   };
 
   const features = [
@@ -233,7 +287,15 @@ export default function Auth() {
                         onChange={handleInputChange}
                         className="pl-10 h-12 rounded-xl bg-white/10 border-white/20 text-white placeholder-gray-400 focus:border-brand-red/50 focus:bg-white/20 transition-all duration-300 text-base"
                         placeholder="your.email@company.com"
+                        aria-invalid={!!formErrors.email}
+                        aria-describedby={formErrors.email ? "email-error" : undefined}
                       />
+                      {formErrors.email && (
+                        <p id="email-error" className="text-red-400 text-xs mt-1 flex items-center">
+                          <AlertCircle className="h-3 w-3 mr-1" />
+                          {formErrors.email}
+                        </p>
+                      )}
                     </div>
                   </div>
 
@@ -256,7 +318,15 @@ export default function Auth() {
                         onChange={handleInputChange}
                         className="pl-10 pr-10 h-12 rounded-xl bg-white/10 border-white/20 text-white placeholder-gray-400 focus:border-brand-red/50 focus:bg-white/20 transition-all duration-300 text-base"
                         placeholder="Enter your password"
+                        aria-invalid={!!formErrors.password}
+                        aria-describedby={formErrors.password ? "password-error" : undefined}
                       />
+                      {formErrors.password && (
+                        <p id="password-error" className="text-red-400 text-xs mt-1 flex items-center">
+                          <AlertCircle className="h-3 w-3 mr-1" />
+                          {formErrors.password}
+                        </p>
+                      )}
                       <Button
                         type="button"
                         variant="ghost"
@@ -294,7 +364,14 @@ export default function Auth() {
                               onChange={handleInputChange}
                               className="pl-10 bg-white/10 border-white/20 text-white placeholder-gray-400 focus:border-brand-red/50 focus:bg-white/20 transition-all duration-300"
                               placeholder="John"
-                            />
+                            aria-invalid={!!formErrors.firstName}
+                          />
+                          {formErrors.firstName && (
+                            <p className="text-red-400 text-xs mt-1 flex items-center">
+                              <AlertCircle className="h-3 w-3 mr-1" />
+                              {formErrors.firstName}
+                            </p>
+                          )}
                           </div>
                         </div>
 
@@ -313,7 +390,14 @@ export default function Auth() {
                             onChange={handleInputChange}
                             className="bg-white/10 border-white/20 text-white placeholder-gray-400 focus:border-brand-red/50 focus:bg-white/20 transition-all duration-300"
                             placeholder="Doe"
+                            aria-invalid={!!formErrors.lastName}
                           />
+                          {formErrors.lastName && (
+                            <p className="text-red-400 text-xs mt-1 flex items-center">
+                              <AlertCircle className="h-3 w-3 mr-1" />
+                              {formErrors.lastName}
+                            </p>
+                          )}
                         </div>
                       </div>
 
@@ -333,7 +417,14 @@ export default function Auth() {
                             onChange={handleInputChange}
                             className="pl-10 bg-white/10 border-white/20 text-white placeholder-gray-400 focus:border-brand-red/50 focus:bg-white/20 transition-all duration-300"
                             placeholder="+27 11 123 4567"
+                            aria-invalid={!!formErrors.phone}
                           />
+                          {formErrors.phone && (
+                            <p className="text-red-400 text-xs mt-1 flex items-center">
+                              <AlertCircle className="h-3 w-3 mr-1" />
+                              {formErrors.phone}
+                            </p>
+                          )}
                         </div>
                       </div>
 
@@ -363,7 +454,7 @@ export default function Auth() {
                   <Button
                     type="submit"
                     className="w-full bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold py-4 rounded-xl shadow-xl mobile-shadow-red transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation text-base"
-                    disabled={state.isLoading}
+                    disabled={state.isLoading || isSubmitting}
                   >
                     {state.isLoading ? (
                       <div className="flex items-center justify-center space-x-2">
