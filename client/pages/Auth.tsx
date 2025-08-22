@@ -34,7 +34,7 @@ export default function Auth() {
     company: "",
   });
 
-  const [formErrors, setFormErrors] = useState<{[key: string]: string}>({});
+  const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { state, login, signup, clearError } = useAuth();
@@ -61,7 +61,7 @@ export default function Auth() {
   }, [state.error, toast]);
 
   const validateForm = () => {
-    const errors: {[key: string]: string} = {};
+    const errors: { [key: string]: string } = {};
 
     // Email validation
     if (!formData.email) {
@@ -85,7 +85,10 @@ export default function Auth() {
       if (!formData.lastName.trim()) {
         errors.lastName = "Last name is required";
       }
-      if (formData.phone && !/^[+]?[1-9][\d\s\-()]{7,15}$/.test(formData.phone)) {
+      if (
+        formData.phone &&
+        !/^[+]?[1-9][\d\s\-()]{7,15}$/.test(formData.phone)
+      ) {
         errors.phone = "Please enter a valid phone number";
       }
     }
@@ -288,10 +291,15 @@ export default function Auth() {
                         className="pl-10 h-12 rounded-xl bg-white/10 border-white/20 text-white placeholder-gray-400 focus:border-brand-red/50 focus:bg-white/20 transition-all duration-300 text-base"
                         placeholder="your.email@company.com"
                         aria-invalid={!!formErrors.email}
-                        aria-describedby={formErrors.email ? "email-error" : undefined}
+                        aria-describedby={
+                          formErrors.email ? "email-error" : undefined
+                        }
                       />
                       {formErrors.email && (
-                        <p id="email-error" className="text-red-400 text-xs mt-1 flex items-center">
+                        <p
+                          id="email-error"
+                          className="text-red-400 text-xs mt-1 flex items-center"
+                        >
                           <AlertCircle className="h-3 w-3 mr-1" />
                           {formErrors.email}
                         </p>
@@ -319,10 +327,15 @@ export default function Auth() {
                         className="pl-10 pr-10 h-12 rounded-xl bg-white/10 border-white/20 text-white placeholder-gray-400 focus:border-brand-red/50 focus:bg-white/20 transition-all duration-300 text-base"
                         placeholder="Enter your password"
                         aria-invalid={!!formErrors.password}
-                        aria-describedby={formErrors.password ? "password-error" : undefined}
+                        aria-describedby={
+                          formErrors.password ? "password-error" : undefined
+                        }
                       />
                       {formErrors.password && (
-                        <p id="password-error" className="text-red-400 text-xs mt-1 flex items-center">
+                        <p
+                          id="password-error"
+                          className="text-red-400 text-xs mt-1 flex items-center"
+                        >
                           <AlertCircle className="h-3 w-3 mr-1" />
                           {formErrors.password}
                         </p>
@@ -364,14 +377,14 @@ export default function Auth() {
                               onChange={handleInputChange}
                               className="pl-10 bg-white/10 border-white/20 text-white placeholder-gray-400 focus:border-brand-red/50 focus:bg-white/20 transition-all duration-300"
                               placeholder="John"
-                            aria-invalid={!!formErrors.firstName}
-                          />
-                          {formErrors.firstName && (
-                            <p className="text-red-400 text-xs mt-1 flex items-center">
-                              <AlertCircle className="h-3 w-3 mr-1" />
-                              {formErrors.firstName}
-                            </p>
-                          )}
+                              aria-invalid={!!formErrors.firstName}
+                            />
+                            {formErrors.firstName && (
+                              <p className="text-red-400 text-xs mt-1 flex items-center">
+                                <AlertCircle className="h-3 w-3 mr-1" />
+                                {formErrors.firstName}
+                              </p>
+                            )}
                           </div>
                         </div>
 
