@@ -315,10 +315,21 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const logout = (): void => {
-    localStorage.removeItem("apex_user");
-    localStorage.removeItem("apex_token");
-    dispatch({ type: "LOGOUT" });
+  const logout = async (): Promise<void> => {
+    try {
+      if (window.supabase) {
+        await window.supabase.auth.signOut();
+      }
+      localStorage.removeItem("apex_user");
+      localStorage.removeItem("apex_token");
+      dispatch({ type: "LOGOUT" });
+    } catch (error) {
+      console.error("Logout error:", error);
+      // Force logout locally even if Supabase call fails
+      localStorage.removeItem("apex_user");
+      localStorage.removeItem("apex_token");
+      dispatch({ type: "LOGOUT" });
+    }
   };
 
   const updateUser = (userData: Partial<User>): void => {
