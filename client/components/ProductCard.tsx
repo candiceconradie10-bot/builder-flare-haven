@@ -53,8 +53,9 @@ export function ProductCard({
   };
 
   return (
-    <div
-      className={`group relative ${cardSizes[size]} w-full touch-manipulation`}
+    <Link
+      to={`/product/${product.id}`}
+      className={`group relative ${cardSizes[size]} w-full touch-manipulation block`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onTouchStart={() => setIsHovered(true)}
@@ -226,6 +227,6 @@ export function ProductCard({
 
       {/* External Glow Effect */}
       <div className="absolute -inset-4 bg-gradient-to-r from-brand-red/20 via-red-600/20 to-brand-red/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 -z-20" />
-    </div>
+    </Link>
   );
 }
