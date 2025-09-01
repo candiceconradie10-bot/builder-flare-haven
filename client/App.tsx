@@ -91,4 +91,11 @@ const App = () => (
   </QueryClientProvider>
 );
 
-createRoot(document.getElementById("root")!).render(<App />);
+const container = document.getElementById("root")!;
+// Cache React root on window to avoid calling createRoot twice during HMR
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const w: any = window as any;
+if (!w.__appRoot) {
+  w.__appRoot = createRoot(container);
+}
+w.__appRoot.render(<App />);
