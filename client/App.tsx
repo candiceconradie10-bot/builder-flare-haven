@@ -16,6 +16,7 @@ import { initializeViewportOptimizations } from "@/utils/viewport";
 import { injectCriticalCSS } from "@/utils/criticalCSS";
 import Index from "./pages/Index";
 import ProductCategory from "./pages/ProductCategory";
+import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import OrderConfirmation from "./pages/OrderConfirmation";
