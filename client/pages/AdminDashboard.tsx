@@ -7,6 +7,17 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "@/components/ui/alert-dialog";
+import {
   ArrowLeft,
   Upload,
   Save,
@@ -36,6 +47,13 @@ export default function AdminDashboard() {
   const [content, setContent] = useState([]);
   const [catalogues, setCatalogues] = useState([]);
   const [activeTab, setActiveTab] = useState("content");
+
+  // Admin UX state (products list)
+  const [productSearch, setProductSearch] = useState("");
+  const [productSort, setProductSort] = useState<"created_at" | "name" | "price">("created_at");
+  const [productSortDir, setProductSortDir] = useState<"asc" | "desc">("desc");
+  const [productPage, setProductPage] = useState(1);
+  const pageSize = 10;
 
   // File Upload State
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -959,14 +977,25 @@ export default function AdminDashboard() {
                         >
                           <Edit className="h-4 w-4" />
                         </Button>
-                        <Button
-                          onClick={() => deleteContent(item.id)}
-                          variant="ghost"
-                          size="sm"
-                          className="text-red-400 hover:bg-red-500/10"
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button variant="ghost" size="sm" className="text-red-400 hover:bg-red-500/10">
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>Delete content?</AlertDialogTitle>
+                              <AlertDialogDescription>
+                                This action cannot be undone. This will permanently delete this content entry.
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>Cancel</AlertDialogCancel>
+                              <AlertDialogAction onClick={() => deleteContent(item.id)}>Delete</AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
                       </div>
                     </div>
                   ))}
@@ -1040,204 +1069,292 @@ export default function AdminDashboard() {
     </div>
   );
 
-  const renderProductsTab = () => (
-    <div className="space-y-6">
-      <div className="grid lg:grid-cols-2 gap-6">
-        {/* Product Form */}
-        <Card className="bg-black/50 backdrop-blur-xl border border-white/20">
-          <CardHeader>
-            <CardTitle className="flex items-center text-white">
-              <Package className="h-5 w-5 mr-2 text-brand-red" />
-              {productForm.id ? "Edit Product" : "Add New Product"}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleProductSave} className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label className="text-white">Product Name</Label>
-                  <Input
-                    value={productForm.name}
-                    onChange={(e) =>
-                      setProductForm({ ...productForm, name: e.target.value })
-                    }
-                    className="bg-white/10 border-white/20 text-white"
-                    placeholder="Enter product name"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label className="text-white">Price (R)</Label>
-                  <Input
-                    type="number"
-                    step="0.01"
-                    value={productForm.price}
-                    onChange={(e) =>
-                      setProductForm({ ...productForm, price: e.target.value })
-                    }
-                    className="bg-white/10 border-white/20 text-white"
-                    placeholder="0.00"
-                    required
-                  />
-                </div>
-              </div>
+  const renderProductsTab = () => {
+    // Derived list: filter, sort, paginate
+    const filtered = (products as any[]).filter((p) => {
+      const q = productSearch.toLowerCase();
+      if (!q) return true;
+      return (
+        (p.name || "").toLowerCase().includes(q) ||
+        (p.category || "").toLowerCase().includes(q) ||
+        (p.description || "").toLowerCase().includes(q)
+      );
+    });
 
-              <div className="space-y-2">
-                <Label className="text-white">Category</Label>
-                <select
-                  value={productForm.category}
-                  onChange={(e) =>
-                    setProductForm({ ...productForm, category: e.target.value })
-                  }
-                  className="w-full bg-white/10 border border-white/20 text-white rounded-md px-3 py-2"
-                  required
-                >
-                  <option value="">Select Category</option>
-                  <option value="corporate-gifts" className="bg-gray-800">
-                    Corporate Gifts
-                  </option>
-                  <option value="corporate-clothing" className="bg-gray-800">
-                    Clothing
-                  </option>
-                  <option value="workwear" className="bg-gray-800">
-                    Workwear
-                  </option>
-                  <option
-                    value="headwear-and-accessories"
-                    className="bg-gray-800"
-                  >
-                    Headwear & Accessories
-                  </option>
-                  <option value="safety-gear" className="bg-gray-800">
-                    Safety Gear
-                  </option>
-                  <option value="custom-products" className="bg-gray-800">
-                    Custom Products
-                  </option>
-                </select>
-              </div>
+    const dir = productSortDir === "asc" ? 1 : -1;
+    const sorted = [...filtered].sort((a: any, b: any) => {
+      if (productSort === "name") {
+        return a.name.localeCompare(b.name) * dir;
+      }
+      if (productSort === "price") {
+        return ((a.price || 0) - (b.price || 0)) * dir;
+      }
+      const at = a.created_at ? new Date(a.created_at).getTime() : 0;
+      const bt = b.created_at ? new Date(b.created_at).getTime() : 0;
+      return (at - bt) * dir;
+    });
 
-              <div className="space-y-2">
-                <Label className="text-white">Description</Label>
-                <Textarea
-                  value={productForm.description}
-                  onChange={(e) =>
-                    setProductForm({
-                      ...productForm,
-                      description: e.target.value,
-                    })
-                  }
-                  className="bg-white/10 border-white/20 text-white"
-                  placeholder="Enter product description"
-                  rows={3}
-                  required
-                />
-              </div>
+    const totalPages = Math.max(1, Math.ceil(sorted.length / pageSize));
+    const currentPage = Math.min(productPage, totalPages);
+    const start = (currentPage - 1) * pageSize;
+    const pagedProducts = sorted.slice(start, start + pageSize);
 
-              <div className="space-y-2">
-                <Label className="text-white">Image URL</Label>
-                <Input
-                  value={productForm.image}
-                  onChange={(e) =>
-                    setProductForm({ ...productForm, image: e.target.value })
-                  }
-                  className="bg-white/10 border-white/20 text-white"
-                  placeholder="https://example.com/image.jpg"
-                />
-              </div>
-
-              <div className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  id="inStock"
-                  checked={productForm.inStock}
-                  onChange={(e) =>
-                    setProductForm({
-                      ...productForm,
-                      inStock: e.target.checked,
-                    })
-                  }
-                  className="rounded border-white/20"
-                />
-                <Label htmlFor="inStock" className="text-white">
-                  In Stock
-                </Label>
-              </div>
-
-              <Button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold"
-              >
-                {loading ? (
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                ) : (
-                  <Save className="mr-2 h-4 w-4" />
-                )}
-                {productForm.id ? "Update" : "Create"} Product
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
-
-        {/* Products List */}
-        <Card className="bg-black/50 backdrop-blur-xl border border-white/20">
-          <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="text-white">Products</CardTitle>
-            <Button
-              onClick={loadProducts}
-              variant="outline"
-              size="sm"
-              className="border-white/20 text-white hover:bg-white/10"
-            >
-              <RefreshCw className="h-4 w-4" />
-            </Button>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-2 max-h-96 overflow-y-auto">
-              {products.length === 0 ? (
-                <p className="text-gray-400 text-center py-8">
-                  No products found
-                </p>
-              ) : (
-                products.map((product: any) => (
-                  <div
-                    key={product.id}
-                    className="flex items-center justify-between p-3 bg-white/5 rounded-lg"
-                  >
-                    <div className="flex-1">
-                      <h4 className="text-white font-medium">{product.name}</h4>
-                      <p className="text-sm text-gray-400">
-                        R{product.price} • {product.category}
-                      </p>
-                    </div>
-                    <div className="flex space-x-1">
-                      <Button
-                        onClick={() => editProduct(product)}
-                        variant="ghost"
-                        size="sm"
-                        className="text-blue-400 hover:bg-blue-500/10"
-                      >
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        onClick={() => deleteProduct(product.id)}
-                        variant="ghost"
-                        size="sm"
-                        className="text-red-400 hover:bg-red-500/10"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
+    return (
+      <div className="space-y-6">
+        <div className="grid lg:grid-cols-2 gap-6">
+          {/* Product Form */}
+          <Card className="bg-black/50 backdrop-blur-xl border border-white/20">
+            <CardHeader>
+              <CardTitle className="flex items-center text-white">
+                <Package className="h-5 w-5 mr-2 text-brand-red" />
+                {productForm.id ? "Edit Product" : "Add New Product"}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleProductSave} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label className="text-white">Product Name</Label>
+                    <Input
+                      value={productForm.name}
+                      onChange={(e) =>
+                        setProductForm({ ...productForm, name: e.target.value })
+                      }
+                      className="bg-white/10 border-white/20 text-white"
+                      placeholder="Enter product name"
+                      required
+                    />
                   </div>
-                ))
+                  <div className="space-y-2">
+                    <Label className="text-white">Price (R)</Label>
+                    <Input
+                      type="number"
+                      step="0.01"
+                      value={productForm.price}
+                      onChange={(e) =>
+                        setProductForm({ ...productForm, price: e.target.value })
+                      }
+                      className="bg-white/10 border-white/20 text-white"
+                      placeholder="0.00"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label className="text-white">Category</Label>
+                  <select
+                    value={productForm.category}
+                    onChange={(e) =>
+                      setProductForm({ ...productForm, category: e.target.value })
+                    }
+                    className="w-full bg-white/10 border border-white/20 text-white rounded-md px-3 py-2"
+                    required
+                  >
+                    <option value="">Select Category</option>
+                    <option value="corporate-gifts" className="bg-gray-800">
+                      Corporate Gifts
+                    </option>
+                    <option value="corporate-clothing" className="bg-gray-800">
+                      Clothing
+                    </option>
+                    <option value="workwear" className="bg-gray-800">
+                      Workwear
+                    </option>
+                    <option
+                      value="headwear-and-accessories"
+                      className="bg-gray-800"
+                    >
+                      Headwear & Accessories
+                    </option>
+                    <option value="safety-gear" className="bg-gray-800">
+                      Safety Gear
+                    </option>
+                    <option value="custom-products" className="bg-gray-800">
+                      Custom Products
+                    </option>
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label className="text-white">Description</Label>
+                  <Textarea
+                    value={productForm.description}
+                    onChange={(e) =>
+                      setProductForm({
+                        ...productForm,
+                        description: e.target.value,
+                      })
+                    }
+                    className="bg-white/10 border-white/20 text-white"
+                    placeholder="Enter product description"
+                    rows={3}
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label className="text-white">Image URL</Label>
+                  <Input
+                    value={productForm.image}
+                    onChange={(e) =>
+                      setProductForm({ ...productForm, image: e.target.value })
+                    }
+                    className="bg-white/10 border-white/20 text-white"
+                    placeholder="https://example.com/image.jpg"
+                  />
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    id="inStock"
+                    checked={productForm.inStock}
+                    onChange={(e) =>
+                      setProductForm({
+                        ...productForm,
+                        inStock: e.target.checked,
+                      })
+                    }
+                    className="rounded border-white/20"
+                  />
+                  <Label htmlFor="inStock" className="text-white">
+                    In Stock
+                  </Label>
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold"
+                >
+                  {loading ? (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  ) : (
+                    <Save className="mr-2 h-4 w-4" />
+                  )}
+                  {productForm.id ? "Update" : "Create"} Product
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+
+          {/* Products List */}
+          <Card className="bg-black/50 backdrop-blur-xl border border-white/20">
+            <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <CardTitle className="text-white">Products</CardTitle>
+              <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                <Input
+                  value={productSearch}
+                  onChange={(e) => { setProductSearch(e.target.value); setProductPage(1); }}
+                  placeholder="Search products..."
+                  className="bg-white/10 border-white/20 text-white"
+                />
+                <select
+                  value={productSort}
+                  onChange={(e) => { setProductSort(e.target.value as any); setProductPage(1); }}
+                  className="bg-white/10 border border-white/20 text-white rounded-md px-3 py-2"
+                >
+                  <option value="created_at" className="bg-gray-800">Newest</option>
+                  <option value="name" className="bg-gray-800">Name</option>
+                  <option value="price" className="bg-gray-800">Price</option>
+                </select>
+                <select
+                  value={productSortDir}
+                  onChange={(e) => { setProductSortDir(e.target.value as any); setProductPage(1); }}
+                  className="bg-white/10 border border-white/20 text-white rounded-md px-3 py-2"
+                >
+                  <option value="desc" className="bg-gray-800">Desc</option>
+                  <option value="asc" className="bg-gray-800">Asc</option>
+                </select>
+                <Button
+                  onClick={loadProducts}
+                  variant="outline"
+                  size="sm"
+                  className="border-white/20 text-white hover:bg:white/10"
+                >
+                  <RefreshCw className="h-4 w-4" />
+                </Button>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2 max-h-96 overflow-y-auto">
+                {sorted.length === 0 ? (
+                  <p className="text-gray-400 text-center py-8">No products found</p>
+                ) : (
+                  pagedProducts.map((product: any) => (
+                    <div
+                      key={product.id}
+                      className="flex items-center justify-between p-3 bg:white/5 rounded-lg border border-white/10"
+                    >
+                      <div className="flex-1">
+                        <h4 className="text-white font-medium">{product.name}</h4>
+                        <p className="text-sm text-gray-400">R{product.price} • {product.category}</p>
+                      </div>
+                      <div className="flex space-x-1">
+                        <Button
+                          onClick={() => editProduct(product)}
+                          variant="ghost"
+                          size="sm"
+                          className="text-blue-400 hover:bg-blue-500/10"
+                        >
+                          <Edit className="h-4 w-4" />
+                        </Button>
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button variant="ghost" size="sm" className="text-red-400 hover:bg-red-500/10">
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>Delete product?</AlertDialogTitle>
+                              <AlertDialogDescription>
+                                This action cannot be undone. This will permanently delete the product "{product.name}".
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>Cancel</AlertDialogCancel>
+                              <AlertDialogAction onClick={() => deleteProduct(product.id)}>Delete</AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
+              {totalPages > 1 && (
+                <div className="flex items-center justify-between pt-3 text-sm text-gray-300">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    disabled={currentPage <= 1}
+                    onClick={() => setProductPage(Math.max(1, currentPage - 1))}
+                    className="border-white/20 text-white hover:bg-white/10"
+                  >
+                    Prev
+                  </Button>
+                  <span>
+                    Page {currentPage} of {totalPages}
+                  </span>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    disabled={currentPage >= totalPages}
+                    onClick={() => setProductPage(Math.min(totalPages, currentPage + 1))}
+                    className="border-white/20 text-white hover:bg-white/10"
+                  >
+                    Next
+                  </Button>
+                </div>
               )}
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   const renderCataloguesTab = () => (
     <div className="space-y-6">
@@ -1402,14 +1519,25 @@ export default function AdminDashboard() {
                       >
                         <Edit className="h-4 w-4" />
                       </Button>
-                      <Button
-                        onClick={() => deleteCatalogue(catalogue.id)}
-                        variant="ghost"
-                        size="sm"
-                        className="text-red-400 hover:bg-red-500/10"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button variant="ghost" size="sm" className="text-red-400 hover:bg-red-500/10">
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Delete catalogue?</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              This action cannot be undone. This will permanently delete this catalogue.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction onClick={() => deleteCatalogue(catalogue.id)}>Delete</AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
                     </div>
                   </div>
                 ))
@@ -1473,6 +1601,27 @@ export default function AdminDashboard() {
                 onChange={(e) => setSelectedFile(e.target.files?.[0] || null)}
                 className="bg-white/10 border-white/20 text-white file:bg-brand-red file:text-white file:border-0 file:rounded file:px-3 file:py-1"
               />
+            </div>
+
+            <div
+              onDragOver={(e) => { e.preventDefault(); }}
+              onDrop={(e) => {
+                e.preventDefault();
+                const file = e.dataTransfer.files?.[0];
+                if (!file) return;
+                if (uploadType === "image" && !file.type.startsWith("image/")) return;
+                if (uploadType === "pdf" && file.type !== "application/pdf") return;
+                setSelectedFile(file);
+              }}
+              onClick={() => {
+                const el = document.getElementById("file") as HTMLInputElement | null;
+                el?.click();
+              }}
+              className="mt-2 border-2 border-dashed border-white/20 hover:border-white/40 transition-colors rounded-xl p-6 text-center cursor-pointer bg-white/5"
+            >
+              <p className="text-gray-300">
+                Drag & drop your {uploadType === "image" ? "image" : "PDF"} here, or click to browse
+              </p>
             </div>
 
             {selectedFile && (
