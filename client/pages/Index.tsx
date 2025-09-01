@@ -184,7 +184,9 @@ export default function Index() {
                           className="w-full min-h-[56px] bg-transparent border-2 border-white/40 text-white hover:bg-white/10 hover:border-white/60 font-bold px-6 py-4 sm:px-8 rounded-xl backdrop-blur-lg transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation text-base sm:text-lg active:bg-white/20"
                         >
                           <Play className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6" />
-                          <span className="text-sm sm:text-base font-bold">Learn More</span>
+                          <span className="text-sm sm:text-base font-bold">
+                            Learn More
+                          </span>
                         </Button>
                       </a>
                       <a href="#catalogue-section" className="w-full sm:w-auto">
@@ -193,7 +195,9 @@ export default function Index() {
                           className="w-full min-h-[56px] bg-white/20 backdrop-blur-lg border border-white/30 text-white hover:bg-white/30 hover:border-white/50 font-bold px-6 py-4 sm:px-8 rounded-xl shadow-xl mobile-shadow transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation text-base sm:text-lg active:bg-white/40"
                         >
                           <ShoppingBag className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6" />
-                          <span className="text-sm sm:text-base font-bold">View All Products</span>
+                          <span className="text-sm sm:text-base font-bold">
+                            View All Products
+                          </span>
                           <ArrowRight className="ml-2 sm:ml-3 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform duration-300" />
                         </Button>
                       </a>

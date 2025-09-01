@@ -5,7 +5,13 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { useCart } from "@/contexts/CartContext";
 import { getProductById } from "@/data/products";
-import { ArrowLeft, ShoppingCart, Star, ShieldCheck, Truck } from "lucide-react";
+import {
+  ArrowLeft,
+  ShoppingCart,
+  Star,
+  ShieldCheck,
+  Truck,
+} from "lucide-react";
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -30,10 +36,22 @@ export default function ProductDetail() {
           // Attempt both UUID (string) and numeric id lookups
           const queries: Promise<any>[] = [];
           if (id) {
-            queries.push(window.supabase.from("products").select("*").eq("id", id).maybeSingle());
+            queries.push(
+              window.supabase
+                .from("products")
+                .select("*")
+                .eq("id", id)
+                .maybeSingle(),
+            );
           }
           if (numericId !== null) {
-            queries.push(window.supabase.from("products").select("*").eq("id", numericId).maybeSingle());
+            queries.push(
+              window.supabase
+                .from("products")
+                .select("*")
+                .eq("id", numericId)
+                .maybeSingle(),
+            );
           }
 
           for (const q of queries) {
@@ -79,7 +97,11 @@ export default function ProductDetail() {
     return (
       <div className="container mx-auto px-4 py-16 text-center">
         <p className="text-gray-400 mb-6">{error || "Product not found"}</p>
-        <Button onClick={() => navigate(-1)} variant="outline" className="border-white/20 text-white hover:bg-white/10">
+        <Button
+          onClick={() => navigate(-1)}
+          variant="outline"
+          className="border-white/20 text-white hover:bg-white/10"
+        >
           <ArrowLeft className="h-4 w-4 mr-2" /> Back
         </Button>
       </div>
@@ -91,7 +113,10 @@ export default function ProductDetail() {
       <div className="container mx-auto px-4 py-6">
         <div className="mb-6">
           <Link to="/">
-            <Button variant="outline" className="border-white/20 text-white hover:bg-white/10">
+            <Button
+              variant="outline"
+              className="border-white/20 text-white hover:bg-white/10"
+            >
               <ArrowLeft className="h-4 w-4 mr-2" /> Back to Home
             </Button>
           </Link>
@@ -114,26 +139,39 @@ export default function ProductDetail() {
           {/* Details */}
           <div className="space-y-6">
             <div>
-              <h1 className="text-3xl sm:text-4xl font-black text-white">{product.name}</h1>
+              <h1 className="text-3xl sm:text-4xl font-black text-white">
+                {product.name}
+              </h1>
               {product.rating && (
                 <div className="mt-2 flex items-center space-x-2 text-white/80">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className={`h-4 w-4 ${i < Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-gray-600"}`} />
+                    <Star
+                      key={i}
+                      className={`h-4 w-4 ${i < Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-gray-600"}`}
+                    />
                   ))}
                   <span className="text-sm">{product.rating.toFixed(1)}</span>
                 </div>
               )}
             </div>
 
-            <div className="text-2xl font-bold text-white">R{Number(product.price).toFixed(2)}</div>
+            <div className="text-2xl font-bold text-white">
+              R{Number(product.price).toFixed(2)}
+            </div>
 
             {product.description && (
-              <p className="text-white/70 leading-relaxed">{product.description}</p>
+              <p className="text-white/70 leading-relaxed">
+                {product.description}
+              </p>
             )}
 
             <div className="flex items-center gap-2">
-              <Badge className="bg-green-500/20 text-green-400 border border-green-500/30">In Stock</Badge>
-              <Badge className="bg-white/10 text-white border border-white/20">Free Shipping</Badge>
+              <Badge className="bg-green-500/20 text-green-400 border border-green-500/30">
+                In Stock
+              </Badge>
+              <Badge className="bg-white/10 text-white border border-white/20">
+                Free Shipping
+              </Badge>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3">
@@ -158,7 +196,9 @@ export default function ProductDetail() {
               </div>
               <div className="p-4 rounded-xl bg-white/5 border border-white/10">
                 <Star className="h-5 w-5 text-white mb-2" />
-                <div className="text-white font-medium">Trusted by 1000+ clients</div>
+                <div className="text-white font-medium">
+                  Trusted by 1000+ clients
+                </div>
                 <div className="text-white/60 text-sm">Excellent reviews</div>
               </div>
             </div>
