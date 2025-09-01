@@ -418,7 +418,7 @@ export default function Index() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {featuredCategories.map((category, index) => (
               <Link
-                key={category.id}
+                key={category.href || `${category.title}-${index}`}
                 to={category.href}
                 className="group animate-fadeInUp"
                 style={{ animationDelay: `${index * 100}ms` }}
