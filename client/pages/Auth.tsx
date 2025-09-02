@@ -343,7 +343,7 @@ export default function Auth() {
                       htmlFor="password"
                       className="text-white font-medium"
                     >
-                      Password
+                      {isResetMode ? "New Password" : "Password"}
                     </Label>
                     <div className="relative">
                       <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
