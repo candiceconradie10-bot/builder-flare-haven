@@ -39,6 +39,7 @@ type AuthAction =
   | { type: "AUTH_START" }
   | { type: "AUTH_SUCCESS"; payload: User }
   | { type: "AUTH_ERROR"; payload: string }
+  | { type: "AUTH_COMPLETE" }
   | { type: "LOGOUT" }
   | { type: "UPDATE_USER"; payload: Partial<User> }
   | { type: "CLEAR_ERROR" };
@@ -73,6 +74,9 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
         error: action.payload,
       };
 
+    case "AUTH_COMPLETE":
+      return { ...state, isLoading: false };
+
     case "LOGOUT":
       return {
         ...state,
@@ -99,7 +103,9 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
 interface AuthContextType {
   state: AuthState;
   login: (email: string, password: string) => Promise<void>;
-  signup: (userData: SignupData) => Promise<void>;
+  signup: (userData: SignupData) => Promise<{ needsVerification: boolean }>;
+  requestPasswordReset: (email: string) => Promise<void>;
+  completePasswordReset: (newPassword: string) => Promise<void>;
   logout: () => Promise<void>;
   updateUser: (userData: Partial<User>) => void;
   clearError: () => void;
@@ -254,7 +260,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const signup = async (userData: SignupData): Promise<void> => {
+  const signup = async (userData: SignupData): Promise<{ needsVerification: boolean }> => {
     dispatch({ type: "AUTH_START" });
 
     try {
@@ -276,6 +282,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         email: userData.email,
         password: userData.password,
         options: {
+          emailRedirectTo: `${window.location.origin}/auth`,
           data: {
             firstName: userData.firstName,
             lastName: userData.lastName,
@@ -289,7 +296,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         throw new Error(error.message);
       }
 
-      if (data.user) {
+      if (data.session && data.user) {
         const user: User = {
           id: data.user.id,
           email: data.user.email || userData.email,
@@ -300,15 +307,63 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           addresses: [],
         };
 
-        // Store in localStorage
         localStorage.setItem("apex_user", JSON.stringify(user));
-        localStorage.setItem("apex_token", data.session?.access_token || "");
+        localStorage.setItem("apex_token", data.session.access_token || "");
 
         dispatch({ type: "AUTH_SUCCESS", payload: user });
+        return { needsVerification: false };
       }
+
+      dispatch({ type: "AUTH_COMPLETE" });
+      return { needsVerification: true };
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : "Signup failed";
+      dispatch({ type: "AUTH_ERROR", payload: errorMessage });
+      throw error;
+    }
+  };
+
+  const requestPasswordReset = async (email: string): Promise<void> => {
+    dispatch({ type: "AUTH_START" });
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/auth`,
+      });
+      if (error) throw error;
+      dispatch({ type: "AUTH_COMPLETE" });
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : "Password reset failed";
+      dispatch({ type: "AUTH_ERROR", payload: errorMessage });
+      throw error;
+    }
+  };
+
+  const completePasswordReset = async (newPassword: string): Promise<void> => {
+    dispatch({ type: "AUTH_START" });
+    try {
+      const { data, error } = await supabase.auth.updateUser({ password: newPassword });
+      if (error) throw error;
+      const updated = data.user;
+      if (updated) {
+        const user: User = {
+          id: updated.id,
+          email: updated.email || "",
+          firstName: updated.user_metadata?.firstName || "User",
+          lastName: updated.user_metadata?.lastName || "Name",
+          phone: updated.user_metadata?.phone || "",
+          company: updated.user_metadata?.company || "",
+          addresses: updated.user_metadata?.addresses || [],
+        };
+        localStorage.setItem("apex_user", JSON.stringify(user));
+        dispatch({ type: "AUTH_SUCCESS", payload: user });
+      } else {
+        dispatch({ type: "AUTH_COMPLETE" });
+      }
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : "Password update failed";
       dispatch({ type: "AUTH_ERROR", payload: errorMessage });
       throw error;
     }
@@ -349,6 +404,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         state,
         login,
         signup,
+        requestPasswordReset,
+        completePasswordReset,
         logout,
         updateUser,
         clearError,
