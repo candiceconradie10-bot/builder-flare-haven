@@ -310,16 +310,26 @@ export function Header() {
                   )}
                 </div>
               ) : (
-                <Link to="/auth">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="text-white hover:bg-white/10 hover:text-brand-red transition-all duration-300 rounded-xl px-4 py-2 font-medium"
-                  >
-                    <User className="h-5 w-5 mr-2" />
-                    Sign In
-                  </Button>
-                </Link>
+                <div className="flex items-center space-x-2">
+                  <Link to="/auth">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-white hover:bg-white/10 hover:text-brand-red transition-all duration-300 rounded-xl px-4 py-2 font-medium"
+                    >
+                      <User className="h-5 w-5 mr-2" />
+                      Sign In
+                    </Button>
+                  </Link>
+                  <Link to="/signup">
+                    <Button
+                      size="sm"
+                      className="bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white rounded-xl px-4 py-2 font-bold"
+                    >
+                      Sign Up
+                    </Button>
+                  </Link>
+                </div>
               )}
 
               <Button
@@ -533,16 +543,26 @@ export function Header() {
                   </div>
                 </div>
               ) : (
-                <Link
-                  to="/auth"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block"
-                >
-                  <Button className="w-full bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold py-4 rounded-xl">
-                    <User className="h-5 w-5 mr-2" />
-                    Sign In / Register
-                  </Button>
-                </Link>
+                <div className="grid grid-cols-2 gap-3">
+                  <Link
+                    to="/auth"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block"
+                  >
+                    <Button className="w-full bg-white/10 hover:bg-white/15 text-white font-bold py-4 rounded-xl">
+                      Sign In
+                    </Button>
+                  </Link>
+                  <Link
+                    to="/signup"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block"
+                  >
+                    <Button className="w-full bg-gradient-to-r from-brand-red to-red-600 hover:from-red-600 hover:to-brand-red text-white font-bold py-4 rounded-xl">
+                      Sign Up
+                    </Button>
+                  </Link>
+                </div>
               )}
 
               {/* Mobile Quick Actions */}
