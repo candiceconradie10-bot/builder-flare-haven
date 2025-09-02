@@ -557,7 +557,9 @@ export default function Auth() {
 
                   {/* Direct links */}
                   <div className="text-sm text-gray-400">
-                    {isLogin ? (
+                    {isResetMode ? (
+                      <span>Reset your password using the form above.</span>
+                    ) : isLogin ? (
                       <span>
                         Prefer a dedicated page?{" "}
                         <Link
