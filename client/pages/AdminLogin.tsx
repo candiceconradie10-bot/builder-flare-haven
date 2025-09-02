@@ -16,6 +16,7 @@ import {
   Crown,
 } from "lucide-react";
 import { useState } from "react";
+import { supabase } from "@/lib/supabaseClient";
 
 export default function AdminLogin() {
   const [showPassword, setShowPassword] = useState(false);
@@ -36,8 +37,7 @@ export default function AdminLogin() {
       }
 
       try {
-        // @ts-ignore - window.supabase is available globally
-        const { data, error } = await window.supabase.auth.signInWithPassword({
+        const { data, error } = await supabase.auth.signInWithPassword({
           email,
           password,
         });

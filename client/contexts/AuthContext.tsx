@@ -5,6 +5,7 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
+import { supabase } from "@/lib/supabaseClient";
 
 export interface User {
   id: string;
@@ -133,10 +134,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // Check for Supabase session on mount
   useEffect(() => {
     const initializeAuth = async () => {
-      if (!window.supabase) return;
-
       try {
-        const { data: { session } } = await window.supabase.auth.getSession();
+        const { data: { session } } = await supabase.auth.getSession();
 
         if (session?.user) {
           const user: User = {
@@ -167,8 +166,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     initializeAuth();
 
     // Listen for auth state changes
-    if (window.supabase) {
-      const { data: { subscription } } = window.supabase.auth.onAuthStateChange(
+    {
+      const { data: { subscription } } = supabase.auth.onAuthStateChange(
         (event, session) => {
           if (event === 'SIGNED_IN' && session?.user) {
             const user: User = {
@@ -202,11 +201,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     dispatch({ type: "AUTH_START" });
 
     try {
-      if (!window.supabase) {
-        throw new Error("Supabase client not initialized");
-      }
-
-      const { data, error } = await window.supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
@@ -255,10 +250,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     dispatch({ type: "AUTH_START" });
 
     try {
-      if (!window.supabase) {
-        throw new Error("Supabase client not initialized");
-      }
-
       // Validation
       if (
         !userData.email ||
@@ -273,7 +264,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         throw new Error("Password must be at least 6 characters");
       }
 
-      const { data, error } = await window.supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email: userData.email,
         password: userData.password,
         options: {
@@ -317,9 +308,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const logout = async (): Promise<void> => {
     try {
-      if (window.supabase) {
-        await window.supabase.auth.signOut();
-      }
+      await supabase.auth.signOut();
       localStorage.removeItem("apex_user");
       localStorage.removeItem("apex_token");
       dispatch({ type: "LOGOUT" });

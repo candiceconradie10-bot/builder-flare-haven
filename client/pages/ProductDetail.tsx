@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/lib/supabaseClient";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { useCart } from "@/contexts/CartContext";
@@ -32,12 +33,12 @@ export default function ProductDetail() {
       setError(null);
       try {
         // Try Supabase first if available
-        if (window.supabase) {
+        if (supabase) {
           // Attempt both UUID (string) and numeric id lookups
           const queries: Promise<any>[] = [];
           if (id) {
             queries.push(
-              window.supabase
+              supabase
                 .from("products")
                 .select("*")
                 .eq("id", id)
@@ -46,7 +47,7 @@ export default function ProductDetail() {
           }
           if (numericId !== null) {
             queries.push(
-              window.supabase
+              supabase
                 .from("products")
                 .select("*")
                 .eq("id", numericId)

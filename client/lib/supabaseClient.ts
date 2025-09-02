@@ -1,7 +1,15 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient } from "@supabase/supabase-js";
 
-// Replace with your actual Supabase details
-const supabaseUrl = 'https://aqxgvgwdqsswuxjsujbw.supabase.co'
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxeGd2Z3dkcXNzd3V4anN1amJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUxNjQ2MzUsImV4cCI6MjA3MDc0MDYzNX0.jEPK8DQSvbCDkFu3D6-1VnOmzzhyIJPfJy59_Zfx-Nk'
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+if (!supabaseUrl || !supabaseAnonKey) {
+  // Soft warning to help diagnose missing env during development
+  console.warn("Supabase env vars are missing. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.");
+}
+
+export const supabase = createClient(supabaseUrl || "", supabaseAnonKey || "");
+
+// Back-compat: expose on window for legacy callers
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+;(window as any).supabase = supabase;
