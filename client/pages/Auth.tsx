@@ -42,7 +42,7 @@ export default function Auth() {
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { state, login, signup, clearError } = useAuth();
+  const { state, login, signup, requestPasswordReset, completePasswordReset, clearError } = useAuth();
   const { toast } = useToast();
 
   const from = location.state?.from?.pathname || "/";
