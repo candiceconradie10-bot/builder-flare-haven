@@ -135,7 +135,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     const initializeAuth = async () => {
       try {
-        const { data: { session } } = await supabase.auth.getSession();
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
 
         if (session?.user) {
           const user: User = {
@@ -167,29 +169,29 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     // Listen for auth state changes
     {
-      const { data: { subscription } } = supabase.auth.onAuthStateChange(
-        (event, session) => {
-          if (event === 'SIGNED_IN' && session?.user) {
-            const user: User = {
-              id: session.user.id,
-              email: session.user.email || "",
-              firstName: session.user.user_metadata?.firstName || "User",
-              lastName: session.user.user_metadata?.lastName || "Name",
-              phone: session.user.user_metadata?.phone || "",
-              company: session.user.user_metadata?.company || "",
-              addresses: session.user.user_metadata?.addresses || [],
-            };
+      const {
+        data: { subscription },
+      } = supabase.auth.onAuthStateChange((event, session) => {
+        if (event === "SIGNED_IN" && session?.user) {
+          const user: User = {
+            id: session.user.id,
+            email: session.user.email || "",
+            firstName: session.user.user_metadata?.firstName || "User",
+            lastName: session.user.user_metadata?.lastName || "Name",
+            phone: session.user.user_metadata?.phone || "",
+            company: session.user.user_metadata?.company || "",
+            addresses: session.user.user_metadata?.addresses || [],
+          };
 
-            localStorage.setItem("apex_user", JSON.stringify(user));
-            localStorage.setItem("apex_token", session.access_token);
-            dispatch({ type: "AUTH_SUCCESS", payload: user });
-          } else if (event === 'SIGNED_OUT') {
-            localStorage.removeItem("apex_user");
-            localStorage.removeItem("apex_token");
-            dispatch({ type: "LOGOUT" });
-          }
+          localStorage.setItem("apex_user", JSON.stringify(user));
+          localStorage.setItem("apex_token", session.access_token);
+          dispatch({ type: "AUTH_SUCCESS", payload: user });
+        } else if (event === "SIGNED_OUT") {
+          localStorage.removeItem("apex_user");
+          localStorage.removeItem("apex_token");
+          dispatch({ type: "LOGOUT" });
         }
-      );
+      });
 
       return () => {
         subscription.unsubscribe();
@@ -214,8 +216,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         const user: User = {
           id: data.user.id,
           email: data.user.email || email,
-          firstName: data.user.user_metadata?.firstName || email.split("@")[0].split(".")[0] || "User",
-          lastName: data.user.user_metadata?.lastName || email.split("@")[0].split(".")[1] || "Name",
+          firstName:
+            data.user.user_metadata?.firstName ||
+            email.split("@")[0].split(".")[0] ||
+            "User",
+          lastName:
+            data.user.user_metadata?.lastName ||
+            email.split("@")[0].split(".")[1] ||
+            "Name",
           phone: data.user.user_metadata?.phone || "",
           company: data.user.user_metadata?.company || "",
           addresses: data.user.user_metadata?.addresses || [

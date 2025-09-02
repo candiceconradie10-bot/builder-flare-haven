@@ -38,11 +38,7 @@ export default function ProductDetail() {
           const queries: any[] = [];
           if (id) {
             queries.push(
-              supabase
-                .from("products")
-                .select("*")
-                .eq("id", id)
-                .maybeSingle(),
+              supabase.from("products").select("*").eq("id", id).maybeSingle(),
             );
           }
           if (numericId !== null) {

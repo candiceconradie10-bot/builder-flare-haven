@@ -51,7 +51,9 @@ export default function AdminDashboard() {
 
   // Admin UX state (products list)
   const [productSearch, setProductSearch] = useState("");
-  const [productSort, setProductSort] = useState<"created_at" | "name" | "price">("created_at");
+  const [productSort, setProductSort] = useState<
+    "created_at" | "name" | "price"
+  >("created_at");
   const [productSortDir, setProductSortDir] = useState<"asc" | "desc">("desc");
   const [productPage, setProductPage] = useState(1);
   const pageSize = 10;
@@ -412,9 +414,7 @@ export default function AdminDashboard() {
           .eq("id", contentForm.id);
       } else {
         // Create new content
-        result = await supabase
-          .from("site_content")
-          .insert([contentData]);
+        result = await supabase.from("site_content").insert([contentData]);
       }
 
       if (result.error) {
@@ -464,9 +464,7 @@ export default function AdminDashboard() {
           .eq("id", catalogueForm.id);
       } else {
         // Create new catalogue
-        result = await supabase
-          .from("catalogues")
-          .insert([catalogueData]);
+        result = await supabase.from("catalogues").insert([catalogueData]);
       }
 
       if (result.error) {
@@ -496,10 +494,7 @@ export default function AdminDashboard() {
     try {
       setLoading(true);
       // @ts-ignore
-      const { error } = await supabase
-        .from("products")
-        .delete()
-        .eq("id", id);
+      const { error } = await supabase.from("products").delete().eq("id", id);
       if (error) throw error;
       alert("Product deleted successfully!");
       loadProducts();
@@ -534,10 +529,7 @@ export default function AdminDashboard() {
     try {
       setLoading(true);
       // @ts-ignore
-      const { error } = await supabase
-        .from("catalogues")
-        .delete()
-        .eq("id", id);
+      const { error } = await supabase.from("catalogues").delete().eq("id", id);
       if (error) throw error;
       alert("Catalogue deleted successfully!");
       loadCatalogues();
@@ -980,20 +972,31 @@ export default function AdminDashboard() {
                         </Button>
                         <AlertDialog>
                           <AlertDialogTrigger asChild>
-                            <Button variant="ghost" size="sm" className="text-red-400 hover:bg-red-500/10">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="text-red-400 hover:bg-red-500/10"
+                            >
                               <Trash2 className="h-4 w-4" />
                             </Button>
                           </AlertDialogTrigger>
                           <AlertDialogContent>
                             <AlertDialogHeader>
-                              <AlertDialogTitle>Delete content?</AlertDialogTitle>
+                              <AlertDialogTitle>
+                                Delete content?
+                              </AlertDialogTitle>
                               <AlertDialogDescription>
-                                This action cannot be undone. This will permanently delete this content entry.
+                                This action cannot be undone. This will
+                                permanently delete this content entry.
                               </AlertDialogDescription>
                             </AlertDialogHeader>
                             <AlertDialogFooter>
                               <AlertDialogCancel>Cancel</AlertDialogCancel>
-                              <AlertDialogAction onClick={() => deleteContent(item.id)}>Delete</AlertDialogAction>
+                              <AlertDialogAction
+                                onClick={() => deleteContent(item.id)}
+                              >
+                                Delete
+                              </AlertDialogAction>
                             </AlertDialogFooter>
                           </AlertDialogContent>
                         </AlertDialog>
@@ -1133,7 +1136,10 @@ export default function AdminDashboard() {
                       step="0.01"
                       value={productForm.price}
                       onChange={(e) =>
-                        setProductForm({ ...productForm, price: e.target.value })
+                        setProductForm({
+                          ...productForm,
+                          price: e.target.value,
+                        })
                       }
                       className="bg-white/10 border-white/20 text-white"
                       placeholder="0.00"
@@ -1147,7 +1153,10 @@ export default function AdminDashboard() {
                   <select
                     value={productForm.category}
                     onChange={(e) =>
-                      setProductForm({ ...productForm, category: e.target.value })
+                      setProductForm({
+                        ...productForm,
+                        category: e.target.value,
+                      })
                     }
                     className="w-full bg-white/10 border border-white/20 text-white rounded-md px-3 py-2"
                     required
@@ -1247,26 +1256,45 @@ export default function AdminDashboard() {
               <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                 <Input
                   value={productSearch}
-                  onChange={(e) => { setProductSearch(e.target.value); setProductPage(1); }}
+                  onChange={(e) => {
+                    setProductSearch(e.target.value);
+                    setProductPage(1);
+                  }}
                   placeholder="Search products..."
                   className="bg-white/10 border-white/20 text-white"
                 />
                 <select
                   value={productSort}
-                  onChange={(e) => { setProductSort(e.target.value as any); setProductPage(1); }}
+                  onChange={(e) => {
+                    setProductSort(e.target.value as any);
+                    setProductPage(1);
+                  }}
                   className="bg-white/10 border border-white/20 text-white rounded-md px-3 py-2"
                 >
-                  <option value="created_at" className="bg-gray-800">Newest</option>
-                  <option value="name" className="bg-gray-800">Name</option>
-                  <option value="price" className="bg-gray-800">Price</option>
+                  <option value="created_at" className="bg-gray-800">
+                    Newest
+                  </option>
+                  <option value="name" className="bg-gray-800">
+                    Name
+                  </option>
+                  <option value="price" className="bg-gray-800">
+                    Price
+                  </option>
                 </select>
                 <select
                   value={productSortDir}
-                  onChange={(e) => { setProductSortDir(e.target.value as any); setProductPage(1); }}
+                  onChange={(e) => {
+                    setProductSortDir(e.target.value as any);
+                    setProductPage(1);
+                  }}
                   className="bg-white/10 border border-white/20 text-white rounded-md px-3 py-2"
                 >
-                  <option value="desc" className="bg-gray-800">Desc</option>
-                  <option value="asc" className="bg-gray-800">Asc</option>
+                  <option value="desc" className="bg-gray-800">
+                    Desc
+                  </option>
+                  <option value="asc" className="bg-gray-800">
+                    Asc
+                  </option>
                 </select>
                 <Button
                   onClick={loadProducts}
@@ -1281,7 +1309,9 @@ export default function AdminDashboard() {
             <CardContent>
               <div className="space-y-2 max-h-96 overflow-y-auto">
                 {sorted.length === 0 ? (
-                  <p className="text-gray-400 text-center py-8">No products found</p>
+                  <p className="text-gray-400 text-center py-8">
+                    No products found
+                  </p>
                 ) : (
                   pagedProducts.map((product: any) => (
                     <div
@@ -1289,8 +1319,12 @@ export default function AdminDashboard() {
                       className="flex items-center justify-between p-3 bg:white/5 rounded-lg border border-white/10"
                     >
                       <div className="flex-1">
-                        <h4 className="text-white font-medium">{product.name}</h4>
-                        <p className="text-sm text-gray-400">R{product.price} • {product.category}</p>
+                        <h4 className="text-white font-medium">
+                          {product.name}
+                        </h4>
+                        <p className="text-sm text-gray-400">
+                          R{product.price} • {product.category}
+                        </p>
                       </div>
                       <div className="flex space-x-1">
                         <Button
@@ -1303,20 +1337,31 @@ export default function AdminDashboard() {
                         </Button>
                         <AlertDialog>
                           <AlertDialogTrigger asChild>
-                            <Button variant="ghost" size="sm" className="text-red-400 hover:bg-red-500/10">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="text-red-400 hover:bg-red-500/10"
+                            >
                               <Trash2 className="h-4 w-4" />
                             </Button>
                           </AlertDialogTrigger>
                           <AlertDialogContent>
                             <AlertDialogHeader>
-                              <AlertDialogTitle>Delete product?</AlertDialogTitle>
+                              <AlertDialogTitle>
+                                Delete product?
+                              </AlertDialogTitle>
                               <AlertDialogDescription>
-                                This action cannot be undone. This will permanently delete the product "{product.name}".
+                                This action cannot be undone. This will
+                                permanently delete the product "{product.name}".
                               </AlertDialogDescription>
                             </AlertDialogHeader>
                             <AlertDialogFooter>
                               <AlertDialogCancel>Cancel</AlertDialogCancel>
-                              <AlertDialogAction onClick={() => deleteProduct(product.id)}>Delete</AlertDialogAction>
+                              <AlertDialogAction
+                                onClick={() => deleteProduct(product.id)}
+                              >
+                                Delete
+                              </AlertDialogAction>
                             </AlertDialogFooter>
                           </AlertDialogContent>
                         </AlertDialog>
@@ -1343,7 +1388,9 @@ export default function AdminDashboard() {
                     variant="outline"
                     size="sm"
                     disabled={currentPage >= totalPages}
-                    onClick={() => setProductPage(Math.min(totalPages, currentPage + 1))}
+                    onClick={() =>
+                      setProductPage(Math.min(totalPages, currentPage + 1))
+                    }
                     className="border-white/20 text-white hover:bg-white/10"
                   >
                     Next
@@ -1522,20 +1569,31 @@ export default function AdminDashboard() {
                       </Button>
                       <AlertDialog>
                         <AlertDialogTrigger asChild>
-                          <Button variant="ghost" size="sm" className="text-red-400 hover:bg-red-500/10">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="text-red-400 hover:bg-red-500/10"
+                          >
                             <Trash2 className="h-4 w-4" />
                           </Button>
                         </AlertDialogTrigger>
                         <AlertDialogContent>
                           <AlertDialogHeader>
-                            <AlertDialogTitle>Delete catalogue?</AlertDialogTitle>
+                            <AlertDialogTitle>
+                              Delete catalogue?
+                            </AlertDialogTitle>
                             <AlertDialogDescription>
-                              This action cannot be undone. This will permanently delete this catalogue.
+                              This action cannot be undone. This will
+                              permanently delete this catalogue.
                             </AlertDialogDescription>
                           </AlertDialogHeader>
                           <AlertDialogFooter>
                             <AlertDialogCancel>Cancel</AlertDialogCancel>
-                            <AlertDialogAction onClick={() => deleteCatalogue(catalogue.id)}>Delete</AlertDialogAction>
+                            <AlertDialogAction
+                              onClick={() => deleteCatalogue(catalogue.id)}
+                            >
+                              Delete
+                            </AlertDialogAction>
                           </AlertDialogFooter>
                         </AlertDialogContent>
                       </AlertDialog>
@@ -1605,23 +1663,30 @@ export default function AdminDashboard() {
             </div>
 
             <div
-              onDragOver={(e) => { e.preventDefault(); }}
+              onDragOver={(e) => {
+                e.preventDefault();
+              }}
               onDrop={(e) => {
                 e.preventDefault();
                 const file = e.dataTransfer.files?.[0];
                 if (!file) return;
-                if (uploadType === "image" && !file.type.startsWith("image/")) return;
-                if (uploadType === "pdf" && file.type !== "application/pdf") return;
+                if (uploadType === "image" && !file.type.startsWith("image/"))
+                  return;
+                if (uploadType === "pdf" && file.type !== "application/pdf")
+                  return;
                 setSelectedFile(file);
               }}
               onClick={() => {
-                const el = document.getElementById("file") as HTMLInputElement | null;
+                const el = document.getElementById(
+                  "file",
+                ) as HTMLInputElement | null;
                 el?.click();
               }}
               className="mt-2 border-2 border-dashed border-white/20 hover:border-white/40 transition-colors rounded-xl p-6 text-center cursor-pointer bg-white/5"
             >
               <p className="text-gray-300">
-                Drag & drop your {uploadType === "image" ? "image" : "PDF"} here, or click to browse
+                Drag & drop your {uploadType === "image" ? "image" : "PDF"}{" "}
+                here, or click to browse
               </p>
             </div>
 
