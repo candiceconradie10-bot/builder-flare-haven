@@ -378,12 +378,12 @@ export function Header() {
                   variant="ghost"
                   size="sm"
                   className="text-white hover:bg-white/10 hover:text-brand-red transition-all duration-300 rounded-xl min-w-[48px] min-h-[48px] p-3 relative group touch-manipulation active:bg-white/20"
-                  aria-label={`Shopping cart ${state.itemCount > 0 ? `with ${state.itemCount} items` : 'empty'}`}
+                  aria-label={`Shopping cart ${state.itemCount > 0 ? `with ${state.itemCount} items` : "empty"}`}
                 >
                   <ShoppingCart className="h-6 w-6" />
                   {state.itemCount > 0 && (
                     <Badge className="absolute -top-1 -right-1 bg-gradient-to-r from-brand-red to-red-600 text-white text-xs rounded-full min-w-[20px] h-5 flex items-center justify-center border-2 border-black font-bold px-1">
-                      {state.itemCount > 99 ? '99+' : state.itemCount}
+                      {state.itemCount > 99 ? "99+" : state.itemCount}
                     </Badge>
                   )}
                 </Button>
@@ -581,13 +581,13 @@ export function Header() {
                   <Button
                     variant="ghost"
                     className="w-full flex flex-col items-center space-y-2 text-white hover:bg-white/10 hover:text-brand-red rounded-xl p-4 h-auto min-h-[80px] relative touch-manipulation active:bg-white/20"
-                    aria-label={`Go to cart ${state.itemCount > 0 ? `with ${state.itemCount} items` : ''}`}
+                    aria-label={`Go to cart ${state.itemCount > 0 ? `with ${state.itemCount} items` : ""}`}
                   >
                     <ShoppingCart className="h-6 w-6" />
                     <span className="text-sm font-medium">Cart</span>
                     {state.itemCount > 0 && (
                       <Badge className="absolute -top-1 -right-1 bg-gradient-to-r from-brand-red to-red-600 text-white text-xs rounded-full min-w-[20px] h-5 flex items-center justify-center font-bold px-1">
-                        {state.itemCount > 99 ? '99+' : state.itemCount}
+                        {state.itemCount > 99 ? "99+" : state.itemCount}
                       </Badge>
                     )}
                   </Button>

@@ -5,7 +5,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { AlertCircle, CheckCircle, Lock, Mail, Phone, User, Building } from "lucide-react";
+import {
+  AlertCircle,
+  CheckCircle,
+  Lock,
+  Mail,
+  Phone,
+  User,
+  Building,
+} from "lucide-react";
 
 export default function Profile() {
   const { state, updateUser } = useAuth();
@@ -106,7 +114,9 @@ export default function Profile() {
                       <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                       <Input
                         value={form.firstName}
-                        onChange={(e) => setForm({ ...form, firstName: e.target.value })}
+                        onChange={(e) =>
+                          setForm({ ...form, firstName: e.target.value })
+                        }
                         className="pl-10 bg-white/10 border-white/20 text-white"
                         required
                       />
@@ -116,7 +126,9 @@ export default function Profile() {
                     <Label className="text-white">Last Name</Label>
                     <Input
                       value={form.lastName}
-                      onChange={(e) => setForm({ ...form, lastName: e.target.value })}
+                      onChange={(e) =>
+                        setForm({ ...form, lastName: e.target.value })
+                      }
                       className="bg-white/10 border-white/20 text-white"
                       required
                     />
@@ -127,7 +139,11 @@ export default function Profile() {
                   <Label className="text-white">Email</Label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-                    <Input value={form.email} disabled className="pl-10 bg-white/10 border-white/20 text-white opacity-70" />
+                    <Input
+                      value={form.email}
+                      disabled
+                      className="pl-10 bg-white/10 border-white/20 text-white opacity-70"
+                    />
                   </div>
                 </div>
 
@@ -137,7 +153,9 @@ export default function Profile() {
                     <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                     <Input
                       value={form.phone}
-                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                      onChange={(e) =>
+                        setForm({ ...form, phone: e.target.value })
+                      }
                       className="pl-10 bg-white/10 border-white/20 text-white"
                     />
                   </div>
@@ -149,13 +167,18 @@ export default function Profile() {
                     <Building className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                     <Input
                       value={form.company}
-                      onChange={(e) => setForm({ ...form, company: e.target.value })}
+                      onChange={(e) =>
+                        setForm({ ...form, company: e.target.value })
+                      }
                       className="pl-10 bg-white/10 border-white/20 text-white"
                     />
                   </div>
                 </div>
 
-                <Button disabled={saving} className="w-full bg-gradient-to-r from-brand-red to-red-600">
+                <Button
+                  disabled={saving}
+                  className="w-full bg-gradient-to-r from-brand-red to-red-600"
+                >
                   {saving ? "Saving..." : "Save Changes"}
                 </Button>
 
@@ -188,7 +211,9 @@ export default function Profile() {
                     <Input
                       type="password"
                       value={passwords.next}
-                      onChange={(e) => setPasswords({ ...passwords, next: e.target.value })}
+                      onChange={(e) =>
+                        setPasswords({ ...passwords, next: e.target.value })
+                      }
                       className="pl-10 bg-white/10 border-white/20 text-white"
                       placeholder="At least 6 characters"
                       required
@@ -196,11 +221,17 @@ export default function Profile() {
                   </div>
                 </div>
 
-                <Button disabled={passSaving} className="w-full bg-gradient-to-r from-brand-red to-red-600">
+                <Button
+                  disabled={passSaving}
+                  className="w-full bg-gradient-to-r from-brand-red to-red-600"
+                >
                   {passSaving ? "Updating..." : "Update Password"}
                 </Button>
 
-                <p className="text-xs text-gray-400">You may receive a confirmation email depending on your provider settings.</p>
+                <p className="text-xs text-gray-400">
+                  You may receive a confirmation email depending on your
+                  provider settings.
+                </p>
               </form>
             </CardContent>
           </Card>

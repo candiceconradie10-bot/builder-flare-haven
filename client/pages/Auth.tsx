@@ -25,7 +25,9 @@ import {
 export default function Auth() {
   const navigate = useNavigate();
   const location = useLocation();
-  const isSignupPath = location.pathname.includes("/signup") || new URLSearchParams(location.search).get("mode") === "signup";
+  const isSignupPath =
+    location.pathname.includes("/signup") ||
+    new URLSearchParams(location.search).get("mode") === "signup";
   const [isLogin, setIsLogin] = useState(!isSignupPath);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -518,11 +520,23 @@ export default function Auth() {
                   <div className="text-sm text-gray-400">
                     {isLogin ? (
                       <span>
-                        Prefer a dedicated page? <Link to="/signup" className="text-brand-red hover:underline">Go to Sign Up</Link>
+                        Prefer a dedicated page?{" "}
+                        <Link
+                          to="/signup"
+                          className="text-brand-red hover:underline"
+                        >
+                          Go to Sign Up
+                        </Link>
                       </span>
                     ) : (
                       <span>
-                        Already registered? <Link to="/auth" className="text-brand-red hover:underline">Go to Sign In</Link>
+                        Already registered?{" "}
+                        <Link
+                          to="/auth"
+                          className="text-brand-red hover:underline"
+                        >
+                          Go to Sign In
+                        </Link>
                       </span>
                     )}
                   </div>
