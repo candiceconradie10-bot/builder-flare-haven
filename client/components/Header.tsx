@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useCart } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { OptimizedImage } from "./OptimizedImage";
@@ -26,6 +26,7 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const location = useLocation();
   const { state } = useCart();
   const { state: authState, logout } = useAuth();
 
@@ -143,7 +144,7 @@ export function Header() {
   // Close mobile menu on route change
   useEffect(() => {
     setIsMobileMenuOpen(false);
-  }, [window.location.pathname]);
+  }, [location.pathname]);
 
   // Close dropdowns when clicking outside
   useEffect(() => {
