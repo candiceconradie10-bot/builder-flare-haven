@@ -48,8 +48,8 @@ export default function Profile() {
     setMessage(null);
     setError(null);
     try {
-      if (window.supabase) {
-        const { error } = await window.supabase.auth.updateUser({
+      {
+        const { error } = await supabase.auth.updateUser({
           data: {
             firstName: form.firstName,
             lastName: form.lastName,
@@ -82,8 +82,8 @@ export default function Profile() {
       if (!passwords.next || passwords.next.length < 6) {
         throw new Error("Password must be at least 6 characters");
       }
-      if (window.supabase) {
-        const { error } = await window.supabase.auth.updateUser({
+      {
+        const { error } = await supabase.auth.updateUser({
           password: passwords.next,
         });
         if (error) throw error;
