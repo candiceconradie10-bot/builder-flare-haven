@@ -35,7 +35,7 @@ export default function ProductDetail() {
         // Try Supabase first if available
         if (supabase) {
           // Attempt both UUID (string) and numeric id lookups
-          const queries: Promise<any>[] = [];
+          const queries: any[] = [];
           if (id) {
             queries.push(
               supabase
