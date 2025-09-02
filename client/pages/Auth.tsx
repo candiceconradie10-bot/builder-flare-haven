@@ -51,6 +51,12 @@ export default function Auth() {
     }
   }, [state.isAuthenticated, navigate, from]);
 
+  // Keep form mode in sync with the current URL (/auth vs /signup)
+  useEffect(() => {
+    setIsLogin(!isSignupPath);
+    clearError();
+  }, [isSignupPath, clearError]);
+
   useEffect(() => {
     if (state.error) {
       toast({
