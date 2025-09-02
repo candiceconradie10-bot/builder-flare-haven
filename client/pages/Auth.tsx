@@ -41,6 +41,9 @@ export default function Auth() {
 
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isResetMode, setIsResetMode] = useState(false);
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const { state, login, signup, requestPasswordReset, completePasswordReset, clearError } = useAuth();
   const { toast } = useToast();
