@@ -62,6 +62,14 @@ export default function Auth() {
     clearError();
   }, [isSignupPath, clearError]);
 
+  // Detect Supabase recovery redirect (#...type=recovery)
+  useEffect(() => {
+    const hash = typeof window !== 'undefined' ? window.location.hash : '';
+    if (hash.includes('type=recovery')) {
+      setIsResetMode(true);
+    }
+  }, []);
+
   useEffect(() => {
     if (state.error) {
       toast({
