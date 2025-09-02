@@ -14,6 +14,7 @@ import {
   User,
   Building,
 } from "lucide-react";
+import { supabase } from "@/lib/supabaseClient";
 
 export default function Profile() {
   const { state, updateUser } = useAuth();
