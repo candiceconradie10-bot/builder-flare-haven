@@ -352,8 +352,11 @@ export default function Auth() {
                         name="password"
                         type={showPassword ? "text" : "password"}
                         required
-                        value={formData.password}
-                        onChange={handleInputChange}
+                        value={isResetMode ? newPassword : formData.password}
+                        onChange={(e) => {
+                          if (isResetMode) setNewPassword(e.target.value);
+                          else handleInputChange(e as any);
+                        }}
                         className="pl-10 pr-10 h-12 rounded-xl bg-white/10 border-white/20 text-white placeholder-gray-400 focus:border-brand-red/50 focus:bg-white/20 transition-all duration-300 text-base"
                         placeholder="Enter your password"
                         aria-invalid={!!formErrors.password}
