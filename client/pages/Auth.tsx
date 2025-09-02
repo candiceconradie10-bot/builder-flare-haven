@@ -525,7 +525,7 @@ export default function Auth() {
                         </span>
                       </div>
                     ) : (
-                      <span>{isLogin ? "Sign In" : "Create Account"}</span>
+                      <span>{isResetMode ? "Update Password" : isLogin ? "Sign In" : "Create Account"}</span>
                     )}
                   </Button>
                 </form>
