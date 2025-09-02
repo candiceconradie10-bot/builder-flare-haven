@@ -204,7 +204,7 @@ export default function AdminDashboard() {
   // Initialize data
   useEffect(() => {
     // Add custom upload function to window
-    window.uploadFile = async (file: File) => {
+    (window as any).uploadFile = async (file: File) => {
       try {
         // @ts-ignore
         const { data, error } = await supabase.storage
