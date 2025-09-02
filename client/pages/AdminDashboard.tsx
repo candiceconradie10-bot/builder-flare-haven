@@ -39,6 +39,7 @@ import {
   Globe,
   Smartphone,
 } from "lucide-react";
+import { supabase } from "@/lib/supabaseClient";
 
 export default function AdminDashboard() {
   const [loading, setLoading] = useState(false);
@@ -206,7 +207,7 @@ export default function AdminDashboard() {
     window.uploadFile = async (file: File) => {
       try {
         // @ts-ignore
-        const { data, error } = await window.supabase.storage
+        const { data, error } = await supabase.storage
           .from("uploads")
           .upload(`files/${file.name}`, file);
 
@@ -233,7 +234,7 @@ export default function AdminDashboard() {
     try {
       setLoading(true);
       // @ts-ignore
-      const { data, error } = await window.supabase
+      const { data, error } = await supabase
         .from("products")
         .select("*")
         .order("created_at", { ascending: false });
@@ -254,7 +255,7 @@ export default function AdminDashboard() {
   const loadContent = async () => {
     try {
       // @ts-ignore
-      const { data, error } = await window.supabase
+      const { data, error } = await supabase
         .from("site_content")
         .select("*")
         .order("section", { ascending: true });
@@ -273,7 +274,7 @@ export default function AdminDashboard() {
   const loadCatalogues = async () => {
     try {
       // @ts-ignore
-      const { data, error } = await window.supabase
+      const { data, error } = await supabase
         .from("catalogues")
         .select("*")
         .order("name", { ascending: true });
@@ -353,13 +354,13 @@ export default function AdminDashboard() {
       let result;
       if (productForm.id) {
         // Update existing product
-        result = await window.supabase
+        result = await supabase
           .from("products")
           .update(productData)
           .eq("id", productForm.id);
       } else {
         // Create new product
-        result = await window.supabase.from("products").insert([productData]);
+        result = await supabase.from("products").insert([productData]);
       }
 
       if (result.error) {
@@ -405,13 +406,13 @@ export default function AdminDashboard() {
       let result;
       if (contentForm.id) {
         // Update existing content
-        result = await window.supabase
+        result = await supabase
           .from("site_content")
           .update(contentData)
           .eq("id", contentForm.id);
       } else {
         // Create new content
-        result = await window.supabase
+        result = await supabase
           .from("site_content")
           .insert([contentData]);
       }
@@ -457,13 +458,13 @@ export default function AdminDashboard() {
       let result;
       if (catalogueForm.id) {
         // Update existing catalogue
-        result = await window.supabase
+        result = await supabase
           .from("catalogues")
           .update(catalogueData)
           .eq("id", catalogueForm.id);
       } else {
         // Create new catalogue
-        result = await window.supabase
+        result = await supabase
           .from("catalogues")
           .insert([catalogueData]);
       }
@@ -495,7 +496,7 @@ export default function AdminDashboard() {
     try {
       setLoading(true);
       // @ts-ignore
-      const { error } = await window.supabase
+      const { error } = await supabase
         .from("products")
         .delete()
         .eq("id", id);
@@ -514,7 +515,7 @@ export default function AdminDashboard() {
     try {
       setLoading(true);
       // @ts-ignore
-      const { error } = await window.supabase
+      const { error } = await supabase
         .from("site_content")
         .delete()
         .eq("id", id);
@@ -533,7 +534,7 @@ export default function AdminDashboard() {
     try {
       setLoading(true);
       // @ts-ignore
-      const { error } = await window.supabase
+      const { error } = await supabase
         .from("catalogues")
         .delete()
         .eq("id", id);
