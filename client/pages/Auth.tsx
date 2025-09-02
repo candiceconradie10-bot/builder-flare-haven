@@ -128,18 +128,28 @@ export default function Auth() {
     setIsSubmitting(true);
 
     try {
-      if (isLogin) {
+      if (isResetMode) {
+        if (!newPassword || newPassword.length < 6) throw new Error("Password must be at least 6 characters");
+        if (newPassword !== confirmPassword) throw new Error("Passwords do not match");
+        await completePasswordReset(newPassword);
+        toast({ title: "Password updated", description: "You can now continue." });
+      } else if (isLogin) {
         await login(formData.email, formData.password);
         toast({
           title: "Welcome back!",
           description: "You have successfully logged in.",
         });
       } else {
-        await signup(formData);
-        toast({
-          title: "Account created!",
-          description: "Welcome to APEX. You can now start shopping.",
-        });
+        const res = await signup(formData);
+        if (res.needsVerification) {
+          toast({ title: "Verify your email", description: "We sent a confirmation link to your inbox." });
+          setIsLogin(true);
+        } else {
+          toast({
+            title: "Account created!",
+            description: "Welcome to APEX. You can now start shopping.",
+          });
+        }
       }
     } catch (error) {
       // Error is handled by useEffect above
