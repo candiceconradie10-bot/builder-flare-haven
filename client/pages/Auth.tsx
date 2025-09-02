@@ -364,7 +364,7 @@ export default function Auth() {
                           formErrors.password ? "password-error" : undefined
                         }
                       />
-                      {formErrors.password && (
+                      {!isResetMode && formErrors.password && (
                         <p
                           id="password-error"
                           className="text-red-400 text-xs mt-1 flex items-center"
