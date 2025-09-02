@@ -389,6 +389,21 @@ export default function Auth() {
                     </div>
                   </div>
 
+                  {/* Confirm Password for reset */}
+                  {isResetMode && (
+                    <div className="space-y-2">
+                      <Label className="text-white font-medium">Confirm Password</Label>
+                      <Input
+                        type={showPassword ? "text" : "password"}
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        className="bg-white/10 border-white/20 text-white placeholder-gray-400 focus:border-brand-red/50 focus:bg-white/20 transition-all duration-300"
+                        placeholder="Re-enter your password"
+                        required
+                      />
+                    </div>
+                  )}
+
                   {/* Signup Fields */}
                   {!isLogin && (
                     <>
