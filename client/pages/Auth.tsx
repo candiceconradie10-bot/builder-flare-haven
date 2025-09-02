@@ -23,7 +23,10 @@ import {
 } from "lucide-react";
 
 export default function Auth() {
-  const [isLogin, setIsLogin] = useState(true);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isSignupPath = location.pathname.includes("/signup") || new URLSearchParams(location.search).get("mode") === "signup";
+  const [isLogin, setIsLogin] = useState(!isSignupPath);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -39,8 +42,6 @@ export default function Auth() {
 
   const { state, login, signup, clearError } = useAuth();
   const { toast } = useToast();
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
 
@@ -506,6 +507,19 @@ export default function Auth() {
                       ? "Don't have an account? Sign up"
                       : "Already have an account? Sign in"}
                   </Button>
+
+                  {/* Direct links */}
+                  <div className="text-sm text-gray-400">
+                    {isLogin ? (
+                      <span>
+                        Prefer a dedicated page? <Link to="/signup" className="text-brand-red hover:underline">Go to Sign Up</Link>
+                      </span>
+                    ) : (
+                      <span>
+                        Already registered? <Link to="/auth" className="text-brand-red hover:underline">Go to Sign In</Link>
+                      </span>
+                    )}
+                  </div>
                 </div>
 
                 {/* Error Display */}
