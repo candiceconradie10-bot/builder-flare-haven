@@ -581,6 +581,28 @@ export default function Auth() {
                   </div>
                 </div>
 
+                {/* Forgot password */}
+                {isLogin && !isResetMode && (
+                  <div className="text-sm text-gray-400">
+                    <button
+                      type="button"
+                      className="text-brand-red hover:underline"
+                      onClick={async () => {
+                        try {
+                          if (!formData.email) {
+                            toast({ title: "Enter your email first", description: "We need your email to send a reset link." });
+                            return;
+                          }
+                          await requestPasswordReset(formData.email);
+                          toast({ title: "Reset link sent", description: "Check your email for the password reset link." });
+                        } catch {}
+                      }}
+                    >
+                      Forgot password?
+                    </button>
+                  </div>
+                )}
+
                 {/* Error Display */}
                 {state.error && (
                   <div className="flex items-center space-x-2 p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
