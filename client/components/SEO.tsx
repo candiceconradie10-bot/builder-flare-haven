@@ -14,7 +14,7 @@ export function SEO({
   title = "APEX - Africa's #1 Promotional Products Provider",
   description = "Premium corporate gifts, workwear & promotional items. 10,000+ products with custom branding services. Fast delivery across South Africa.",
   keywords = "corporate gifts, promotional products, workwear, custom branding, embroidery, printing, South Africa, APEX",
-  image = "https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F5e082290a0a94182af0923df3ec0f2f8?format=webp&width=1200",
+  image = "https://images.pexels.com/photos/4194843/pexels-photo-4194843.jpeg?auto=compress&cs=tinysrgb&w=1200",
   url = "https://apex-promotions.com",
   type = "website",
   structuredData,
