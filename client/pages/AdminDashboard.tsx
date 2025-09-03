@@ -98,17 +98,17 @@ export default function AdminDashboard() {
     {
       id: 1,
       name: "Slide 1",
-      url: "https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F80eeac5f3fb241888157c2f2a4ccf42b?format=webp&width=1920",
+      url: "https://images.pexels.com/photos/33737019/pexels-photo-33737019.jpeg?auto=compress&cs=tinysrgb&w=1920",
     },
     {
       id: 2,
       name: "Slide 2",
-      url: "https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F40f759488e564397a9ebb0c2e6fe0268?format=webp&width=1920",
+      url: "https://images.pexels.com/photos/8486911/pexels-photo-8486911.jpeg?auto=compress&cs=tinysrgb&w=1920",
     },
     {
       id: 3,
       name: "Slide 3",
-      url: "https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2Fda98de9fb8244ece8c68751c4926e3ef?format=webp&width=1920",
+      url: "https://images.pexels.com/photos/4194843/pexels-photo-4194843.jpeg?auto=compress&cs=tinysrgb&w=1920",
     },
   ]);
 
