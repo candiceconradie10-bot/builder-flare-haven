@@ -75,7 +75,7 @@ export default function Index() {
       description:
         "Embrace the lively spirit of spring with our newest fashion collection, featuring vibrant colors and elegance",
       backgroundImage:
-        "https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F80eeac5f3fb241888157c2f2a4ccf42b?format=webp&width=1920",
+        "https://images.pexels.com/photos/33737019/pexels-photo-33737019.jpeg?auto=compress&cs=tinysrgb&w=1920",
       cta: "Shop Collection",
       link: "/corporate-gifts",
     },
@@ -86,7 +86,7 @@ export default function Index() {
       description:
         "Discover our premium range of professional workwear and corporate solutions designed for modern businesses",
       backgroundImage:
-        "https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2F40f759488e564397a9ebb0c2e6fe0268?format=webp&width=1920",
+        "https://images.pexels.com/photos/8486911/pexels-photo-8486911.jpeg?auto=compress&cs=tinysrgb&w=1920",
       cta: "Explore APEX",
       link: "/corporate-clothing",
     },
@@ -97,7 +97,7 @@ export default function Index() {
       description:
         "From workwear to safety equipment, discover our comprehensive range of professional products and services",
       backgroundImage:
-        "https://cdn.builder.io/api/v1/image/assets%2F5ed541bb7f2f4c82a9c16c7e0b0da0c6%2Fda98de9fb8244ece8c68751c4926e3ef?format=webp&width=1920",
+        "https://images.pexels.com/photos/4194843/pexels-photo-4194843.jpeg?auto=compress&cs=tinysrgb&w=1920",
       cta: "View All Products",
       link: "/custom-products",
     },
