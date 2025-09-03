@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useCart } from "@/contexts/CartContext";
-import { useAuth } from "@/contexts/AuthContext";
 import {
   ArrowLeft,
   Plus,
@@ -18,7 +17,6 @@ import {
 
 export default function Cart() {
   const { state, updateQuantity, removeFromCart, clearCart } = useCart();
-  const { state: authState } = useAuth();
 
   const handleQuantityChange = (id: number, newQuantity: number) => {
     if (newQuantity <= 0) {
@@ -270,21 +268,6 @@ export default function Cart() {
                     </Button>
                   </Link>
 
-                  {!authState.isAuthenticated && (
-                    <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-3">
-                      <p className="text-xs text-center text-blue-800 dark:text-blue-200 flex items-center justify-center">
-                        <Shield className="h-3 w-3 mr-1" />
-                        Continue as guest or{" "}
-                        <Link
-                          to="/auth"
-                          className="underline ml-1 hover:text-brand-red"
-                        >
-                          sign in
-                        </Link>{" "}
-                        for faster checkout
-                      </p>
-                    </div>
-                  )}
                   <Link to="/" className="block w-full">
                     <Button
                       variant="outline"
