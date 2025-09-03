@@ -30,12 +30,9 @@ export function OptimizedImage({
   // Generate optimized image URL
   const getOptimizedUrl = (
     originalSrc: string,
-    targetWidth: number,
-    targetQuality: number,
+    _targetWidth: number,
+    _targetQuality: number,
   ) => {
-    if (originalSrc.includes("cdn.builder.io")) {
-      return `${originalSrc}?format=webp&width=${targetWidth}&quality=${targetQuality}&fit=fill`;
-    }
     return originalSrc;
   };
 
