@@ -62,7 +62,6 @@ export default function Checkout() {
     company: "",
   });
 
-
   const [shippingAddress, setShippingAddress] = useState<ShippingAddress>({
     address: "",
     city: "",

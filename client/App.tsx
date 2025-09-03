@@ -69,7 +69,7 @@ const App = () => (
                 element={<OrderConfirmation />}
               />
               <Route path="/product/:id" element={<ProductDetail />} />
-              <Route path= "/:category" element={<ProductCategory />} />
+              <Route path="/:category" element={<ProductCategory />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
