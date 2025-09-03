@@ -8,7 +8,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useCart } from "@/contexts/CartContext";
-import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
 import {
   ArrowLeft,
@@ -52,7 +51,6 @@ interface PaymentInfo {
 
 export default function Checkout() {
   const { state, clearCart } = useCart();
-  const { state: authState } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -64,32 +62,6 @@ export default function Checkout() {
     company: "",
   });
 
-  // Pre-fill customer information from auth context
-  useEffect(() => {
-    if (authState.user) {
-      setCustomerInfo({
-        firstName: authState.user.firstName,
-        lastName: authState.user.lastName,
-        email: authState.user.email,
-        phone: authState.user.phone || "",
-        company: authState.user.company || "",
-      });
-
-      // Pre-fill shipping address if available
-      const defaultAddress =
-        authState.user.addresses?.find((addr) => addr.isDefault) ||
-        authState.user.addresses?.[0];
-      if (defaultAddress) {
-        setShippingAddress({
-          address: defaultAddress.address,
-          city: defaultAddress.city,
-          province: defaultAddress.province,
-          postalCode: defaultAddress.postalCode,
-          country: defaultAddress.country,
-        });
-      }
-    }
-  }, [authState.user]);
 
   const [shippingAddress, setShippingAddress] = useState<ShippingAddress>({
     address: "",
@@ -207,18 +179,6 @@ export default function Checkout() {
           <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
             Secure Checkout
           </h1>
-          {authState.user && (
-            <div className="flex items-center space-x-2 text-sm sm:text-base text-muted-foreground">
-              <CheckCircle className="h-4 w-4 text-green-500" />
-              <span>
-                Welcome back,{" "}
-                <span className="text-brand-red font-medium">
-                  {authState.user.firstName}
-                </span>
-                !
-              </span>
-            </div>
-          )}
         </div>
 
         <form onSubmit={handleSubmit}>
