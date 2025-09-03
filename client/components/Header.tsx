@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useCart } from "@/contexts/CartContext";
-import { OptimizedImage } from "./OptimizedImage";
 import {
   Search,
   ShoppingCart,
